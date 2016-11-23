@@ -1,3 +1,12 @@
+function Weapon( param_nom, param_power)
+{
+	this.nom = param_nom;
+	this.power = param_power;
+}
+
+Weapon.prototype.nom 	= null;
+Weapon.prototype.power 	= 0;
+
 
 function Warrior(param_name)
 {
@@ -7,14 +16,60 @@ function Warrior(param_name)
 
 Warrior.prototype.nom 			= "Conan";
 Warrior.prototype._pv 			= 100;
-Warrior.prototype._degats 		= 10;
+Warrior.prototype._degats 		= 5;
+Warrior.prototype._weaponLeft	= null;
+Warrior.prototype._weaponRight	= null;
+
+
+Warrior.prototype.setWeaponLeft	= function(param_weapon)
+{
+	this._weaponLeft = param_weapon;
+};
+
+Warrior.prototype.setWeaponRight	= function(param_weapon)
+{
+	this._weaponRight = param_weapon;
+};
+
+Warrior.prototype.getWeaponLeft	= function()
+{
+	return this._weaponLeft;
+};
+
+Warrior.prototype.getWeaponRight	= function()
+{
+	return this._weaponRight;
+};
 
 Warrior.prototype.attack		= function(param_ennemy)
 {
-	var booster = Math.round( Math.random() * 10 );
-	var degats = this._degats + booster;
+	var booster = 0;
+	var degats = 0;
 	
-	param_ennemy.getDammages(degats);
+	if( this._weaponRight != null )
+	{
+		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: "+this._weaponRight.nom);
+		booster = Math.round( Math.random() * 10 );
+		degats = this._weaponRight.power + booster;
+		
+		param_ennemy.getDammages(degats);
+	}
+	
+	if( this._weaponLeft != null )
+	{
+		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: "+this._weaponLeft.nom);
+		booster = Math.round( Math.random() * 10 );
+		degats = this._weaponLeft.power + booster;
+		
+		param_ennemy.getDammages(degats);
+	}
+	
+	if( this._weaponLeft == null && this._weaponRight == null )
+	{
+		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: ses poings");
+		degats = this._degats;
+		param_ennemy.getDammages(degats);
+	}
 };
 
 Warrior.prototype.getDammages 	= function(param_degats)
@@ -46,17 +101,16 @@ Warrior.prototype.isDead		= function()
 
 
 
-function MagicWand(){}
+function MagicWand(param_nom, param_consoMana, param_power)
+{
+	this.nom 		= param_nom;
+	this.consoMana 	= param_consoMana;
+	this.power 		= param_power;
+}
 
-MagicWand.prototype.consoMana 	= 40;
-MagicWand.prototype.degats 		= 20;
-
-
-
-function HarryPotterStick(){}
-
-HarryPotterStick.prototype.consoMana 	= 100;
-HarryPotterStick.prototype.degats 		= 35;
+MagicWand.prototype.nom 		= null;
+MagicWand.prototype.consoMana 	= 0;
+MagicWand.prototype.power 		= 0;
 
 
 
@@ -85,17 +139,16 @@ Wizzard.prototype.attack		= function(param_ennemy)
 {
 	var booster = Math.round( Math.random() * 10 );
 	
-	if( this._wandstick == null )
+	if( this._wandstick != null && this.mana >= this._wandstick.consoMana)
 	{
+		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: "+this._wandstick.nom);
 		param_ennemy.getDammages(this._degats + booster);
-	}
-	else if( this.mana <= this._wandstick.consoMana )
-	{
-		param_ennemy.getDammages(this._degats + booster);
+		this.mana -= this._wandstick.consoMana;
 	}
 	else
 	{
-		param_ennemy.getDammages(this._wandstick.degats + booster);
+		console.log(this.nom +" attaque "+param_ennemy.nom+" avec ses poings ");
+		param_ennemy.getDammages(this._wandstick.power + booster);
 	}
 };
 
@@ -133,7 +186,11 @@ Wizzard.prototype.isDead		= function()
 var mere_theresa = new Wizzard("Mère Theresa");
 var robocop = new Warrior("Robocop");
 
-mere_theresa.setMagicWand( new HarryPotterStick() );
+
+robocop.setWeaponRight( new Weapon("Pistolet à eau", 10) );
+robocop.setWeaponLeft( new Weapon("Lance grenades", 15) );
+
+mere_theresa.setMagicWand( new MagicWand("Crucifix",50,25) );
 
 
 while( !mere_theresa.isDead() && !robocop.isDead() )
