@@ -14,6 +14,10 @@ function start()
 window.addEventListener("load", start);
 */
 
+
+
+
+/*
 var warrior1 	= new Object();
 var warrior2 	= new Object();
 
@@ -98,6 +102,95 @@ warrior2.getDammages = function(param_degats)
 	}
 };
 
+*/
+
+
+var warrior1 = {
+	
+	"nom": "Mère Theresa",
+	"_pv": 100,
+	"_degats": 10,
+	
+	"attack": function(param_ennemy)
+	{
+		var booster = Math.round( Math.random() * 5 );
+		var dammages = this._degats + booster;
+	
+		param_ennemy.getDammages(dammages);
+	},
+	
+	"getDammages": function(param_degats)
+	{
+		this._pv -= param_degats;
+		
+		if( this._pv < 0 )
+		{
+			this._pv = 0;
+		}
+	},
+	
+	"getPV": function()
+	{
+		return this._pv;
+	}, 
+	
+	"isDead": function()
+	{
+		if( this._pv <= 0 )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+};
+
+
+var warrior2 = {
+	
+	"nom": "Jamie Lannister",
+	"_pv": 100,
+	"_degats": 10,
+	
+	"attack": function(param_ennemy)
+	{
+		var booster = Math.round( Math.random() * 5 );
+		var dammages = this._degats + booster;
+	
+		param_ennemy.getDammages(dammages);
+	},
+	
+	"getDammages": function(param_degats)
+	{
+		this._pv -= param_degats;
+		
+		if( this._pv < 0 )
+		{
+			this._pv = 0;
+		}
+	},
+	
+	"getPV": function()
+	{
+		return this._pv;
+	}, 
+	
+	"isDead": function()
+	{
+		if( this._pv <= 0 )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+};
 
 
 while( !warrior1.isDead() && !warrior2.isDead() )
