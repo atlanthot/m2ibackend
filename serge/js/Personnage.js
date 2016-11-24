@@ -5,9 +5,9 @@ function Personnage(nom,metier)
 	this.metier = metier;
 }
 
+Personnage.prototype.metier = null;
 Personnage.prototype.nom = null;
 Personnage.prototype._pv = null;
-Personnage.prototype.metier = null;
 Personnage.prototype._defMagic = null;
 Personnage.prototype._defPhy = null;
 

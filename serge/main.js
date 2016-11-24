@@ -28,12 +28,6 @@ function main()
 	faireHeriter(Item, MagicWand);
 	faireHeriter(Item, Weapon);
 	faireHeriter(PNJ, Marchand);	
-	
-	/*var voiture = new Voiture("pouet !");
-	var ferrari = new Ferrari("vroum !");*/
-	
-	//var ferrari = new Ferrari("vraouuuuummm");
-	//ferrari.makeNoise();
 }
 
 window.addEventListener("load", main);
