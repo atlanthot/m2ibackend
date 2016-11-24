@@ -1,8 +1,8 @@
 
 /*hérite de voiture*/
-function Ferrari(noise)
+function Ferrari(param_noise)
 {
-	Voiture.apply(this,[noise]);
+	Voiture.apply(this,[param_noise]);
 }
 
 Ferrari.prototype.makeNoise = function()

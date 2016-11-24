@@ -3,18 +3,16 @@ function faireHeriter(parentClass,childClass)
 {
 	var obj = new Object();
 	var prop = null;
-	var instanceParent = new parentClass();
-	var instanceChild = new childClass();
 	
-	for( prop in instanceParent )
+	for( prop in parentClass.prototype )
 	{
-		obj[prop] = instanceParent[prop];
+		obj[prop] = parentClass.prototype[prop];
 	}
 	
 
-	for( prop in instanceChild )
+	for( prop in childClass.prototype )
 	{
-		obj[prop] = instanceChild[prop];
+		obj[prop] = childClass.prototype[prop];
 	}
 	
 	childClass.prototype = obj;
@@ -26,8 +24,12 @@ function main()
 	faireHeriter(Vehicule, Voiture);
 	faireHeriter(Voiture, Ferrari);
 	
-	var ferrari = new Ferrari("vraouuuuummm");
-	ferrari.makeNoise();
+	
+	var voiture = new Voiture("pouet !");
+	var ferrari = new Ferrari("vroum !");
+	
+	//var ferrari = new Ferrari("vraouuuuummm");
+	//ferrari.makeNoise();
 }
 
 

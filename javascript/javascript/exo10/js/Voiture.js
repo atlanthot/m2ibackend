@@ -1,7 +1,7 @@
 
-function Voiture(noise)
+function Voiture(param_noise)
 {
-	this._noise = noise;
+	this._noise = param_noise;
 }
 
 Voiture.prototype._noise = null;
