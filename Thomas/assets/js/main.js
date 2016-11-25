@@ -98,8 +98,44 @@ function main(){
 	faireHeriter(Item, ManaPotion);
 	faireHeriter(Item, MagicWand);
 	faireHeriter(Item, Weapon);
+	faireHeriter(Item, Baton);
 	faireHeriter(PNJ, Marchand);
 	start();
 }
+
+function combat(obj){
+	
+	var mere_theresa = new Wizard("Mère Theresa","Barde",50);
+	var robocop = new Warrior("Robocop","Justicier");
+	
+	var token1 = Math.floor(Math.random() * ( obj.armeWarrior.length - 1) );
+	var token2 = Math.floor(Math.random() * ( obj.armeWarrior.length - 1) );
+	var token3 = Math.floor(Math.random() * ( obj.armeWizard.length - 1 ) );
+	
+	var arme1 = obj.armeWarrior[token1];
+	var arme2 = obj.armeWarrior[token2];
+	var arme3 = obj.armeWizard[token3];
+	
+	robocop.setWeaponRight( new Weapon(arme1) );
+	robocop.setWeaponLeft( new Weapon(arme2) );
+	mere_theresa.setWandstick( new Baton(arme3) );
+	
+	console.log(robocop,'\n',mere_theresa);
+	console.log("*********************************************************");
+	while( !mere_theresa.isDead() && !robocop.isDead() ){
+		console.log(robocop.nom + " : "+ robocop.getPv() + " | " + mere_theresa.nom + " : "+ mere_theresa.getPv()+' - '+ mere_theresa.getMana());
+		mere_theresa.attack(robocop);
+		if( robocop.isDead() ){
+			break;
+		}
+
+		robocop.attack(mere_theresa);
+		
+		console.log("-------------------------------------------------------");
+	}
+	console.log(robocop.isDead() ? "Mort de robocop" : "Mort de Mamie");
+};
+
+
 
 window.addEventListener("load", main);

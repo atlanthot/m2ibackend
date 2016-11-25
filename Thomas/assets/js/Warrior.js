@@ -5,6 +5,7 @@ function Warrior(nom,metier){
 
 Warrior.prototype._weaponRight = null;
 Warrior.prototype._weaponLeft = null;
+Warrior.prototype._degats = 5;
 
 
 //accesseurs weaponRight
@@ -30,9 +31,9 @@ Warrior.prototype.attack = function(param_ennemy){
 		param_ennemy.getDamages(this._weaponLeft.power);		
 	}if(this._weaponRight != null){
 		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: "+this._weaponRight.nom);
-		param_ennemy.getDamages(this._weaponLeft.power);
+		param_ennemy.getDamages(this._weaponRight.power);
 	}else{
 		console.log(this.nom +" attaque "+param_ennemy.nom+" avec ses poings ");
-		param_ennemy.getDamages(this._weaponLeft);
+		param_ennemy.getDamages(this._degats);
 	}
 };

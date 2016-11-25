@@ -4,13 +4,15 @@
 	"armeWarrior":[
 		{"id":0, "nom":"Hache", "type":"contendant", "force":15},
 		{"id":1, "nom":"épée", "type":"tranchant", "force":10},
-		{"id":2, "nom":"épée batarde", "type":"tranchant", "force":12}
+		{"id":2, "nom":"épée batarde", "type":"tranchant", "force":12},
+		{"id":3, "nom":"Katana", "type":"tranchant", "force":30}
 	],
 	
 	"dtdArmeWizard":["id", "nom", "type", "force","mana"],
 	"armeWizard":[
 		{"id":0, "nom":"Baton Magique", "type":"feu", "force":10,"mana":5},
 		{"id":1, "nom":"Baton moins Magique", "type":"feu", "force":10,"mana":5},
-		{"id":2, "nom":"Baton pété", "type":"feu", "force":15,"mana":20}
+		{"id":2, "nom":"Baton pété", "type":"feu", "force":15,"mana":20},
+		{"id":3, "nom":"Baguette de voldemort", "type":"feu", "force":50,"mana":1}
 	]
 }
