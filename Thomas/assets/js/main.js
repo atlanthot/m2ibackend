@@ -1,3 +1,4 @@
+/*
 function readyStateHandler(event){
 	var monObjetAjax = event.target;
 	
@@ -9,12 +10,53 @@ function readyStateHandler(event){
 		run(obj);
 	}
 }
+*/
+
+function readHandler(event)
+{
+	var reader = event.target;
+	var obj = null;
+	
+	try
+	{
+		JSON.parse( reader.result );
+		run(obj);
+	}
+	catch( error )
+	{
+		console.log("il y a eu une erreur: impossible de parser le fichier, le format .json n'est pas respecté.");
+	}
+}
+
+function fileHandler(event)
+{
+	var mon_input 	= event.target;
+	var i 			= mon_input.files.length;
+	var myFile 		= null;
+	var reader 		= null;
+	
+	console.log(mon_input.files);
+	
+	while( --i > -1 )
+	{
+		reader = new FileReader();
+		reader.addEventListener("load", readHandler );
+		
+		myFile = mon_input.files[i];
+		reader.readAsText(myFile);
+	}
+}
 
 function start(){
+	/*
 	var monObjetAjax = new XMLHttpRequest();
 	monObjetAjax.addEventListener("readystatechange", readyStateHandler);
 	monObjetAjax.open("GET","assets/data.json", true);
 	monObjetAjax.send(null);
+	*/
+	
+	var element = document.getElementById("myFiles");
+	element.addEventListener("change", fileHandler );
 }
 
 function run(obj){
