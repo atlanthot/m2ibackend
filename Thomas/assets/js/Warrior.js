@@ -25,11 +25,13 @@ Warrior.prototype.getWeaponLeft = function(){
 	return this._weaponLeft;
 }
 Warrior.prototype.attack = function(param_ennemy){	
-	if( this._weaponLeft != null){
+	if(this._weaponLeft != null){
 		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: "+this._weaponLeft.nom);
+		param_ennemy.getDamages(this._weaponLeft.power);		
+	}if(this._weaponRight != null){
+		console.log(this.nom +" attaque "+param_ennemy.nom+" avec: "+this._weaponRight.nom);
 		param_ennemy.getDamages(this._weaponLeft.power);
-	}
-	else{
+	}else{
 		console.log(this.nom +" attaque "+param_ennemy.nom+" avec ses poings ");
 		param_ennemy.getDamages(this._weaponLeft);
 	}
