@@ -12,36 +12,30 @@ function readyStateHandler(event){
 }
 */
 
-function readHandler(event)
-{
+function readHandler(event){
 	var reader = event.target;
 	var obj = null;
 	
-	try
-	{
-		JSON.parse( reader.result );
-		run(obj);
+	try{
+		obj = JSON.parse( reader.result );
+		run(obj);	
 	}
-	catch( error )
-	{
-		console.log("il y a eu une erreur: impossible de parser le fichier, le format .json n'est pas respecté.");
+	catch( error ){
+		console.log("Erreur: impossible de parser le fichier, le format .json n'est pas respecté.");
 	}
 }
 
-function fileHandler(event)
-{
+function fileHandler(event){
 	var mon_input 	= event.target;
 	var i 			= mon_input.files.length;
 	var myFile 		= null;
 	var reader 		= null;
 	
-	console.log(mon_input.files);
+	// console.log(mon_input.files);
 	
-	while( --i > -1 )
-	{
+	while( --i > -1 ){
 		reader = new FileReader();
-		reader.addEventListener("load", readHandler );
-		
+		reader.addEventListener("load", readHandler );	
 		myFile = mon_input.files[i];
 		reader.readAsText(myFile);
 	}
@@ -54,21 +48,19 @@ function start(){
 	monObjetAjax.open("GET","assets/data.json", true);
 	monObjetAjax.send(null);
 	*/
-	
 	var element = document.getElementById("myFiles");
 	element.addEventListener("change", fileHandler );
 }
 
 function run(obj){
 	var container = document.getElementById("container");
-	
 	var champs = obj["dtdArmeWarrior"];
 	var armeWarrior = obj["armeWarrior"];
 	var html = '';
+
 	
-	html += '<h1>'+obj["titre"]+'</h1>';
-	html += '<h2>'+champs+'</h2>';
 	html += '<table>';
+	html += '<caption>'+obj["titre"]+'</caption>';
 	html += '<tr>';
 	
 	for( var i = 0; i < champs.length; i++ ){
@@ -87,12 +79,12 @@ function run(obj){
 		html += '</tr>';
 	}
 		html += '</table>';
-		
+
 	var champs = obj["dtdArmeWizard"];
 	var armeWizard = obj["armeWizard"];
 	
-	html += '<h2>'+champs+'</h2>';
 	html += '<table>';
+	html += '<caption>'+obj["titre"]+'</caption>';
 	html += '<tr>';
 	
 	for( var i = 0; i < champs.length; i++ ){
@@ -138,17 +130,15 @@ function main(){
 	faireHeriter(Personnage, Ennemy);
 	faireHeriter(Item, LifePotion);
 	faireHeriter(Item, ManaPotion);
-	faireHeriter(Item, MagicWand);
 	faireHeriter(Item, Weapon);
-	faireHeriter(Item, Baton);
+	faireHeriter(Item, MagicWand);
 	faireHeriter(PNJ, Marchand);
 	start();
 }
 
 function combat(obj){
-	
-	var mere_theresa = new Wizard("Mère Theresa","Barde",50);
-	var robocop = new Warrior("Robocop","Justicier");
+	var player1 = new Wizard("Mère Theresa","Barde",50);
+	var player2 = new Warrior("Robocop","Justicier");
 	
 	var token1 = Math.floor(Math.random() * ( obj.armeWarrior.length - 1) );
 	var token2 = Math.floor(Math.random() * ( obj.armeWarrior.length - 1) );
@@ -158,26 +148,24 @@ function combat(obj){
 	var arme2 = obj.armeWarrior[token2];
 	var arme3 = obj.armeWizard[token3];
 	
-	robocop.setWeaponRight( new Weapon(arme1) );
-	robocop.setWeaponLeft( new Weapon(arme2) );
-	mere_theresa.setWandstick( new Baton(arme3) );
+	player2.setWeaponRight( new Weapon(arme1) );
+	player2.setWeaponLeft( new Weapon(arme2) );
+	player1.setWandstick( new MagicWand(arme3) );
 	
-	console.log(robocop,'\n',mere_theresa);
 	console.log("*********************************************************");
-	while( !mere_theresa.isDead() && !robocop.isDead() ){
-		console.log(robocop.nom + " : "+ robocop.getPv() + " | " + mere_theresa.nom + " : "+ mere_theresa.getPv()+' - '+ mere_theresa.getMana());
-		mere_theresa.attack(robocop);
-		if( robocop.isDead() ){
+	while( !player1.isDead() && !player2.isDead() ){
+		console.log(player2.nom, ":", player2.getPv(), "PV |", player1.nom, ":", player1.getPv(), 'PV -', player1.getMana(),"PM");
+		player1.attack(player2);
+		if( player2.isDead() ){
 			break;
 		}
 
-		robocop.attack(mere_theresa);
+		player2.attack(player1);
 		
 		console.log("-------------------------------------------------------");
 	}
-	console.log(robocop.isDead() ? "Mort de robocop" : "Mort de Mamie");
+	console.log("Mort de", player2.isDead() ? player2.nom : player1.nom);
+	console.log("*********************************************************");
 };
-
-
 
 window.addEventListener("load", main);

@@ -1,6 +1,7 @@
-/*hérite d'item*/
-function MagicWand(nom,type,price,weight,manaConso)
-{
-	Item.apply(this,[nom,type,price,weight]);
-	this.manaConso = manaConso;
+function MagicWand(data){
+	this.nom = data["nom"];
+	this.power = data["power"];
+	this.consoMana = data["consoMana"];
+	this.price = data["price"];
+	this.weight = data["weight"];
 }
