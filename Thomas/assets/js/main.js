@@ -11,7 +11,27 @@ function readyStateHandler(event){
 	}
 }
 */
+// Drag & Drop function 
+function dropHandler(event){
+	event.preventDefault();	
+	
+	var file = event.dataTransfer.files;
+	var i = file.length;
+	
+	while( --i > -1 ){
+		reader = new FileReader();
+		reader.addEventListener("load", readHandler);	
+		myFile = file[i];
+		reader.readAsText(myFile);
+	}
+}
 
+function hoverHandler(event){
+	event.preventDefault();
+	
+}
+// ----------------------------------------------------------------------------------------------------------------// 
+// JSON parse & reader function
 function readHandler(event){
 	var reader = event.target;
 	var obj = null;
@@ -20,8 +40,8 @@ function readHandler(event){
 		obj = JSON.parse( reader.result );
 		run(obj);	
 	}
-	catch( error ){
-		console.log("Erreur: impossible de parser le fichier, le format .json n'est pas respecté.");
+	catch(error){
+		console.log("Erreur: impossible de parser le fichier, le format .json n'est pas respecté.", error);
 	}
 }
 
@@ -31,27 +51,21 @@ function fileHandler(event){
 	var myFile 		= null;
 	var reader 		= null;
 	
-	// console.log(mon_input.files);
-	
 	while( --i > -1 ){
 		reader = new FileReader();
-		reader.addEventListener("load", readHandler );	
+		reader.addEventListener("load", readHandler);	
 		myFile = mon_input.files[i];
 		reader.readAsText(myFile);
 	}
 }
-
+/*
 function start(){
-	/*
 	var monObjetAjax = new XMLHttpRequest();
 	monObjetAjax.addEventListener("readystatechange", readyStateHandler);
 	monObjetAjax.open("GET","assets/data.json", true);
 	monObjetAjax.send(null);
-	*/
-	var element = document.getElementById("myFiles");
-	element.addEventListener("change", fileHandler );
 }
-
+*/
 function run(obj){
 	var container = document.getElementById("container");
 	var champs = obj["dtdArmeWarrior"];
@@ -123,19 +137,8 @@ function faireHeriter(parentClass,childClass){
 	
 	childClass.prototype = obj;
 }
-
-function main(){	
-	faireHeriter(Personnage, Wizard);
-	faireHeriter(Personnage, Warrior);
-	faireHeriter(Personnage, Ennemy);
-	faireHeriter(Item, LifePotion);
-	faireHeriter(Item, ManaPotion);
-	faireHeriter(Item, Weapon);
-	faireHeriter(Item, MagicWand);
-	faireHeriter(PNJ, Marchand);
-	start();
-}
-
+// -------------------------------------------------------------------------------------------------------------------------- //
+// debug utility 
 function combat(obj){
 	var player1 = new Wizard("Mère Theresa","Barde",50);
 	var player2 = new Warrior("Robocop","Justicier");
@@ -167,5 +170,25 @@ function combat(obj){
 	console.log("Mort de", player2.isDead() ? player2.nom : player1.nom);
 	console.log("*********************************************************");
 };
+function init(){
+	faireHeriter(Personnage, Wizard);
+	faireHeriter(Personnage, Warrior);
+	faireHeriter(Personnage, Ennemy);
+	faireHeriter(Item, LifePotion);
+	faireHeriter(Item, ManaPotion);
+	faireHeriter(Item, Weapon);
+	faireHeriter(Item, MagicWand);
+	faireHeriter(PNJ, Marchand);
+}
+//initialisation function
+function main(){
+	init();
+	var inputBox = document.getElementById("inputBox");
+	var inputButton = document.getElementById("myFiles");
+	
+	inputButton.addEventListener("change", fileHandler);
+	inputBox.addEventListener("dragover", hoverHandler);
+	inputBox.addEventListener("drop", dropHandler);
+}
 
 window.addEventListener("load", main);

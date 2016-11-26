@@ -1,4 +1,4 @@
-function Personnage(nom,metier){
+function Personnage(nom, metier){
 	this.nom = nom;
 	this.metier = metier;
 }
