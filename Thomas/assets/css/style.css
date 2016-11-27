@@ -71,33 +71,59 @@ table td{
 	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
 	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
 }
+
 table tr.even td{
 	background: #f6f6f6;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
 	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
 }
+
 table tr:last-child td{
 	border-bottom:0;
 }
+
 table tr:last-child td:first-child{
 	-moz-border-radius-bottomleft:3px;
 	-webkit-border-bottom-left-radius:3px;
 	border-bottom-left-radius:3px;
 }
+
 table tr:last-child td:last-child{
 	-moz-border-radius-bottomright:3px;
 	-webkit-border-bottom-right-radius:3px;
 	border-bottom-right-radius:3px;
 }
+
 table tr:hover td{
 	background: #f2f2f2;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
 	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
 }
 
+section{
+	margin:auto;
+	width: 90%;
+	height: 90%;
+	border: 2px solid black;
+}
+
+article{
+	display:inline-block;
+	width:33%;
+	padding: 5px;
+
+}
+article{
+	text-align: center;
+	
+}
+article p{
+	vertical-align: middle;
+}
 #inputBox{
-	width:100px;
-	height:100px;
-	background-color: red;
+	width:200px;
+	height:200px;
+	background-color: lightgrey;
 	border: 2px dashed black;
+	border-radius: 5px;
 }

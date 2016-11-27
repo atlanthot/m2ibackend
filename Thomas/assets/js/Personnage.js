@@ -1,6 +1,10 @@
-function Personnage(nom, metier){
+function Personnage(nom, metier, pv, defMagic, defPhy, degats){
 	this.nom = nom;
 	this.metier = metier;
+	this._pv = pv;
+	this._defMagic = defMagic;
+	this._defPhy = defPhy;
+	this._degats = degats;
 }
 
 Personnage.prototype.metier = null;
@@ -8,6 +12,7 @@ Personnage.prototype.nom = null;
 Personnage.prototype._pv = 100;
 Personnage.prototype._defMagic = null;
 Personnage.prototype._defPhy = null;
+Personnage.prototype._degats = null;
 
 //Accesseurs
 Personnage.prototype.setPv = function(value){

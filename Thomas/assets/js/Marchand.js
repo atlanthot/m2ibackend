@@ -1,5 +1,5 @@
 /*hérite de PNJ*/
-function Marchand(nom,inventory,magasin)
+function Marchand(nom, inventory, magasin)
 {
 	PNJ.apply(this,[nom,inventory]);
 	this.magasin = magasin;

@@ -1,9 +1,7 @@
 /*hérite d'item*/
 function Weapon(data){
-	this.nom = data["nom"];
-	this.power = data["power"];
-	this.price = data["price"];
-	this.weight = data["weight"];
+	Item.apply(this, [data.nom, data.type, data.price, data.weight]);
+	this.power = data.power;
 }
 	
 	

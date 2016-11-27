@@ -1,7 +1,7 @@
 /*hérite de personnage + ses propriétés*/
-function Wizard(nom,metier,mana){
-	Personnage.apply(this,[nom,metier]);
-	this._mana = mana;
+function Wizard(data){
+	Personnage.apply(this, [data.nom, data.metier, data.pv, data.defMagic, data.defPhy, data.degats]);
+	this._mana = data.mana;
 }
 
 Wizard.prototype._mana = null;
@@ -30,7 +30,7 @@ Wizard.prototype.attack	= function(param_ennemy){
 	}
 	else{
 		console.log(this.nom, "attaque", param_ennemy.nom, "avec ses poings ");
-		param_ennemy.getDamages(this._wandstick.power + booster);
+		param_ennemy.getDamages(this._degats);
 	}
 };
 

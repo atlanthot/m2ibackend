@@ -1,0 +1,10 @@
+{
+	"title":"Wizard Weapon",
+	"dtd":["id", "nom", "type", "power", "consoMana", "price", "weight"],
+	"array":[
+		{"id":0, "nom":"Baton", "type":"feu", "power":5, "consoMana":2, "price":4, "weight":1},
+		{"id":1, "nom":"Sceptre", "type":"feu", "power":10, "consoMana":5, "price":10, "weight":2},
+		{"id":2, "nom":"Trident", "type":"feu", "power":15, "consoMana":20, "price":15, "weight":2},
+		{"id":3, "nom":"Baguette de Voldemort", "type":"feu", "power":50, "consoMana":1, "price":1, "weight":1}
+	]
+}

@@ -1,0 +1,11 @@
+{
+	"title":"Warrior Weapon",
+	"dtd":["id", "nom", "type", "power", "price", "weight"],
+	"array":[
+		{"id":0, "nom":"Hachette", "type":"contendant", "power":15, "price":4, "weight":1},
+		{"id":1, "nom":"Hache de bataille", "type":"contendant", "power":15, "price":10, "weight":2},
+		{"id":2, "nom":"Dague", "type":"tranchant", "power":10, "price":3, "weight":1},
+		{"id":3, "nom":"épée bâtarde", "type":"tranchant", "power":12, "price":30, "weight":3},
+		{"id":4, "nom":"Katana", "type":"tranchant", "power":30, "price":20, "weight":2}
+	]
+}

@@ -1,6 +1,6 @@
 /*hérite de personnage*/
-function Warrior(nom,metier){
-	Personnage.apply(this,[nom,metier]);
+function Warrior(data){
+	Personnage.apply(this, [data.nom, data.metier, data.pv, data.defMagic, data.defPhy, data.degats]);
 }
 
 Warrior.prototype._weaponRight = null;

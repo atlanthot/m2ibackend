@@ -1,6 +1,6 @@
 /*hérite d'item*/
-function ManaPotion(nom,type,price,weight,restoration)
+function ManaPotion(data)
 {
-	Item.apply(this,[nom,type,price,weight]);
-	this.restoration = restoration;
+	Item.apply(this,[data.nom,data.type,data.price,data.weight]);
+	this.restoration = data.restoration;
 }

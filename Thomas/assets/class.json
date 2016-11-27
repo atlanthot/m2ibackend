@@ -1,0 +1,27 @@
+{
+	"title":"Class",
+	"dtd":["id", "classe", "nom", "metier", "pv", "defMagic", "defPhy", "degats","mana"],
+	"array":[
+		{
+		"id":0, 
+		"classe": "Warrior",
+		"nom": "Olaf", 
+		"metier": "Ecuyer", 
+		"pv": 100,
+		"defMagic": 10,
+		"defPhy": 20,
+		"degats": 5
+		},
+		{
+		"id": 0, 
+		"classe": "Wizard",
+		"nom": "Harry", 
+		"metier": "Apprenti", 
+		"pv": 100,
+		"defMagic": 20,
+		"defPhy": 10,
+		"degats": 2,
+		"mana": 50
+		}
+	]
+}

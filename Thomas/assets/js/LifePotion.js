@@ -1,6 +1,5 @@
 /*hérite d'item*/
-function LifePotion(nom,type,price,weight,restoration)
-{
-	Item.apply(this,[nom,type,price,weight]);
-	this.restoration = restoration;
+function LifePotion(data){
+	Item.apply(this,[data.nom, data.type, data.price, data.weight]);
+	this.restoration = data.restoration;
 }
