@@ -1,0 +1,37 @@
+{
+	"weapons":[
+		{
+			"nom":"Hache",
+			"type":"arme",
+			"price":100,
+			"weight":10,
+			"power":25
+		},
+		{
+			"nom":"Epée",
+			"type":"arme",
+			"price":200,
+			"weight":5,
+			"power":18
+		}
+	],
+	
+	"sticks":[
+		{
+			"nom":"Baguette de feu",
+			"type":"baguette",
+			"price":100,
+			"weight":10,
+			"power":25,
+			"consoMana":20
+		},
+		{
+			"nom":"Baguette de glace",
+			"type":"baguette",
+			"price":1000,
+			"weight":10,
+			"power":250,
+			"consoMana":200
+		}
+	]
+}
