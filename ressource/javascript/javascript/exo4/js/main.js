@@ -7,8 +7,6 @@ function readyStateHandler(event)
 	if( monObjetAjax.readyState == 4 && monObjetAjax.status == 200 )
 	{
 		// code pour récupérer les données du ws et faire le traitement
-		
-		
 		var data = monObjetAjax.responseText;
 		var obj = JSON.parse(data);
 		
@@ -20,25 +18,17 @@ function main()
 {
 	var monObjetAjax = new XMLHttpRequest();
 	monObjetAjax.addEventListener("readystatechange", readyStateHandler);
-	//monObjetAjax.onreadystatechange = function()
-	//{
-		//
-	//};
-	
-	
 	monObjetAjax.open("GET","data.json", true);
-	//monObjetAjax.open("GET","cacahuete.php", true);
-	monObjetAjax.send(null);
+	monObjetAjax.send();
 }
 
 function run(obj)
 {
-	var container = document.getElementById("container");
-	
-	var champs = obj["champs"];
-	var data = obj["data"];
-	var html = '';
-	var prop = null;
+	var container 	= document.getElementById("container");
+	var champs 		= obj["champs"];
+	var data 		= obj["data"];
+	var html 		= '';
+	var prop 		= null;
 	
 	html += '<h1>'+obj["titre"]+'</h1>';
 	html += '<table>';

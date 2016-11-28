@@ -14,22 +14,20 @@ function snapshot()
 {
 	btn.removeEventListener("click", snapshot);
 	
-	var canvas = document.getElementById("projector");
+	var canvas 	= document.getElementById("projector");
 	var context = canvas.getContext("2d");
-	var video = document.getElementById("uncharted");
+	var video 	= document.getElementById("uncharted");
 	
-	
-	canvas.width = video.width;
-	canvas.height = video.height;
+	canvas.width 	= video.width;
+	canvas.height 	= video.height;
 	
 	context.clearRect(0,0,canvas.width, canvas.height);
-	
-	
 	context.save();
 	context.drawImage(video,0,0,video.width, video.height);
 	context.restore();
 	
-	setTimeout( snapshot, 5 );
+	var num_timeout = setTimeout( snapshot, 5 );
+	//clearTimeout(num_timeout);
 }
 
 

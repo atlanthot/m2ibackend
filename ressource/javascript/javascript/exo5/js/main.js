@@ -1,7 +1,8 @@
 
 function readHandler(event)
 {
-	console.log(event.target.result);
+	var reader = event.target;
+	console.log(reader.result);
 }
 
 function fileHandler(event)
