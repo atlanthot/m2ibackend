@@ -1,6 +1,6 @@
-/*hérite de personnage*/
-function Warrior(data){
-	Personnage.apply(this, [data.nom, data.metier, data.pv, data.defMagic, data.defPhy, data.degats]);
+function Warrior(data)
+{
+	Personnage.apply(this, [data]);
 }
 
 Warrior.prototype._weaponRight = null;
@@ -27,10 +27,10 @@ Warrior.prototype.getWeaponLeft = function(){
 }
 Warrior.prototype.attack = function(param_ennemy){	
 	if(this._weaponLeft != null){
-		console.log(this.nom, "attaque", param_ennemy.nom, "avec", this._weaponLeft.nom);
+		console.log(this.nom, "attaque", param_ennemy.nom, "avec", this._weaponLeft.nom, "(", this._weaponLeft.power, "dmg )");
 		param_ennemy.getDamages(this._weaponLeft.power);		
 	}if(this._weaponRight != null){
-		console.log(this.nom, "attaque", param_ennemy.nom, "avec", this._weaponRight.nom);
+		console.log(this.nom, "attaque", param_ennemy.nom, "avec", this._weaponRight.nom, "(", this._weaponRight.power, "dmg )");
 		param_ennemy.getDamages(this._weaponRight.power);
 	}else{
 		console.log(this.nom, "attaque", param_ennemy.nom, "avec ses poings");

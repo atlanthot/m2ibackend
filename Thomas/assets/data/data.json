@@ -1,0 +1,22 @@
+{
+	"characterClass":[
+		{"classe": "Warrior","nom": "Siegfried", "metier": "Paladin", "pv": 250,"defMagic": 10,"defPhy": 20,"degats": 10},
+		{"classe": "Wizard","nom": "Albus", "metier": "Professeur", "pv": 125,"defMagic": 50,"defPhy": 10,"degats": 5,"mana": 100}
+	],
+
+	"weapons":[
+		{"nom": "Hachette",				"type": "axe", "power": 15, "price": 4, "weight": 1},
+		{"nom": "Hache de bataille",	"type": "axe", "power": 15, "price": 10, "weight": 2},
+		{"nom": "Dague",				"type": "axe", "power": 10, "price": 3, "weight": 1},
+		{"nom": "épée bâtarde",			"type": "sword", "power": 12, "price": 30, "weight": 3},
+		{"nom": "Katana",				"type": "sword", "power": 30, "price": 20, "weight": 2}
+	],
+
+	"sticks":[
+		{"nom":"Baton", 				"type":"stick", "power":10, "consoMana":5, "price":4, "weight":1},
+		{"nom":"Sceptre", 				"type":"stick", "power":15, "consoMana":10, "price":10, "weight":2},
+		{"nom":"Trident", 				"type":"stick", "power":30, "consoMana":30, "price":15, "weight":2},
+		{"nom":"Baguette de Voldemort", "type":"stick", "power":50, "consoMana":1, "price":1, "weight":1},
+		{"nom": "Baguette magique", 	"type": "stick", "power": 2,  "consoMana":2, "price": 20, "weight": 2}
+	]
+}

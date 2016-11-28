@@ -1,10 +1,11 @@
-function Personnage(nom, metier, pv, defMagic, defPhy, degats){
-	this.nom = nom;
-	this.metier = metier;
-	this._pv = pv;
-	this._defMagic = defMagic;
-	this._defPhy = defPhy;
-	this._degats = degats;
+function Personnage(data)
+{
+	this.nom = data.nom;
+	this.metier = data.metier;
+	this._pv = data.pv;
+	this._defMagic = data.defMagic;
+	this._defPhy = data.defPhy;
+	this._degats = data.degats;
 }
 
 Personnage.prototype.metier = null;
