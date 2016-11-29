@@ -37,9 +37,9 @@ function instanceCombat(param_data)
 	var player1 = new Warrior(classArray[0]);
 	var player2 = new Wizard(classArray[1]);
 	
-	var token1 = Math.floor(Math.random() * weapons.length );
-	var token2 = Math.floor(Math.random() * weapons.length );
-	var token3 = Math.floor(Math.random() * sticks.length );
+	var token1 = Math.floor( Math.random() * weapons.length );
+	var token2 = Math.floor( Math.random() * weapons.length );
+	var token3 = Math.floor( Math.random() * sticks.length );
 	
 	var arme1 = weapons[token1];
 	var arme2 = weapons[token2];
