@@ -60,6 +60,19 @@ Personnage.prototype.getDefPhy = function(){
 
 //méthodes de Personnage
 
+Personnage.prototype.move	= function(param_x, param_y, param_speed)
+{
+	TweenMax.to(this, 
+				param_speed, 
+				{
+					"x": param_x, 
+					"y": param_y, 
+					onUpdate: this.draw.bind(this),
+					ease: Elastic.easeOut
+				} 
+			);
+};
+
 Personnage.prototype.parler = function(){
 	alert("Je parle");
 };

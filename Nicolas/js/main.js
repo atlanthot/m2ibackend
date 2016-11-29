@@ -92,6 +92,9 @@ function donnees_chargees(param_data)
 	
 	gandalf.draw();
 	robocop.draw();
+	
+	
+	gandalf.move(300,300, 5);
 }
 
 function erreur_requete()
