@@ -1,0 +1,60 @@
+{
+	"weapons":[
+		{
+			"nom":"Hache",
+			"type":"arme",
+			"price":100,
+			"weight":10,
+			"power":25
+		},
+		{
+			"nom":"Epée",
+			"type":"arme",
+			"price":200,
+			"weight":5,
+			"power":18
+		}
+	],
+	
+	"sticks":[
+		{
+			"nom":"Baguette de feu",
+			"type":"baguette",
+			"price":100,
+			"weight":10,
+			"power":25,
+			"consoMana":20
+		},
+		{
+			"nom":"Baguette de glace",
+			"type":"baguette",
+			"price":1000,
+			"weight":10,
+			"power":250,
+			"consoMana":2
+		}
+	],
+	
+	
+	"characters":[
+		{
+			"type"		: "_warrior_",
+			"nom"		: "Robocop"	,
+			"metier"	: "flic"	,
+			"pv"		: 100		,
+			"defMagic"	: 100		,
+			"defPhy"	: 100		,
+			"degats"	: 5	
+		},
+		{
+			"type"		: "_wizard_",
+			"nom"		: "Gandalf"	,
+			"metier"	: "flic"	,
+			"pv"		: 100		,
+			"defMagic"	: 100		,
+			"defPhy"	: 100		,
+			"degats"	: 5			,
+			"mana"		: 100
+		}
+	]
+}
