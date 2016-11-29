@@ -1,7 +1,64 @@
 {
-	"characterClass":[
-		{"classe": "Warrior",	"nom": "Siegfried",	"metier": "Paladin", 				"pv": 200, 	"defMagic": 10,	"defPhy": 20, "degats": 10},
-		{"classe": "Wizard",	"nom": "Albus",		"metier": "Directeur de Poudlard", 	"pv": 125, 	"defMagic": 20,	"defPhy": 10, "degats": 5, "mana": 100}
+	"characters":[
+		{
+			"animations" 	: {
+				"walk_bottom":["bottom_0","bottom_1","bottom_2"]
+			},	 
+			"states"		: {
+				
+				"bottom_0"	: {"x": 0	, "y": 0	, "width": 32, "height": 32},
+				"bottom_1"	: {"x": 32	, "y": 0	, "width": 32, "height": 32},
+				"bottom_2"	: {"x": 64	, "y": 0	, "width": 32, "height": 32},
+				"left_0"	: {"x": 0	, "y": 32	, "width": 32, "height": 32},
+				"left_1"	: {"x": 32	, "y": 32	, "width": 32, "height": 32},
+				"left_2"	: {"x": 64	, "y": 32	, "width": 32, "height": 32},
+				"right_0"	: {"x": 0	, "y": 64	, "width": 32, "height": 32},
+				"right_1"	: {"x": 32	, "y": 64	, "width": 32, "height": 32},
+				"right_2"	: {"x": 64	, "y": 64	, "width": 32, "height": 32},
+				"up_0"		: {"x": 0	, "y": 96	, "width": 32, "height": 32},
+				"up_1"		: {"x": 32	, "y": 96	, "width": 32, "height": 32},
+				"up_2"		: {"x": 64	, "y": 96	, "width": 32, "height": 32}
+			},
+			"state"		: "bottom_1"				,
+			"img"		: "assets/img/warriorSheet.png"	,
+			"type"		: "_warrior_"			,
+			"nom"		: "Robocop"				,
+			"metier"	: "flic"				,
+			"pv"		: 100					,
+			"defMagic"	: 100					,
+			"defPhy"	: 100					,
+			"degats"	: 5	
+		},
+		{
+			"animations" 	: {
+				"walk_bottom":["bottom_0","bottom_1","bottom_2"]
+			},
+			"states"	: {
+				
+				"bottom_0"	: {"x": 0	, "y": 0	, "width": 32, "height": 32},
+				"bottom_1"	: {"x": 32	, "y": 0	, "width": 32, "height": 32},
+				"bottom_2"	: {"x": 64	, "y": 0	, "width": 32, "height": 32},
+				"left_0"	: {"x": 0	, "y": 32	, "width": 32, "height": 32},
+				"left_1"	: {"x": 32	, "y": 32	, "width": 32, "height": 32},
+				"left_2"	: {"x": 64	, "y": 32	, "width": 32, "height": 32},
+				"right_0"	: {"x": 0	, "y": 64	, "width": 32, "height": 32},
+				"right_1"	: {"x": 32	, "y": 64	, "width": 32, "height": 32},
+				"right_2"	: {"x": 64	, "y": 64	, "width": 32, "height": 32},
+				"up_0"		: {"x": 0	, "y": 96	, "width": 32, "height": 32},
+				"up_1"		: {"x": 32	, "y": 96	, "width": 32, "height": 32},
+				"up_2"		: {"x": 64	, "y": 96	, "width": 32, "height": 32}
+			},
+			"state"		: "top_1"				,
+			"img"		: "assets/img/wizardSheet.png"	,
+			"type"		: "_wizard_"			,
+			"nom"		: "Gandalf"				,
+			"metier"	: "vieux fou"			,
+			"pv"		: 100					,
+			"defMagic"	: 100					,
+			"defPhy"	: 100					,
+			"degats"	: 5						,
+			"mana"		: 100
+		}
 	],
 
 	"weapons":[

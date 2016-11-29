@@ -1,108 +1,120 @@
-function instanceHeritage()
-{
-	faireHeriter(Personnage, Wizard);
-	faireHeriter(Personnage, Warrior);
-	faireHeriter(Personnage, Ennemy);
-	faireHeriter(Item, LifePotion);
-	faireHeriter(Item, ManaPotion);
-	faireHeriter(Item, Weapon);
-	faireHeriter(Item, MagicWand);
-	faireHeriter(PNJ, Marchand);
-}
+// Heritage 
+
+const JSON_URL = "assets/data/data.json";
 
 function faireHeriter(parentClass, childClass)
 {
 	var obj = new Object();
 	var prop = null;
 	
-	for( prop in parentClass.prototype )
-	{
+	for( prop in parentClass.prototype ){
 		obj[prop] = parentClass.prototype[prop];
 	}
 	
-	for( prop in childClass.prototype )
-	{
+	for( prop in childClass.prototype ){
 		obj[prop] = childClass.prototype[prop];
 	}
 	
 	childClass.prototype = obj;
 }
 
-function instanceCombat(param_data)
+/*
+	retourne la description d'un personnage ( contenu dans param_data ) en fonction de son type.
+*/
+function getCharacterInfoByType( param_type, param_data )
 {
-	var classArray = param_data.characterClass;
-	var weapons = param_data.weapons;
-	var sticks = param_data.sticks;
+	var i 		= 0;
+	var max 	= param_data.length;
+	var current = null;
+	
+	for( i = 0; i < max; i++ )
+	{
+		current = param_data[i];
+		
+		if( current.type == param_type )
+		{
+			return current;
+		}
+	}
+	
+	return null;
+}
 
-	var player1 = new Warrior(classArray[0]);
-	var player2 = new Wizard(classArray[1]);
+/*
+	retourne un élément au hasard au sein d'un tableau OU null. 
+	Il faut constamment maîtriser les valeurs de retour lorsque l'on code 
+	des fonctions utilitaires telles que celle-ci.
+*/
+function getRandomElementFrom( param_tab )
+{
+	if( param_tab.length < 1 )
+		return null;
 	
-	var token1 = Math.floor( Math.random() * weapons.length );
-	var token2 = Math.floor( Math.random() * weapons.length );
-	var token3 = Math.floor( Math.random() * sticks.length );
+	var max = ( param_tab.length - 1 ) * 10;
+	var rand = Math.round( Math.random() * max / 10 ); // <- tire un nombre au hasard
+	return param_tab[rand];
+}
+
+function donnees_chargees(param_data)
+{
+	var warriorInfo = getCharacterInfoByType("_warrior_", param_data.characters);
+	var wizardInfo 	= getCharacterInfoByType("_wizard_", param_data.characters);
+	var arme1Info 	= getRandomElementFrom( param_data.weapons 	);
+	var arme2Info 	= getRandomElementFrom( param_data.weapons 	);
+	var stickInfo 	= getRandomElementFrom( param_data.sticks 	);
 	
-	var arme1 = weapons[token1];
-	var arme2 = weapons[token2];
-	var arme3 = sticks[token3]; 
+	// on vérifie que l'on obtient bien les informations relatives aux deux personnages.
+	// si l'un des deux personnages n'est pas retrouvé, on arrête prématurément la fonction
+	// car le combat est impossible sans l'un ou l'autre des protagonistes.
 	
-	player1.setWeaponRight( new Weapon(arme1) );
-	player1.setWeaponLeft( new Weapon(arme2) );
+	if( warriorInfo == null || wizardInfo == null ){
+		return;
+	}
+	var robocop = new Warrior(warriorInfo);
+	var gandalf = new Wizard(wizardInfo);
+	var arme1 	= new Weapon(arme1Info);
+	var arme2 	= new Weapon(arme2Info);
+	var stick 	= new MagicWand(stickInfo);
 	
-	player2.setWandstick( new MagicWand(arme3) );
+	robocop.setWeaponRight(arme1);
+	robocop.setWeaponLeft(arme2);
 	
-	combat(player1, player2);
+	gandalf.setWandstick(stick);
+
+	document.body.appendChild(robocop.getHTMLNode());
+	document.body.appendChild(gandalf.getHTMLNode());
+	
+	gandalf.x = 100;
+	gandalf.y = 100;
+	robocop.x = 0;
+	robocop.y = 0;
+	robocop.draw();
+	gandalf.draw();
+	
+	robocop.move();
+}
+
+function erreur_requete()
+{
+	alert("erreur !");
+}
+
+function start(param_event)
+{
+	var ma_requete = $.ajax(JSON_URL, "GET");
+	ma_requete.done(donnees_chargees);
+	ma_requete.fail(erreur_requete);
+	
+	faireHeriter(Personnage, Warrior);
+	faireHeriter(Personnage, Wizard);
+	faireHeriter(Item, MagicWand);
+	faireHeriter(Item, Weapon);
 }
 
 function combat(player1, player2)
 {
-	console.log("*********************************************************");
-	while(!player1.isDead() && !player2.isDead())
-	{
-		console.log(
-					player1.nom,		":"			,
-					player1.getPv(),	"PV |"		,
-					player2.nom, 		":"			,
-					player2.getPv(), 	'PV -'		,
-					player2.getMana(), 	"PM"
-		);
-					
-		player1.attack(player2);
-		
-		if(player2.isDead())
-		{
-			console.log("-------------------------------------------------------");
-			break;
-		}
-		
-		player2.attack(player1);
-		
-		console.log("-------------------------------------------------------");
-	}
-	
-	console.log("Mort de", player2.isDead() ? player2.nom : player1.nom);
+
 };
 
-function succesHandler(objAjax)
-{
-	instanceCombat(objAjax);
-}
 
-function failHandler()
-{
-	console.log("Erreur Ajax !");
-}
-
-function loadFile()
-{
-	var request = $.ajax("assets/data/data.json", "GET" );
-	request.done(succesHandler);
-	request.fail(failHandler);
-}
-
-function main()
-{
-	instanceHeritage();
-	loadFile();
-}
-
-window.addEventListener("load", main);
+window.addEventListener("load", start);

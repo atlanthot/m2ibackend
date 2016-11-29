@@ -1,19 +1,6 @@
 section{
-	margin:auto;
-	width: 90%;
-	height: 90%;
-	border: 2px solid black;
-}
-
-article{
-	display:inline-block;
-	padding: 5px;
-}
-
-#inputBox{
-	width:200px;
-	height:200px;
-	background-color: lightgrey;
-	border: 2px dashed black;
-	border-radius: 5px;
+	width: 100%;
+	border: 1px dotted black;
+	position: relative;
+	height: 600px;
 }
