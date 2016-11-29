@@ -82,6 +82,16 @@ function donnees_chargees(param_data)
 	gandalf.setWandstick(stick);
 	
 	combat(gandalf, robocop);
+	
+	
+	document.body.appendChild(robocop.getHTMLNode());
+	document.body.appendChild(gandalf.getHTMLNode());
+	
+	gandalf.x = 100;
+	gandalf.y = 100;
+	
+	gandalf.draw();
+	robocop.draw();
 }
 
 function erreur_requete()
