@@ -1,5 +1,5 @@
-function PNJ(nom,inventory)
+function PNJ(data)
 {
-	this.nom = nom;
-	this.inventory = inventory;
+	this.nom = data.nom;
+	this.inventory = data.inventory;
 }

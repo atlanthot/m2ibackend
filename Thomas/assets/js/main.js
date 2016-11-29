@@ -9,6 +9,7 @@ function instanceHeritage()
 	faireHeriter(Item, MagicWand);
 	faireHeriter(PNJ, Marchand);
 }
+
 function faireHeriter(parentClass, childClass)
 {
 	var obj = new Object();
@@ -27,7 +28,8 @@ function faireHeriter(parentClass, childClass)
 	childClass.prototype = obj;
 }
 
-function instanceCombat(param_data){
+function instanceCombat(param_data)
+{
 	var classArray = param_data.characterClass;
 	var weapons = param_data.weapons;
 	var sticks = param_data.sticks;
@@ -35,9 +37,9 @@ function instanceCombat(param_data){
 	var player1 = new Warrior(classArray[0]);
 	var player2 = new Wizard(classArray[1]);
 	
-	var token1 = Math.floor(Math.random() * ( weapons.length ) );
-	var token2 = Math.floor(Math.random() * ( weapons.length ) );
-	var token3 = Math.floor(Math.random() * ( sticks.length ) );
+	var token1 = Math.floor(Math.random() * weapons.length );
+	var token2 = Math.floor(Math.random() * weapons.length );
+	var token3 = Math.floor(Math.random() * sticks.length );
 	
 	var arme1 = weapons[token1];
 	var arme2 = weapons[token2];
@@ -45,7 +47,9 @@ function instanceCombat(param_data){
 	
 	player1.setWeaponRight( new Weapon(arme1) );
 	player1.setWeaponLeft( new Weapon(arme2) );
+	
 	player2.setWandstick( new MagicWand(arme3) );
+	
 	combat(player1, player2);
 }
 
@@ -54,20 +58,27 @@ function combat(player1, player2)
 	console.log("*********************************************************");
 	while(!player1.isDead() && !player2.isDead())
 	{
-		console.log(player1.nom, ":",
-					player1.getPv(), "PV |",
-					player2.nom, ":",
-					player2.getPv(), 'PV -',
-					player2.getMana(), "PM"
-					);
+		console.log(
+					player1.nom,		":"			,
+					player1.getPv(),	"PV |"		,
+					player2.nom, 		":"			,
+					player2.getPv(), 	'PV -'		,
+					player2.getMana(), 	"PM"
+		);
+					
 		player1.attack(player2);
+		
 		if(player2.isDead())
 		{
+			console.log("-------------------------------------------------------");
 			break;
 		}
+		
 		player2.attack(player1);
+		
 		console.log("-------------------------------------------------------");
 	}
+	
 	console.log("Mort de", player2.isDead() ? player2.nom : player1.nom);
 };
 
@@ -75,18 +86,23 @@ function succesHandler(objAjax)
 {
 	instanceCombat(objAjax);
 }
+
 function failHandler()
 {
 	console.log("Erreur Ajax !");
 }
 
+function loadFile()
+{
+	var request = $.ajax("assets/data/data.json", "GET" );
+	request.done(succesHandler);
+	request.fail(failHandler);
+}
+
 function main()
 {
 	instanceHeritage();
-	
-	var request = $.ajax({ url: "assets/data/data.json", type: "GET" })
-	request.done(succesHandler);
-	request.fail(failHandler);
+	loadFile();
 }
 
 window.addEventListener("load", main);

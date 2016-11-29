@@ -1,5 +1,4 @@
-/*hérite de personnage*/
-function Ennemy(nom,metier)
+function Ennemy(data)
 {
-	Personnage.apply(this,[nom,metier]);
+	Personnage.apply(this,[data]);
 }

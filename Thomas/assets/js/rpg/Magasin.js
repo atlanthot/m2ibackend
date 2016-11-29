@@ -1,5 +1,6 @@
 function Magasin()
 {
+	
 }
 
 Magasin.prototype._items = null;
