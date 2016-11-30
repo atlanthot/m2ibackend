@@ -1,0 +1,33 @@
+Un fermier doit servir de taxi à un nombre N de grenouilles, afin de les déposer dans leurs lieux de villégiature respectifs.
+
+Le fermier procède de la façon suivante: 
+	
+	- il demande à une grenouille quel est le lieu qu'elle souhaite occuper.
+	- Celle-ci va systématiquement choisir parmi les lieux disponibles, le moins peuplé.
+	- Si il existe plusieurs qui répondent à ce critère, la grenouille va en choisir un de manière arbitraire.
+	
+	
+	
+Tant qu'il me reste une grenouille: 
+	
+
+	- Trouver parmi les différents lieux disponibles, le moins peuplé d'entre eux.
+	
+		- Créer une valeur O qui vaut 0;
+		- Créer une valeur Z qui vaut par défaut le nombre maximum de grenouilles possibles ( le nombre de grenouilles maximum ).
+		
+		- pour chaque lieu, en partant du dernier et en allant jusqu'au premier.
+		- compter le nombre de grenouilles du lieu, et le comparer à la valeur Z.
+		
+			Si le nombre de grenouilles dans le lieu est inférieur ou égal 
+			au nombre Z alors 
+			 Z vaut le nombre de grenouilles du lieu. Il faut également stocker dans 
+			O la position du lieu dans la liste des lieux disponibles. 
+			
+		- retourner le lieu en position O.
+	
+		
+	
+	- Si il existe plusieurs lieux répondant à ce critère, retourner le premier.
+	- Enlever la grenouille, de la liste des grenouilles qui n'occupent pas encore un lieu de villégiature.
+	- Ajouter la grenouille enlevée précedemment  au lieu de villégiature.
