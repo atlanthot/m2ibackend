@@ -48,8 +48,10 @@ Warrior.prototype.attack = function(param_ennemy)
 	
 	if(this._weaponRight != null && this._weaponLeft != null)
 	{
-		// si les deux mains sont équipés d'armes
-		// bonus de 10% a 20% ( de la somme des 2 armes)
+		/*
+			si les deux mains sont équipés d'armes
+			bonus de 10% a 20% ( de la somme des 2 armes)
+		*/
 		var min = (this._weaponRight.power + this._weaponLeft.power) * 0.10;
 		var max = (this._weaponRight.power + this._weaponLeft.power) * 0.20;
 		
