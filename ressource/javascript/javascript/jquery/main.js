@@ -14,8 +14,6 @@ function main()
 					$(this).fadeOut();
 				} 
 	);
-	
-	$
 }
 
 window.addEventListener("load", main);

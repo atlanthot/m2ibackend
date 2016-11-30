@@ -1,15 +1,43 @@
 function Personnage(obj)
 {
-	this.currentState = obj.state;
-	this.img		= obj.img;
-	this.nom 		= obj.nom;
-	this.metier 	= obj.metier;
-	this._pv 		= obj.pv;
-	this._defMagic 	= obj.defMagic;
-	this._defPhy 	= obj.defPhy;
-	this._degats 	= obj.degats;
-	this._elem		= document.createElement("div");
-	this._states	= obj.states;
+	this.currentState 	= obj.state;
+	this.img			= obj.img;
+	this.nom 			= obj.nom;
+	this.metier 		= obj.metier;
+	this._pv 			= obj.pv;
+	this._defMagic 		= obj.defMagic;
+	this._defPhy 		= obj.defPhy;
+	this._degats 		= obj.degats;
+	this._elem			= document.createElement("div");
+	this._states		= obj.states;
+	
+	this._timeline = new TimelineLite(
+											{
+												onUpdate: this.draw.bind(this)
+											}
+										);
+	
+	var prop = null;
+	var currentAnimation = null;
+	var i = 0;
+	var max = 0;
+	var offset = null;
+	
+	for( prop in obj.animations )
+	{
+		currentAnimation = obj.animations[prop];
+		max = currentAnimation.length;
+		
+		for( i = 0; i < max; i++ )
+		{
+			this._timeline.from( this, 0, {currentState: currentAnimation[i]}, i*3 );
+		}
+	}
+	
+	
+	this._timeline.play();
+	
+	
 }
 
 Personnage.prototype.currentState = null;
@@ -18,6 +46,7 @@ Personnage.prototype.y 			= 0;
 Personnage.prototype.img 		= null;
 Personnage.prototype.metier 	= null;
 Personnage.prototype.nom 		= null;
+Personnage.prototype._timeline 	= null;
 Personnage.prototype._states 	= null;
 Personnage.prototype._elem 		= null;
 Personnage.prototype._pv 		= 100;
