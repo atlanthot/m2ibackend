@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"> 
+		<title>M2I</title>
+		
+	</head>
+	<body>
+	<script type="text/javascript">
+	
+	function main()
+	{
+		var listeMots = ['maison', 'voiture', 'jardin', 'voisin', 'kayak', 'appartement', 'bob', 'thomas'];
+		var token = Math.floor(Math.random() * listeMots.length);	
+		var motMystere = listeMots[token];
+		
+		var proposition = null;
+		var trouve = true;	
+		
+		var motTrouve = [];
+
+		for(i = 0; i < motMystere.length; i ++)
+		{
+			motTrouve[i] = '*';
+		}
+		
+		var vie = 10;
+		console.log('Tu a', vie, 'vie');
+		
+		while(motTrouve.join('') != motMystere && vie != 0)
+		{
+			proposition = prompt('Choisi une lettre');
+			console.log('Tu teste le :', proposition);
+			
+			if(motMystere.indexOf(proposition) != -1)
+			{
+				trouve = true;
+				for(i = 0; i < motMystere.length; i++)
+				{		
+					if(motMystere[i] == proposition)
+					{	
+						console.log('Tu a trouvé le :', proposition);
+						motTrouve[i] = proposition;
+					}	
+				}
+				proposition = null;
+			}
+			
+			else
+			{
+				trouve = false;
+			}
+			
+			if(!trouve)
+			{
+				vie --;
+				if(vie < 1)
+				{
+					break;
+				}
+				console.log('Vie restante :', vie);
+			}
+			console.log(motTrouve.join(''));
+		}
+		console.log('le mot était', motMystere, 'tu a trouvé', motTrouve.join(''));
+	}
+	window.onload = main;
+	</script>
+	</body>
+</html>
