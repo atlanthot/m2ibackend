@@ -1,4 +1,4 @@
-/* 
+/*  
 Choisir un mot au hasard parmi une liste prédéfinie
 initialiser le nb de chances et le stocker dans une variable nb_chance
 stocker le mot dans une variable current_mot
