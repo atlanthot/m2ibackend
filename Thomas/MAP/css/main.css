@@ -1,0 +1,19 @@
+div.map-container{
+	position: relative;
+	width: calc(48px * 20);
+	height: calc(48px * 15);
+	background-color: grey;
+}
+
+
+div.tile{
+	float:left;
+	width: 48px;
+	height: 48px;
+}
+
+div.title:after{
+	position: absolute;
+	width: 48px;
+	height: 48px;
+}
