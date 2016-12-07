@@ -3,8 +3,6 @@
 const JSON_URL = "data/data.json";
 const moveSpeed = 1;
 const timeSpeed = 5;
-const mapWidth = 500;
-const mapHeight = 500;
 var control = new Controller (moveSpeed, timeSpeed,0);
 
 function faireHeriter(parentClass, childClass)
@@ -174,6 +172,8 @@ function start(param_event)
 	window.addEventListener("mouseup",mouseUp);
 	window.addEventListener("mouseout",mouseOutHandler);
 	
+	var farm = new Map(20,15,"maps/farm.json");
+	farm.generate();
 }
 
 function combat(player1, player2)
@@ -195,5 +195,4 @@ function combat(player1, player2)
 
 
 
-console.log(control.moveLaps);
 window.addEventListener("load", start);

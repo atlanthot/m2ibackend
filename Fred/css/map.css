@@ -1,0 +1,11 @@
+div.map-container{
+	position: relative;
+	background-color: black;
+}
+
+
+div.tile{
+	float:left;
+	width: 48px;
+	height: 48px;
+}
