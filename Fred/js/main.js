@@ -1,6 +1,11 @@
 // Heritage 
 
 const JSON_URL = "data/data.json";
+const moveSpeed = 1;
+const timeSpeed = 5;
+const mapWidth = 500;
+const mapHeight = 500;
+var control = new Controller (moveSpeed, timeSpeed,0);
 
 function faireHeriter(parentClass, childClass)
 {
@@ -87,10 +92,13 @@ function donnees_chargees(param_data)
 	document.body.appendChild(robocop.getHTMLNode());
 	document.body.appendChild(gandalf.getHTMLNode());
 	
-	gandalf.x = 100;
-	gandalf.y = 100;
+	gandalf.x = 0;
+	gandalf.y = 500;
 	
 	gandalf.draw();
+	
+	
+	
 	robocop.draw();
 	
 	
@@ -102,8 +110,56 @@ function erreur_requete()
 	alert("erreur !");
 }
 
+
+function mouseDown(event)
+{
+	
+	switch(event.target.id)
+		{
+			case "img_gauche":
+				control.moveLeft();
+				break;
+			case "img_haut":
+				control.moveTop();
+				break;
+			case "img_droite":
+				control.moveRight();
+				break;
+			case "img_bas":
+				control.moveBottom();
+				break;
+		}
+}
+
+
+function mouseOutHandler(event)
+{
+	switch(event.target.id)
+	{
+		case "img_gauche":
+			control.stop();
+			break;		
+		case "img_haut":
+			control.stop();
+			break;		
+		case "img_droite":
+			control.stop();
+			break;		
+		case "img_bas":
+			control.stop();
+			break;
+	}
+}
+
+function mouseUp(event)
+{
+	control.stop();
+}
+
+
 function start(param_event)
 {
+	
 	var ma_requete = $.ajax(JSON_URL, "GET");
 	ma_requete.done(donnees_chargees);
 	ma_requete.fail(erreur_requete);
@@ -112,6 +168,11 @@ function start(param_event)
 	faireHeriter(Personnage, Wizard);
 	faireHeriter(Item, MagicWand);
 	faireHeriter(Item, Weapon);
+	
+	window.addEventListener("mousedown",mouseDown);
+	window.addEventListener("mouseup",mouseUp);
+	window.addEventListener("mouseout",mouseOutHandler);
+	
 }
 
 function combat(player1, player2)
@@ -132,4 +193,6 @@ function combat(player1, player2)
 };
 
 
+
+console.log(control.moveLaps);
 window.addEventListener("load", start);
