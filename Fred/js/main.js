@@ -113,6 +113,7 @@ function erreur_requete()
 
 function mouseDown(event)
 {
+	event.preventDefault();
 	
 	switch(event.target.id)
 		{

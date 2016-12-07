@@ -76,7 +76,8 @@ Controller.prototype.moveBottom = function ()
 	var perso = document.getElementById("perso");
 	var abs_perso = parseInt(getComputedStyle(perso).left);
 	var coord_perso = parseInt(getComputedStyle(perso).top);
-	if(coord_perso <= parseInt(getComputedStyle(map).height) - parseInt(getComputedStyle(perso).height) - this.moveLaps && isWalkable(abs_perso + this.moveLaps,coord_perso, 48, 48) ) 
+	if(coord_perso <= parseInt(getComputedStyle(map).height) - parseInt(getComputedStyle(perso).height) - this.moveLaps && 
+		isWalkable(abs_perso ,coord_perso + this.moveLaps, 48, 48) ) 
 	{
 		perso.style.top = (coord_perso + this.moveLaps) + "px";
 		this.stop();
