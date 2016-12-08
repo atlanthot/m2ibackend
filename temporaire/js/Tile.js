@@ -4,32 +4,31 @@ function Tile(row, col, img, walkable)
 	this.col = col;
 	this.img = img;
 	this.walkable = walkable;
+	
+	this._elem = document.createElement("div");
+	this.draw();
 }
 
 Tile.prototype.img 		= null;
 Tile.prototype.row 		= 0;
 Tile.prototype.col 		= 0;
+Tile.prototype._elem 	= null;
 Tile.prototype.walkable = false;
 
-Tile.prototype.getHTML = function()
+Tile.prototype.getHTMLNode = function()
 {
-	var html = "";
-	html = '<div class="tile" id="row-';
-	html += this.row + '-col-' + this.col;
-	html += '"></div>';
-
-	return html;
+	return this._elem;
 };
 
 Tile.prototype.draw = function()
 {
-	$('#row-'+ this.row +'-col-'+ this.col).css(
-		{
-			"background-image":'url("'+ this.img  +'.png")',
-			"left":this.col * CASE_WIDTH+"px",
-			"top":this.row * CASE_HEIGHT+"px",
-			"z-index": 10
-		}
-	);
+	var node = this.getHTMLNode();
+
+	node.setAttribute("class", "tile" );
+	node.setAttribute("id", "row-"+this.row+"-col-"+this.col );
+	node.style.backgroundImage 	= 'url("'+ this.img  +'.png")';
+	node.style.left 			= this.col * CASE_WIDTH + "px";
+	node.style.top 				= this.row * CASE_HEIGHT + "px";
+	node.style.zIndex 			= 10;
 };
 

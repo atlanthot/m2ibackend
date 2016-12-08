@@ -69,8 +69,7 @@ Map.prototype.generate = function(param_data)
 								
 			this.tiles.push(currentTile);
 								
-			mapContainer.append(currentTile.getHTML());
-			currentTile.draw();
+			mapContainer.append(currentTile.getHTMLNode());
 		}
 	}
 };
