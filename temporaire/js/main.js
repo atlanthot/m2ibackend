@@ -74,45 +74,16 @@ function mouseUp(event)
 
 function gameFail()
 {
-	alert("game fail !");
+	alert("map fail !");
 }
 
-function gameReady()
+function gameReady(data)
 {
 	
-	perso = new Personnage(
+	farm 	= new Map(20,15);
+	farm.generate(data.map);
 	
-		{
-			"animations" 	: {
-				"walk_bottom":["bottom_0","bottom_1","bottom_2"]
-			},	 
-			"states"		: {
-				
-				"bottom_0"	: {"x": 0	, "y": 0	, "width": 32, "height": 32},
-				"bottom_1"	: {"x": 32	, "y": 0	, "width": 32, "height": 32},
-				"bottom_2"	: {"x": 64	, "y": 0	, "width": 32, "height": 32},
-				"left_0"	: {"x": 0	, "y": 32	, "width": 32, "height": 32},
-				"left_1"	: {"x": 32	, "y": 32	, "width": 32, "height": 32},
-				"left_2"	: {"x": 64	, "y": 32	, "width": 32, "height": 32},
-				"right_0"	: {"x": 0	, "y": 64	, "width": 32, "height": 32},
-				"right_1"	: {"x": 32	, "y": 64	, "width": 32, "height": 32},
-				"right_2"	: {"x": 64	, "y": 64	, "width": 32, "height": 32},
-				"up_0"		: {"x": 0	, "y": 96	, "width": 32, "height": 32},
-				"up_1"		: {"x": 32	, "y": 96	, "width": 32, "height": 32},
-				"up_2"		: {"x": 64	, "y": 96	, "width": 32, "height": 32}
-			},
-			"state"		: "left_1"				,
-			"img"		: "images/persos.png"	,
-			"type"		: "_warrior_"			,
-			"nom"		: "Robocop"				,
-			"metier"	: "flic"				,
-			"pv"		: 100					,
-			"defMagic"	: 100					,
-			"defPhy"	: 100					,
-			"degats"	: 5	
-		}
-	
-	);
+	perso = new Personnage(data.characters[0]);
 	
 	perso.width = CASE_WIDTH;
 	perso.height = CASE_HEIGHT;
@@ -131,15 +102,21 @@ function gameReady()
 
 function start(param_event)
 {	
-	
+	faireHeriter(Actor, PNJ);
+	faireHeriter(Actor, Personnage);
 	faireHeriter(Personnage, Warrior);
 	faireHeriter(Personnage, Wizard);
 	faireHeriter(Item, MagicWand);
 	faireHeriter(Item, Weapon);
 	
-	farm 	= new Map(20,15,"maps/farm.json");
-	
-	farm.generate(gameReady, gameFail);
+	$.ajax(
+	{
+		type: 		"GET",
+		dataType: 	"json",
+	  	url: 		"data/data.json"
+	}
+	).done( gameReady )
+	.fail( gameFail );
 }
 
 window.addEventListener("load", start);

@@ -23,7 +23,7 @@ Tile.prototype.getHTML = function()
 
 Tile.prototype.draw = function()
 {
-	$('#row-'+ row +'-col-'+ col).css(
+	$('#row-'+ this.row +'-col-'+ this.col).css(
 		{
 			"background-image":'url("'+ this.img  +'.png")',
 			"left":this.col * CASE_WIDTH+"px",

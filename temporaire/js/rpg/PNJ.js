@@ -1,5 +1,5 @@
-function PNJ(nom,inventory)
+function PNJ(obj)
 {
-	this.nom = nom;
-	this.inventory = inventory;
+	Actor.apply(this,[obj]);
+	this.nom 			= obj.nom;
 }

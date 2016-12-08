@@ -33,8 +33,7 @@ Controller.prototype.moveRight = function ()
 		this.isWalkable(perso.x + this.moveLaps,perso.y, CASE_WIDTH, CASE_HEIGHT)
 	) 
 	{
-		perso.x += this.moveLaps;
-		perso.draw();
+		perso.moveRight(this.moveLaps);
 		this.stop();
 		this.timeOutId = setTimeout(this.moveRight.bind(this), this.timeLaps);
 	}
@@ -48,8 +47,7 @@ Controller.prototype.moveLeft = function ()
 		this.isWalkable(perso.x - this.moveLaps,perso.y, CASE_WIDTH, CASE_HEIGHT)
 	) 
 	{
-		perso.x -= this.moveLaps;
-		perso.draw();
+		perso.moveLeft(this.moveLaps);
 		this.stop();
 		this.timeOutId = setTimeout(this.moveLeft.bind(this), this.timeLaps);
 	}
@@ -62,8 +60,7 @@ Controller.prototype.moveTop = function ()
 	var perso = this._perso;
 	if( ( perso.y - this.moveLaps ) >= 0 && this.isWalkable(perso.x,perso.y - this.moveLaps, CASE_WIDTH, CASE_HEIGHT))
 	{
-		perso.y -= this.moveLaps;
-		perso.draw();
+		perso.moveTop(this.moveLaps);
 		this.stop();
 		this.timeOutId = setTimeout(this.moveTop.bind(this), this.timeLaps );
 	}
@@ -79,8 +76,7 @@ Controller.prototype.moveBottom = function ()
 		this.isWalkable(perso.x ,perso.y + this.moveLaps, CASE_WIDTH, CASE_HEIGHT) 
 	) 
 	{
-		perso.y += this.moveLaps;
-		perso.draw();
+		perso.moveBottom(this.moveLaps);
 		this.stop();
 		this.timeOutId = setTimeout(this.moveBottom.bind(this), this.timeLaps);
 
