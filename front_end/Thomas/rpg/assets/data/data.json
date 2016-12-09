@@ -1,0 +1,79 @@
+{
+	"characters":[
+		{
+			"animations" 	: {
+				"walk_bottom":["bottom_0","bottom_1","bottom_2"]
+			},	 
+			"states"		: {
+				
+				"bottom_0"	: {"x": 0	, "y": 0	, "width": 32, "height": 32},
+				"bottom_1"	: {"x": 32	, "y": 0	, "width": 32, "height": 32},
+				"bottom_2"	: {"x": 64	, "y": 0	, "width": 32, "height": 32},
+				"left_0"	: {"x": 0	, "y": 32	, "width": 32, "height": 32},
+				"left_1"	: {"x": 32	, "y": 32	, "width": 32, "height": 32},
+				"left_2"	: {"x": 64	, "y": 32	, "width": 32, "height": 32},
+				"right_0"	: {"x": 0	, "y": 64	, "width": 32, "height": 32},
+				"right_1"	: {"x": 32	, "y": 64	, "width": 32, "height": 32},
+				"right_2"	: {"x": 64	, "y": 64	, "width": 32, "height": 32},
+				"up_0"		: {"x": 0	, "y": 96	, "width": 32, "height": 32},
+				"up_1"		: {"x": 32	, "y": 96	, "width": 32, "height": 32},
+				"up_2"		: {"x": 64	, "y": 96	, "width": 32, "height": 32}
+			},
+			"state"		: "bottom_1"				,
+			"img"		: "assets/img/warriorSheet.png"	,
+			"type"		: "_warrior_"			,
+			"nom"		: "Robocop"				,
+			"metier"	: "flic"				,
+			"pv"		: 100					,
+			"defMagic"	: 100					,
+			"defPhy"	: 100					,
+			"degats"	: 5	
+		},
+		{
+			"animations" 	: {
+				"walk_bottom":["bottom_0","bottom_1","bottom_2"]
+			},
+			"states"	: {
+				
+				"bottom_0"	: {"x": 0	, "y": 0	, "width": 32, "height": 32},
+				"bottom_1"	: {"x": 32	, "y": 0	, "width": 32, "height": 32},
+				"bottom_2"	: {"x": 64	, "y": 0	, "width": 32, "height": 32},
+				"left_0"	: {"x": 0	, "y": 32	, "width": 32, "height": 32},
+				"left_1"	: {"x": 32	, "y": 32	, "width": 32, "height": 32},
+				"left_2"	: {"x": 64	, "y": 32	, "width": 32, "height": 32},
+				"right_0"	: {"x": 0	, "y": 64	, "width": 32, "height": 32},
+				"right_1"	: {"x": 32	, "y": 64	, "width": 32, "height": 32},
+				"right_2"	: {"x": 64	, "y": 64	, "width": 32, "height": 32},
+				"up_0"		: {"x": 0	, "y": 96	, "width": 32, "height": 32},
+				"up_1"		: {"x": 32	, "y": 96	, "width": 32, "height": 32},
+				"up_2"		: {"x": 64	, "y": 96	, "width": 32, "height": 32}
+			},
+			"state"		: "top_1"				,
+			"img"		: "assets/img/wizardSheet.png"	,
+			"type"		: "_wizard_"			,
+			"nom"		: "Gandalf"				,
+			"metier"	: "vieux fou"			,
+			"pv"		: 100					,
+			"defMagic"	: 100					,
+			"defPhy"	: 100					,
+			"degats"	: 5						,
+			"mana"		: 100
+		}
+	],
+
+	"weapons":[
+		{"nom": "Dague",				"type": "axe", 		"power": 10, 	"price": 3, 	"weight": 1},
+		{"nom": "épée bâtarde",			"type": "sword", 	"power": 12, 	"price": 30, 	"weight": 3},
+		{"nom": "Hachette",				"type": "axe", 		"power": 15, 	"price": 4, 	"weight": 1},
+		{"nom": "Hache de bataille",	"type": "axe", 		"power": 15, 	"price": 10, 	"weight": 2},
+		{"nom": "Katana",				"type": "sword", 	"power": 30, 	"price": 20, 	"weight": 2}
+	],
+
+	"sticks":[
+		{"nom": "Baguette magique", 	"type": "stick", 	"power": 2, 	"price": 20,	"weight": 2,	"consoMana":2},
+		{"nom": "Baton", 				"type": "stick", 	"power": 10, 	"price": 4, 	"weight": 1,	"consoMana":5},
+		{"nom": "Sceptre", 				"type": "stick", 	"power": 15, 	"price": 10, 	"weight": 2,	"consoMana":10},
+		{"nom": "Trident", 				"type": "stick", 	"power": 30, 	"price": 15, 	"weight": 2,	"consoMana":30},
+		{"nom": "Baguette de Voldemort","type": "stick", 	"power": 80,  	"price": 1, 	"weight": 1,	"consoMana":1}
+	]
+}

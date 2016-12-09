@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"> 
+		<title>M2I</title>
+		
+	</head>
+	<body>
+	<script type="text/javascript">
+	/* 
+		l'ordinateur choisi un nombre compris entre une valeur minimum et maximum
+		on choisit la moitié de la valeur maximum comme point de depart
+			tant que notre choix n'est pas la valeur choisi par l'ordinateur
+			
+				si le nombre recherché est plus grand que notre choix
+					on definit notre choix en tant que valeur minimum 
+					on augmente la valeur de notre choix par la moitié de ce qui le sépare de la valeur maximum
+					
+				sinon
+					on definit notre choix en tant que valeur maximum
+					on reduit la valeur de notre choix par la moitié de ce qui le sépare de la valeur minimum
+	*/
+		 
+		function main(){
+			var min = 0;
+			var max = 500;
+			var nombreMystere = Math.floor(min + Math.random() * max);
+			
+			var choix = Math.floor(max / 2);
+			var count = 0;
+			// ma valeur minimum est 0, ma valeur maximum est 500 ( ou 2^32, ça marche aussi)
+			while(choix != nombreMystere)
+			{
+				if(choix < nombreMystere)
+				{	
+					// si je sais que le nombre que je cherche est plus grand, je n'ai plus besoin de descendre plus bas que celui que j'ai choisi, mon choix devien donc la valeur minimum
+					min = choix;
+					console.log("C'est plus grand que", choix,"!");
+					choix += Math.floor((max - choix) / 2) ;
+				}	
+				else // choix > nombre 
+				{
+					// si je sais que le nombre que je cherche est plus petit, je n'ai plus besoin de monter plus haut que celui que j'ai choisi, mon choix devien donc la valeur maximum
+					max = choix;
+					console.log("C'est plus petit que", choix,"!")
+					choix -= Math.floor((choix - min)/ 2);
+				}
+				count++;
+			}	
+			console.log("N :",count,"le nombre Mystere était :", nombreMystere);	
+		}
+		window.onload = main;
+	</script>
+	</body>
+</html>

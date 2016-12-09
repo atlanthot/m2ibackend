@@ -1,0 +1,10 @@
+{
+	"titre":"Weapons",
+	"champs":["id","name","damages","type"],
+	"data":[
+		{"id":0	, "name":"Excalibur"		, "damages":"80", "type":"sword"},
+		{"id":1	, "name":"Hache d'Ysgrammor", "damages":"60", "type":"axe"	},
+		{"id":3	, "name":"Dar"				, "damages":"30", "type":"sword"},
+		{"id":4	, "name":"Baton Horadrim"	, "damages":"20", "type":"wand"	}
+	]
+}

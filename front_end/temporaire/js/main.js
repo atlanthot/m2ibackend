@@ -1,0 +1,123 @@
+// Heritage 
+
+const JSON_URL = "data/data.json";
+const moveSpeed = 1;
+const timeSpeed = 5;
+
+const CASE_WIDTH = 48;
+const CASE_HEIGHT = 48;
+
+var control = null;
+var farm 	= null;
+var perso 	= null;
+
+function faireHeriter(parentClass, childClass)
+{
+	var obj = new Object();
+	var prop = null;
+	
+	for( prop in parentClass.prototype ){
+		obj[prop] = parentClass.prototype[prop];
+	}
+	
+	for( prop in childClass.prototype ){
+		obj[prop] = childClass.prototype[prop];
+	}
+	
+	childClass.prototype = obj;
+}
+
+function mouseDown(event)
+{
+	event.preventDefault();
+	
+	switch(event.target.id)
+		{
+			case "img_gauche":
+				control.moveLeft();
+				break;
+			case "img_haut":
+				control.moveTop();
+				break;
+			case "img_droite":
+				control.moveRight();
+				break;
+			case "img_bas":
+				control.moveBottom();
+				break;
+		}
+}
+
+function mouseOutHandler(event)
+{
+	switch(event.target.id)
+	{
+		case "img_gauche":
+			control.stop();
+			break;		
+		case "img_haut":
+			control.stop();
+			break;		
+		case "img_droite":
+			control.stop();
+			break;		
+		case "img_bas":
+			control.stop();
+			break;
+	}
+}
+
+function mouseUp(event)
+{
+	control.stop();
+}
+
+function gameFail()
+{
+	alert("map fail !");
+}
+
+function gameReady(data)
+{
+	
+	farm 	= new Map(20,15);
+	farm.generate(data.map);
+	
+	perso = new Personnage(data.characters[0]);
+	
+	perso.width = CASE_WIDTH;
+	perso.height = CASE_HEIGHT;
+	
+	farm.addPersonnage( perso );
+	control = new Controller (moveSpeed, timeSpeed,0, farm, perso);
+	
+	perso.x = 1 * CASE_WIDTH;
+	perso.y = 1 * CASE_HEIGHT;
+	perso.draw();
+	
+	window.addEventListener("mousedown",mouseDown);
+	window.addEventListener("mouseup",mouseUp);
+	window.addEventListener("mouseout",mouseOutHandler);
+}
+
+function start(param_event)
+{	
+	faireHeriter(Actor, PNJ);
+	faireHeriter(Actor, Personnage);
+	faireHeriter(Personnage, Warrior);
+	faireHeriter(Personnage, Wizard);
+	faireHeriter(Item, MagicWand);
+	faireHeriter(Item, Weapon);
+	
+	$.ajax(
+	{
+		type: 		"GET",
+		dataType: 	"json",
+	  	url: 		"data/data.json"
+	}
+	).done( gameReady )
+	.fail( gameFail );
+}
+
+window.addEventListener("load", start);
+
