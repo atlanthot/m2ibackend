@@ -1,64 +1,92 @@
 body{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFF5ED;
-    background-image:url(../images/fafafa.jpg);
+    margin: 0;
+    padding: 0;
+    background-color: #EDE4D3;
 }
 
 #container{
-     display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     
 }
-
-
 
 .row{
     width: 100%;
 }
 
+.col { 
+    box-sizing: border-box; 
+    
+}
+
+header {
+	background-color: #70553F;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.title h1{
+    font-family: perrygothicregular, serif;
+    font-size : 1.6em;
+    text-align: center;
+    color: #FFF5ED;
+    background-color: #87664C;
+    min-width: 180px;
+    padding: 18px;
+    width: 20%;
+    margin: auto;
+    text-shadow: 2px 1px 2px rgba(74,57,41,1);
+    border: 6px double rgba(255,245,237,0.5);
+}
+
+
 section{
-    background-color: #D3D3D3;
-    height: 370px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: auto;
+    margin-top: 20px;
     justify-content:space-around;
     align-items: center;
 }
 
-.carre{
-    height: 12%;
-    background-color: #BC8F8F;
-    border: 1px solid black;
+section p {
+    font-family: goboldregular, serif;
+    font-size: 1.2em;
+    line-height: 50px;
+    text-align: center;
+}
+
+.select {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    
-    
+    justify-content: center; 
+    margin-bottom: 10px;
 }
 
-.quit, .option, .play, .more{
-    font-family: Arial;
-    font-weight: bold;
-    color: white;
-    border: 3px solid black;
-    border-radius: 8px;
-    text-align: center;
+.select a {
+	text-decoration: none;
+	color: #87664C;
+	border: 4px solid #4D3A2B;
+    background-color: rgba(255,245,237,1);
 }
 
-.title{
-    font-family: perrygothicregular, serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: #5C909B;
-    background-color: #FFFAFA;
-    text-align: center;
+.select a:hover, .select a:focus {
+	color: rgba(255,245,237,1);
+	border: 4px solid #70553F;
+    background-color: #4D3A2B;
+    transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
 }
-
 
 
 
