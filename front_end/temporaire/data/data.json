@@ -3,7 +3,7 @@
 		"tileset" : "Farm",
 		"ground" : 
 		[
-			[36, 34, 34, 34, 34, 34, 34, 19, 20, 21, 34, 34, 34, 19, 20, 20, 20, 21, 34, 36],
+			[35, 34, 34, 34, 34, 34, 34, 19, 20, 21, 34, 34, 34, 19, 20, 20, 20, 21, 34, 35],
 			
 			[36, 1, 0, 33, 0, 0, 0, 22, 23, 24, 1, 0, 0, 22, 23, 23, 23, 24, 1, 36],
 			[36, 1, 0, 0, 0, 0, 0, 30, 27, 31, 1, 0, 0, 30, 27, 29, 27, 31, 1, 36],
@@ -44,10 +44,10 @@
 			{"id": 9, "name": "dirt_road_T", 					"imgUrl": "imageset/Road/HorizontalTopCrossroads", 	"walkable": true},
 			
 			{"id": 10, "name": "weath_center",					"imgUrl": "imageset/WheatFields/middle", 			"walkable": true},
-			{"id": 11, "name": "weath_border_top",				"imgUrl": "imageset/WheatFields/top", 				"walkable":true},
-			{"id": 12, "name": "weath_border_bottom",			"imgUrl": "imageset/WheatFields/Bottom", 			"walkable":true},
-			{"id": 13, "name": "weath_border_left",				"imgUrl": "imageset/WheatFields/left", 				"walkable":true},
-			{"id": 14, "name": "weath_border_right",			"imgUrl": "imageset/WheatFields/right", 			"walkable":true},	
+			{"id": 11, "name": "weath_border_top",				"imgUrl": "imageset/WheatFields/top", 				"walkable": true},
+			{"id": 12, "name": "weath_border_bottom",			"imgUrl": "imageset/WheatFields/Bottom", 			"walkable": true},
+			{"id": 13, "name": "weath_border_left",				"imgUrl": "imageset/WheatFields/left", 				"walkable": true},
+			{"id": 14, "name": "weath_border_right",			"imgUrl": "imageset/WheatFields/right", 			"walkable": true},	
 			{"id": 15, "name": "weath_corner_topRight",			"imgUrl": "imageset/WheatFields/TopRightCorner", 	"walkable": true},
 			{"id": 16, "name": "weath_corner_topLeft",			"imgUrl": "imageset/WheatFields/TopLeftCorner", 	"walkable": true},
 			{"id": 17, "name": "weath_corner_bottomRight",		"imgUrl": "imageset/WheatFields/BottomRightCorner", "walkable": true},
@@ -70,10 +70,10 @@
 			{"id": 32, "name": "wall_bottom",					"imgUrl": "imageset/farm/farm_8", 					"walkable": false},
 			{"id": 33, "name": "tree_cut",						"imgUrl": "imageset/treeCut", 						"walkable": false},
 			{"id": 34, "name": "bush_top",						"imgUrl": "imageset/Hedge/HedgeTop", 				"walkable": false},
-			{"id": 35, "name": "bush_corner",					"imgUrl": null, 									"walkable": false},
+			{"id": 35, "name": "bush_corner",					"imgUrl": "imageset/Hedge/HedgeCorner",				"walkable": false},
 			{"id": 36, "name": "bush",							"imgUrl": "imageset/Hedge/Hedge", 					"walkable": false},
-			{"id": 37, "name": "bush_bottom",					"imgUrl": "imageset/Hedge/Bottom", 					"walkable": false},
-			{"id": 38, "name": "dirt_road",						"imgUrl": "imageset/ShadowRoad/Vertical", 			"walkable": false}
+			{"id": 37, "name": "bush_bottom",					"imgUrl": "imageset/Hedge/HedgeBottom", 			"walkable": false},
+			{"id": 38, "name": "dirt_road_shadow",				"imgUrl": "imageset/ShadowRoad/Vertical", 			"walkable": true}
 
 		]
 	},

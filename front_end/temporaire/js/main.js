@@ -50,21 +50,22 @@ function mouseDown(event)
 
 function mouseOutHandler(event)
 {
-	switch(event.target.id)
-	{
-		case "img_gauche":
-			control.stop();
-			break;		
-		case "img_haut":
-			control.stop();
-			break;		
-		case "img_droite":
-			control.stop();
-			break;		
-		case "img_bas":
-			control.stop();
-			break;
-	}
+	// switch(event.target.id)
+	// {
+		// case "img_gauche":
+			// control.stop();
+			// break;		
+		// case "img_haut":
+			// control.stop();
+			// break;		
+		// case "img_droite":
+			// control.stop();
+			// break;		
+		// case "img_bas":
+			// control.stop();
+			// break;
+	// }
+	control.stop();
 }
 
 function mouseUp(event)
@@ -120,4 +121,3 @@ function start(param_event)
 }
 
 window.addEventListener("load", start);
-
