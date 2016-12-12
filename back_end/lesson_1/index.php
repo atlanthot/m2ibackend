@@ -23,7 +23,7 @@
 				{
 					if ($col == 0)
 					{
-						echo '<span class="red"></span>';
+						echo '<span class="black"></span>';
 					}
 					else
 					{
