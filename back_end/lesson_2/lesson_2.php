@@ -191,9 +191,13 @@ $google->stop();
 
 /*
 
-coder une méthode _stopBatRockets sur la classe Batmobile.
-Surcharger la méthode stop et utiliser _stopBatRockets à l'intérieur.
+Coder une methode statique nommée "getInstance", qui nous renvoie toujours la même instance de Batmobile. Attention, l'instance doit être la seule et unique possible.
 */
+
+
+//if( Batmobile::getInstance() == Batmobile::getInstance()  ) // true
+
+//new Batmobile();
 
 
 
