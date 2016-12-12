@@ -31,6 +31,11 @@ class Ballon
 		// de ballon.
 		if ( self::$_instance != null )
 		{
+			//permet de "jeter" une exception qui a vocation à interrompre le code 
+			// à moins d'être attrapée (catch).
+			// cette exception, est là pour notifier d'une situation "irrégulière" 
+			// ou suffisamment exceptionnelle pour justifier d'une interruption du code
+			// ou d'une gestion particulière de celui-ci.
 			throw( new Exception("singleton error !") );
 		}
 		else
@@ -42,7 +47,7 @@ class Ballon
 	}
 }
 
-/*
+
 try
 {
 	new Ballon("rouge");
@@ -50,9 +55,9 @@ try
 }
 catch(Exception $exception)
 {
+	// code qui prévoit une alternative
 	var_dump($exception->getMessage());
 }
-*/
 
 
 
