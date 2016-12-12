@@ -146,5 +146,11 @@ $batmobile->start();
 $batmobile->stop();
 
 
+/*
+
+coder une méthode _stopBatRockets sur la classe Batmobile.
+Surcharger la méthode stop et utiliser _stopBatRockets à l'intérieur.
+*/
+
 
 
