@@ -45,8 +45,8 @@ class Voiture
 		echo("nouvel objet de type voiture ! <br/> <br/>");
 	}
 	
-	
-	public function setConso($param_conso) // 1 - 40
+	// le mot clé final, rend une méthode non surchargeable
+	public final function setConso($param_conso) // 1 - 40
 	{
 		// convertit la donnée en nombre flottant ( à virgule )
 		$value = (float)($param_conso);
@@ -57,7 +57,7 @@ class Voiture
 		}
 	}
 	
-	public function getConso()
+	public final function getConso()
 	{
 		return $this->_conso;
 	}
@@ -105,8 +105,43 @@ class Voiture
 
 class Batmobile extends Voiture
 {
+
+	// propriété statique publique, qui appartient à la classe 
+	// Batmobile ET NON PAS A UN OBJET DE TYPE BATMOBILE !!
+	static private $_counter = 0;
+	
+	/* 	
+		renvoie une nouvelle instance de Batmobile, dont la propriété 
+		"id" sera unique en se basant sur la valeur de la propriété 
+		privée statique de la classe Batmobile
+		
+		en implémentant une méthode statique, qui s'assure de l'unicité
+		de chaque instance, on fait en sorte de respecter le design pattern 
+		"factory".
+		
+		On accède aux propriétés et méthodes statiques à l'aide du mot clé "self"
+	*/
+	static public function create()
+	{
+		$bagnole = new Batmobile(self::$_counter);
+		self::$_counter++;
+		
+		return $bagnole;
+	}
+	
+	
+	
+	
+	/****************************************************************************/
+	/****************************************************************************/
+	/****************************************************************************/
+	/****************************************************************************/
+	
+	
+	protected $_id = 0;
 	
 	public function Batmobile(
+							$param_id,
 							$param_price 	= 1, 
 							$param_marque 	= null, 
 							$param_conso 	= 1
@@ -114,7 +149,8 @@ class Batmobile extends Voiture
 	{
 		parent::Voiture($param_price, $param_marque, $param_conso);
 		
-		echo '<h1>en fait je suis une batmobile ! </h1><br/>';
+		$this->_id = $param_id;
+		echo '<h1>en fait je suis une batmobile ! '.$this->_id.'</h1><br/>';
 	}
 	
 	
@@ -140,10 +176,17 @@ class Batmobile extends Voiture
 	
 }
 
-$batmobile = new Batmobile();
 
-$batmobile->start();
-$batmobile->stop();
+$google = Batmobile::create();
+$google = Batmobile::create();
+$google = Batmobile::create();
+$google = Batmobile::create();
+$google = Batmobile::create();
+$google = Batmobile::create();
+$google = Batmobile::create();
+
+$google->start();
+$google->stop();
 
 
 /*
