@@ -37,7 +37,6 @@ Actor.prototype._getStateInfo 	= function()
 		return null;
 	}
 	
-	
 	return this._states[this.currentState];
 };
 
@@ -65,7 +64,6 @@ Actor.prototype.draw			= function()
 		this._time = time;
 	}
 	
-	
 	if( state != null )
 	{
 		decalX 	= -state.x;
@@ -73,8 +71,7 @@ Actor.prototype.draw			= function()
 		width	= state.width;
 		height	= state.height;
 	}
-	
-	
+		
 	node.style.zIndex 				= 50;
 	node.style.width 				= width + 'px';
 	node.style.height 				= height + 'px';
@@ -114,5 +111,3 @@ Actor.prototype.moveTop 		= function(param_value)
 	this.y -= param_value;
 	this.draw();
 };
-
-

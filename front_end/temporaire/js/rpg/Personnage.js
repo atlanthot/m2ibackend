@@ -9,14 +9,12 @@ function Personnage(obj)
 	this._degats 		= obj.degats;
 }
 
-
 Personnage.prototype.metier 	= null;
 Personnage.prototype.nom 		= null;
 Personnage.prototype._pv 		= 100;
 Personnage.prototype._defMagic 	= null;
 Personnage.prototype._defPhy 	= null;
 Personnage.prototype._degats 	= null;
-
 
 //Accesseurs
 

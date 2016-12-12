@@ -10,7 +10,7 @@ const CASE_HEIGHT = 48;
 var control = null;
 var farm 	= null;
 var perso 	= null;
-
+var mapArrow = null;
 function faireHeriter(parentClass, childClass)
 {
 	var obj = new Object();
@@ -25,6 +25,25 @@ function faireHeriter(parentClass, childClass)
 	}
 	
 	childClass.prototype = obj;
+}
+
+function getCharacterInfoByType( param_type, param_data )
+{
+	var i 		= 0;
+	var max 	= param_data.length;
+	var current = null;
+	
+	for( i = 0; i < max; i++ )
+	{
+		current = param_data[i];
+		
+		if( current.type == param_type )
+		{
+			return current;
+		}
+	}
+	
+	return null;
 }
 
 function mouseDown(event)
@@ -50,21 +69,22 @@ function mouseDown(event)
 
 function mouseOutHandler(event)
 {
-	switch(event.target.id)
-	{
-		case "img_gauche":
-			control.stop();
-			break;		
-		case "img_haut":
-			control.stop();
-			break;		
-		case "img_droite":
-			control.stop();
-			break;		
-		case "img_bas":
-			control.stop();
-			break;
-	}
+	// switch(event.target.id)
+	// {
+		// case "img_gauche":
+			// control.stop();
+			// break;		
+		// case "img_haut":
+			// control.stop();
+			// break;		
+		// case "img_droite":
+			// control.stop();
+			// break;		
+		// case "img_bas":
+			// control.stop();
+			// break;
+	// }
+	control.stop();
 }
 
 function mouseUp(event)
@@ -79,12 +99,12 @@ function gameFail()
 
 function gameReady(data)
 {
+	mapArrow = document.getElementById("arrowContainer");
 	
 	farm 	= new Map(20,15);
 	farm.generate(data.map);
 	
-	perso = new Personnage(data.characters[0]);
-	
+	perso = new Personnage( getCharacterInfoByType("_warrior_", data.characters) );
 	perso.width = CASE_WIDTH;
 	perso.height = CASE_HEIGHT;
 	
@@ -95,9 +115,9 @@ function gameReady(data)
 	perso.y = 1 * CASE_HEIGHT;
 	perso.draw();
 	
-	window.addEventListener("mousedown",mouseDown);
-	window.addEventListener("mouseup",mouseUp);
-	window.addEventListener("mouseout",mouseOutHandler);
+	mapArrow.addEventListener("mousedown", mouseDown);
+	mapArrow.addEventListener("mouseup", mouseUp);
+	mapArrow.addEventListener("mouseout", mouseOutHandler);
 }
 
 function start(param_event)
@@ -120,4 +140,3 @@ function start(param_event)
 }
 
 window.addEventListener("load", start);
-
