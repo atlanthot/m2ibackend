@@ -1,77 +1,75 @@
 <?php
-class Ballon
+
+/*
+Ici, notre problématique est de maintenir une instance unique de la classe TajMahal, 
+car par définition, il n'existe qu'un seul TajMahal dans notre application 
+( et dans le monde réel aussi ). 
+
+Pour cela, on se propose de créer une propriété statique qui va se charger de contenir
+la seule et unique instance de la classe TajMahal.
+
+La méthode statique "getInstance" nous sert quand à elle, à gérer et assurer proprement
+l'unicité de cette instance. 
+
+*/
+class TajMahal
 {
 
 	//static	
-	static private $_instance = null;
+	static private $_instance = null; // destinée à contenir l'unique instance de TajMahal
 	
-	static public function getInstance($param_color = null)
+	// se charge de créer ( si besoin est ) l'unique instance de TajMahal
+	// retourne systématiquement la même instance de TajMahal ( la seule et l'unique )
+	static public function getInstance()
 	{
-		// si notre variable statique $_instance est égale à null
 		if ( self::$_instance === null )
 		{
-			// alors on crée une nouvelle instance de Ballon qui 
-			// sera stockée dans self::$_instance
-			self::$_instance = new Ballon($param_color);
+			$toto = new TajMahal();
+			self::$_instance = $toto;
 		}
 		
-		// on retourne la même instance à chaque fois
 		return self::$_instance;
 	}
 	
 	
 	// object
-	
-	public $color = null;
-	
-	public function Ballon($param_color)
+	public function TajMahal()
 	{
-		// si l'instance a déjà été définie, alors on ne doit pas pouvoir entrer 
-		// une deuxième fois dans un constructeur, car on veut une seule et unique instance
-		// de ballon.
+		// si self::$_instance ne vaut pas null alors on a déjà crée 
+		// un objet de type TajMahal avant.
+		// On ne devrait donc pas avoir affaire à une fonction constructrice
+		// de nouveau.
+		
 		if ( self::$_instance != null )
 		{
-			//permet de "jeter" une exception qui a vocation à interrompre le code 
-			// à moins d'être attrapée (catch).
-			// cette exception, est là pour notifier d'une situation "irrégulière" 
-			// ou suffisamment exceptionnelle pour justifier d'une interruption du code
-			// ou d'une gestion particulière de celui-ci.
-			throw( new Exception("singleton error !") );
+			throw( new Exception("Singleton error: prière d'utiliser la méthode statique: 'getInstance'") );
 		}
 		else
 		{
-			$this->color = $param_color;
 			self::$_instance = $this;
 		}
-		
 	}
 }
 
 
-try
-{
-	new Ballon("rouge");
-	new Ballon("noir");
-}
-catch(Exception $exception)
-{
-	// code qui prévoit une alternative
-	var_dump($exception->getMessage());
-}
+
+$mon_tajmahal1 = new TajMahal();
+
+/*
+$mon_tajmahal2 = TajMahal::getInstance();
 
 
 
-if( Ballon::getInstance("red") !== null && 
-	Ballon::getInstance() === Ballon::getInstance() 
-)
+
+if( $mon_tajmahal1 === $mon_tajmahal2 )
 {
-	echo Ballon::getInstance()->color;
+	echo 'le formateur sait ce qu\'il fait';
 }
 else
 {
-	echo 'error =(';
+	echo 'le formateur est un escroc';
 }
-
+*/
 
 
 
