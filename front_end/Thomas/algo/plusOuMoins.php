@@ -1,32 +1,38 @@
 <?php 
 
-$min = 0;
-$max = 100;
-$message = '';
-$nombreMystere = rand($min, $max);	
-$count = 0;
+session_start() ;
+
+$min = 0 ;
+$max = 100 ;
+$message = '' ;
 
 if(isset($_POST['choix']))
 {
 	$choix = $_POST['choix'] ;
-	$nombreMystere = $_POST['nm'];
-	$count = $_POST['count'];
+	$nombreMystere = $_SESSION['nombreMystere'] ;
 	
-	if($choix == $nombreMystere)
-	{
-		$message = "Bravo";
-	}
 	if($choix > $nombreMystere)
 	{
-		$message ="Le nombre mystere est plus petit";
+		$message = "Le nombre mystère est plus petit" ;
 	}
 
-	if($choix < $nombreMystere)
+	else if($choix < $nombreMystere)
 	{
-		$message ="Le nombre mystere est plus grand";
+		$message = "Le nombre mystere est plus grand" ;
 	}
 	
-	$count ++;
+	else
+	{
+		$message = "Bravo, nouveau nombre généré" ;
+		$_SESSION['nombreMystere'] = rand($min, $max) ;	
+	}
+	
+	$_SESSION['count'] ++ ;
+}
+else
+{
+	$_SESSION['count'] = 0 ;
+	$_SESSION['nombreMystere'] = rand($min, $max) ;	
 }
 ?>
 
@@ -38,11 +44,8 @@ if(isset($_POST['choix']))
 	<body>
 		<h1> Le nombre Mystère <em>entre <?= $min ?> et <?= $max ?> <em></h1>
 		<h2> <?= $message ?> </h2>
-		<h3> <?= $count ?> essais </h3>
+		<h3> <?= $_SESSION['count'] ?> essais </h3>
 		<form method="post">
-			
-			<input type='hidden' name='nm' value='<?= $nombreMystere ?>'>
-			<input type='hidden' name="count" value='<?= $count ?>'>
 			<input type="number" name="choix">
 			<input type="submit">
 		</form>
