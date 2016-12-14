@@ -16,14 +16,15 @@ if(isset($_POST['choix']))
 		$message = "Le nombre mystère est plus petit" ;
 	}
 
-	if($choix < $nombreMystère)
+	else if($choix < $nombreMystere)
 	{
 		$message = "Le nombre mystere est plus grand" ;
 	}
 	
 	else
 	{
-		$message = "Bravo" ;
+		$message = "Bravo, nouveau nombre généré" ;
+		$_SESSION['nombreMystere'] = rand($min, $max) ;	
 	}
 	
 	$_SESSION['count'] ++ ;
