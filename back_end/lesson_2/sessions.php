@@ -6,6 +6,7 @@
 // d'utiliser session_start();
 session_start();
 
+
 if( 
 	isset($_POST['login']) && 
 	isset( $_POST['passwd'] ) && 
