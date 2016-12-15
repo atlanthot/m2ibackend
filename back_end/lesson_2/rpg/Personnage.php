@@ -7,3 +7,4 @@ class Personnage
 		echo 'Bonjour le monde !';
 	}
 }
+
