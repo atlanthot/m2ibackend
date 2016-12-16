@@ -1,11 +1,15 @@
 <?php 
-	include "Personnage.php" ;
-	include "Warrior.php" ;
-	include "Wizard.php" ;
+	include "./include/Personnage.php" ;
+	include "./include/Warrior.php" ;
+	include "./include/Wizard.php" ;
 	include "combat.php";
 	
 	$guerrier = new Warrior('Yatta', 20, 'Barbare', '5');
+	$guerrier->setWeaponLeft('hache');
+	$guerrier->setWeaponRight('épée');
+	
 	$magicien = new Wizard('Albus', 15, 'Necromancien', '5', 100, 'Baton');
+	$magicien->setWandstick('baton');
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +26,7 @@
 	<body>
 	<div class="container">		
 		<div class="carousel carousel-slider center" data-indicators="true">
-			<div class="carousel-item red white-text" href="#one!">
+			<div class="carousel-item red" href="#one!">
 			  <h2>Warrior</h2>
 				<ul class="collection">
 					<?php 
@@ -33,7 +37,7 @@
 					?>
 				</ul>
 			</div>
-			<div class="carousel-item amber white-text" href="#two!">
+			<div class="carousel-item amber" href="#two!">
 				<h2>Wizard</h2>
 				<ul class="collection">
 					<?php 

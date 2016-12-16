@@ -2,7 +2,7 @@
 Class Warrior extends Personnages
 {
 	private $_weaponLeft = null;
-	private $_weaponRight = null; 
+	private $_weaponRight = null;
 	public function __construct($param_name, $param_pv, $param_labor, $param_power)
 	{
 		parent::__construct($param_name, $param_pv, $param_labor, $param_power);
@@ -10,10 +10,12 @@ Class Warrior extends Personnages
 	public function setWeaponLeft($param_weapon)
 	{
 		$this->_weaponLeft = $param_weapon;
+		$this->_weaponLeft->power = 5;
 	}
 	public function setWeaponRight($param_weapon)
 	{
 		$this->_weaponRight = $param_weapon;
+		$this->_weaponRight->power = 5;
 	}
 	public function attack($param_ennemy)
 	{

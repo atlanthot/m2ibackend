@@ -17,9 +17,10 @@ Class Wizard extends Personnages
 		return $this->_mana;
 	}
 	
-	public function setWandstick($param_weapons)
+	public function setWandstick($param_weapon)
 	{
-		$this->_wandstick = $param_weapons;
+		$this->_wandstick = $param_weapon;
+		$this->_wandstick->power = 5;
 	}
 	
 	public function getWandstick()
