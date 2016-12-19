@@ -1,0 +1,3 @@
+USE pyrates;
+
+SELECT VERSION();

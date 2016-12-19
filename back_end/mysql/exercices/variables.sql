@@ -1,0 +1,4 @@
+USE pyrates;
+
+SET @toto="tata";
+SELECT @t1:=(@t2:=2) + @t3:=2 as total, @t2 as left_operand, @t3 as right_operand;
