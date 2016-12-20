@@ -1,7 +1,7 @@
 <?php 	
 	require_once 'database.php';
 	
-	if(isset($_POST))
+	if(isset($_POST) && !empty($_POST))
 	{
 		foreach($_POST as $id)
 		{

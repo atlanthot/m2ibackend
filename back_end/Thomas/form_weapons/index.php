@@ -36,45 +36,52 @@
 		
 		<section class="col-md-6 col-lg-6"> 
 			<h2 class="text-center">Data Base</h2>
-			<article class="row">
 			<form method="post" action="remove.php">
-			<table class="table table-striped">
-				<?php
-					$sql = 'SELECT * FROM pyrates_weapons';
-				
-					$statement = $pdo->query($sql);
-
-					if( $statement === false )
-					{
-						var_dump($pdo->errorInfo());
-					}
-					else
-					{
-						$statement->execute();
-						$data = $statement->fetchAll();
+				<table class="table table-striped">
+					<thead>
+						<td>Select</td>
+						<td>ID</td>
+						<td>Name</td>
+						<td>Price</td>
+						<td>Weight</td>
+						<td>Power</td>
+					</thead>
+					<tbody>
+						<?php
+							$sql = 'SELECT * FROM pyrates_weapons';
 						
-						foreach($data as $currentRow )
-						{
-							echo '<tr>';
-								echo '<td>'. $currentRow['id'] .'</td>';
-								echo '<td>'. $currentRow['name'] .'</td>';
-								echo '<td>'. $currentRow['price'] .'</td>';
-								echo '<td>'. $currentRow['weight'] .'</td>';
-								echo '<td>'. $currentRow['power'] .'</td>';
-								echo '<td>'. $currentRow['power'] .'</td>';
-								echo '<td><input type="checkbox" class="form-check-input" value="'. $currentRow['id'] .' "name="'. $currentRow['id'] .'"></td>';
-							echo '</tr>';
-						}	
-					}
-				?>
-			<tr>
-			<td>
-				<input type="submit" value="effacer"/>
-			</td>
-			<tr>
-			</table>
+							$statement = $pdo->query($sql);
+
+							if( $statement === false )
+							{
+								var_dump($pdo->errorInfo());
+							}
+							else
+							{
+								$statement->execute();
+								$data = $statement->fetchAll();
+								
+								foreach($data as $currentRow )
+								{
+									echo '<tr>';
+										echo '<td><input type="checkbox" class="form-check-input" value="'. $currentRow['id'] .'" name="'. $currentRow['id'] .'" /></td>';
+										echo '<td>'. $currentRow['id'] .'</td>';
+										echo '<td>'. $currentRow['name'] .'</td>';
+										echo '<td>'. $currentRow['price'] .'</td>';
+										echo '<td>'. $currentRow['weight'] .'</td>';
+										echo '<td>'. $currentRow['power'] .'</td>';
+									echo '</tr>';
+								}	
+							}
+						?>
+						<tfoot>
+							<td>
+								<input class="btn btn-default" type="submit" value="Effacer" />
+							</td>
+						</tfoot>
+					</tbody>
+				</table>
 			</form>
-			</article>
 		</section>
 	</body>
 </html>
