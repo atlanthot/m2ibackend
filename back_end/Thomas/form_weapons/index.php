@@ -1,5 +1,4 @@
 <?php require_once 'database.php' ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -16,21 +15,27 @@
 		</header>
 		
 		<section class="col-md-6 col-lg-6">
-			<h2 class="text-center">Form</h2>
+			<h2 class="text-center">Formulaires</h2>
 			<form action="post.php" method="POST">
-				<div class="form-inline">
-					<label> Name </label>
-					<input type="text" class="form-control" name="name"/>
-					<label> Price </label>
-					<input type="number" class="form-control" name="price"/>
-				</div>
-				<div class="form-inline">
-					<label> Weight </label>
-					<input type="number" class="form-control" name="weight"/>
-					<label> Power </label>
-					<input type="number" class="form-control" name="power"/>
-				</div>
-					<input type="submit" class="btn btn-default" value="Ajouter"/>
+				<table class="table table-striped">
+					<thead>
+						<td>Name</td>
+						<td>Price</td>
+						<td>Weight</td>
+						<td>Power</td>
+					</thead>
+					<tbody>
+						<td><input type="text" class="form-control" name="name"/></td>
+						<td><input type="number" class="form-control" name="price"/></td>
+						<td><input type="number" class="form-control" name="weight"/></td>
+						<td><input type="number" class="form-control" name="power"/></td>
+					</tbody>
+					<tfoot>
+						<td>
+							<input type="submit" class="btn btn-default" value="Ajouter"/>
+						</td>
+					</tfoot>
+				</table>
 			</form>
 		</section>
 		
@@ -38,6 +43,7 @@
 			<h2 class="text-center">Data Base</h2>
 			<form method="post" action="remove.php">
 				<table class="table table-striped">
+				<caption> </caption>
 					<thead>
 						<td>Select</td>
 						<td>ID</td>
