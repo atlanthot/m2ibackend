@@ -43,12 +43,15 @@ if(
 	$statement 	= $pdo->query($sql);
 }
 
+/*on vérifie que l'on obtient bien les données relatives à la suppression de nos lignes ( une liste d'id séparés par des virgules*/
 
 if( 
 	isset( $_POST['weapon_delete_ids'] ) && 
 	!empty($_POST['weapon_delete_ids'])
 )
 {
+
+	// on transforme notre chaîne de caractère ( de forme: 1,2,3 etc ... ) en tableau à l'aide de la fonction implode
 	$weapon_ids = explode(",", $_POST['weapon_delete_ids']);
 	
 	/*
@@ -60,11 +63,14 @@ if(
 	*/
 	
 	
+	// puis on écrit notre requête SQL
 	$sql = "DELETE FROM weapons WHERE ";
 	$counter = 0;
 	
+	//on boucle sur l'ensemble des id contenus dans notre tableau
 	foreach( $weapon_ids as $current_weapon_id )
 	{
+		// puis on construit nore quête SQL de sorte à ce qu'elle puisse supprimer l'ensemble des id d'un seul coup
 		if ( $counter > 0 )
 		{
 			$sql .= " OR ";
@@ -73,9 +79,11 @@ if(
 		$counter++;
 	}
 	
-	
+	// on affiche notre requête SQL histoire de vérifier qu'elle est exacte.
 	echo $sql;
-	//$pdo->query($sql);
+	
+	// et on l'éxécute...
+	$pdo->query($sql);
 }
 
 
@@ -142,8 +150,10 @@ $weapons_data 	= $statement->fetchAll();
 		</tr>
 	<?php
 	
+		// on boucle sur l'ensemble du jeu de résultat (celui qu'on récupère du SELECT)
 		foreach($weapons_data as $current_weapon )
 		{
+			// puis on construit du html à l'aide des données que l'on a récupéré.
 			echo '<tr>';
 				echo '<td>'.$current_weapon['id'].'</td>';
 				echo '<td>'.$current_weapon['name'].'</td>';
