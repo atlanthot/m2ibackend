@@ -6,7 +6,7 @@
 - 	Le tchat devra comporter une autre zone ou un utilisateur pourra donner son pseudo
 (le pseudo peut changer à chaque message pas de soucis)
 
-- 	Le tchat devra comporter une zonne ou l'utilisateur peut entrer son message
+- 	Le tchat devra comporter une zone ou l'utilisateur peut entrer son message
 
 
 - Si vous voulez voir les nouveaux messages, vous devez recharger la page 
