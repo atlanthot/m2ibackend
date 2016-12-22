@@ -1,0 +1,8 @@
+*** créer un petit site de news ****
+
+- Le site devra pouvoir afficher des articles issues d'une base de données
+- Tout les articles ont un thème, et peuvent être triés par ce thème. 
+- Il faudra prévoir un espace administrateur sur le site , accessible uniquement aux utilisateurs 
+  de type rédacteur ( contenus dans une table spécifique donc ). 
+  
+- Dans cet espace administrateur, prévoir un espace ( un formulaire ) ou l'on peut rédiger, supprimer, modifier un ou plusieurs articles. 
