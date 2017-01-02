@@ -1,6 +1,6 @@
 *** créer un petit site de news ****
 
-- Le site devra pouvoir afficher des articles issues d'une base de données
+- Le site devra pouvoir afficher des articles issus d'une base de données
 - Tous les articles ont un thème, et peuvent être triés par ce thème. 
 - Il faudra prévoir un espace administrateur sur le site , accessible uniquement aux utilisateurs 
   de type rédacteur ( contenus dans une table spécifique donc ). 
