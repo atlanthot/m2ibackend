@@ -67,5 +67,23 @@ class WebsiteController extends Controller
 		));
     } 
 	
+	public function galery($img_id)
+	{
+		$images = array(
+			'http://fr.web.img2.acsta.net/c_215_290/pictures/15/04/09/12/10/228112.jpg',
+			'https://mi-od-live-s.legocdn.com/r/www/r/starwars/-/media/franchises/starwars2015/misc/tfa_cta_744x421.jpg?l.r2=-521045527',
+			'https://media.starwars.ea.com/content/starwars-ea-com/fr_FR/starwars/battlefront/news-articles/collect-iconic-heroes-and-dominate-the-universe-in-star-wars-gal/_jcr_content/featuredImage/renditions/rendition1.img.jpg',
+			'http://img.lum.dolimg.com/v1/images/starwars_551c43f4.jpeg'
+		);
+		
+		return $this->render('galery.html.twig', 
+								array(
+									'section_title'=>'galery',
+									'img_list' => $images,
+									'img_id'=>$img_id
+								)
+							);
+	}
+	
 	
 }

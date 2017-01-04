@@ -17,3 +17,7 @@ forum_route:
 classroom_route:
     path:      /classroom/{student_id}
     defaults:  { _controller: AppBundle\Controller\WebsiteController::classroom, student_id:0 }
+
+galery_route:
+    path:      /galery/{img_id}
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::galery, img_id:0 }

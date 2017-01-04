@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	{% include 'includes/header.html.twig' %}
+	{% include 'includes/menu.html.twig' %}
+	
+	
+	{% for current_image in img_list %}
+		<img src="{{ current_image }}" height="100" />
+	{% endfor %}
+	
+	
+	
+	<p>Image sélectionnée: <img src="{{ img_list[img_id] }}" />
+	
+</body>
+</html>
