@@ -34,7 +34,7 @@ class WebsiteController extends Controller
     }
 	
     
-    public function forum($post_id = -1)
+    public function forum($post_id)
     {
 		return $this->render('forum.html.twig', array(
 			'section_title' => 'forum',
@@ -42,7 +42,7 @@ class WebsiteController extends Controller
 		));
     }
     
-    public function classroom($student_id = 0)
+    public function classroom($student_id)
     {
 		return $this->render('classroom.html.twig', array(
 			'section_title' => 'classroom',
