@@ -16,20 +16,35 @@ class WebsiteController extends Controller
      */
     public function home()
     {
-        return $this->render('home.html.twig', array());
+        return $this->render('home.html.twig', array(
+			'section_title'=>'home'
+		));
     }
     /**
      * @Route("/contact")
      */
     public function contact()
     {
-		return $this->render('contact.html.twig', array());
+		return $this->render('contact.html.twig', array(
+			'section_title'=>'contact'
+		));
     }
     /**
      * @Route("/products")
      */
     public function products()
     {
-		return $this->render('products.html.twig', array());
+		return $this->render('products.html.twig', array(
+			'section_title'=>'products'
+		));
+    }
+    /**
+     * @Route("/forum")
+     */
+    public function forum()
+    {
+		return $this->render('forum.html.twig', array(
+			'section_title' => 'forum'
+		));
     }
 }
