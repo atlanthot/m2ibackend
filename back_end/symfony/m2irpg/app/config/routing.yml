@@ -1,3 +1,19 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+home_route:
+    path:      /home
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::home }
+
+contact_route:
+    path:      /contact
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::contact }
+
+products_route:
+    path:      /products
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::products }
+
+forum_route:
+    path:      /forum/{post_id}
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::forum, post_id:-1 }
+
+classroom_route:
+    path:      /classroom/{student_id}
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::classroom, student_id:0 }
