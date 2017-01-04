@@ -8,7 +8,10 @@
 	{% include 'includes/header.html.twig' %}
 	{% include 'includes/menu.html.twig' %}
 	
-	<h1>Post ID = {{ post_id }}</h1>
-	
+	<ul>
+	{% for current_student in students_list %}
+		<li>{{ current_student }}</li>
+	{% endfor %}
+	</ul>
 </body>
 </html>

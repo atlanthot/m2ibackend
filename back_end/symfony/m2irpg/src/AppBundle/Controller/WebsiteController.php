@@ -38,13 +38,57 @@ class WebsiteController extends Controller
 			'section_title'=>'products'
 		));
     }
+	
     /**
-     * @Route("/forum")
+	 * Matches /forum exactly
+	 *
+     * @Route("/forum", name="forum_no_post")
      */
-    public function forum()
+    public function forumNoPost()
     {
 		return $this->render('forum.html.twig', array(
-			'section_title' => 'forum'
+			'section_title' => 'forum',
+			'post_id'=>'pas de post id'
+		));
+    }
+    
+    /**
+	 * Matches /forum/*
+	 *
+     * @Route("/forum/{post_id}", name="forum_post")
+     */
+    public function forumPost($post_id)
+    {
+		return $this->render('forum.html.twig', array(
+			'section_title' => 'forum',
+			'post_id'=>$post_id
+		));
+    }
+    
+    /**
+     * @Route("/classroom")
+     */
+    public function classroom()
+    {
+		return $this->render('classroom.html.twig', array(
+			'section_title' => 'classroom',
+			'students_list' => array(
+			
+				'Christophe',
+				'Frédéric',
+				'Johann',
+				'Mohammed',
+				'Nicolas',
+				'Richard',
+				'Thomas',
+				'Adberrahmane',
+				'Alexandre',
+				'Rudy',
+				'Younes',
+				'Farid',
+				'Melissa'
+				
+			)
 		));
     }
 }
