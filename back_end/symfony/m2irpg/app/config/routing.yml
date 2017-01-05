@@ -14,9 +14,17 @@ forum_route:
     path:      /forum/{post_id}
     defaults:  { _controller: AppBundle\Controller\WebsiteController::forum, post_id:-1 }
 
-classroom_route:
+classroomByName_route:
+    path:      /classroom/{student_name}
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::classroomByName, student_name:'Johann' }
+    requirements:
+        student_name: '\D+'
+
+classroomById_route:
     path:      /classroom/{student_id}
-    defaults:  { _controller: AppBundle\Controller\WebsiteController::classroom, student_id:0 }
+    defaults:  { _controller: AppBundle\Controller\WebsiteController::classroomById, student_id:0 }
+    requirements:
+        student_id: '\d+'
 
 galery_route:
     path:      /galery/{img_id}
