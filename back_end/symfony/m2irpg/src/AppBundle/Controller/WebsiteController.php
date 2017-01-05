@@ -1,12 +1,11 @@
 <?php
 
 
-// src/AppBundle/Controller/LuckyController.php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Student as Student;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as Route;
-//use Symfony\Component\HttpFoundation\Response as Response;
 
 
 class WebsiteController extends Controller
@@ -59,7 +58,6 @@ class WebsiteController extends Controller
 		));
     }
 	
-    
     public function forum($post_id)
     {
 		return $this->render('forum.html.twig', array(
@@ -109,27 +107,52 @@ class WebsiteController extends Controller
 	 
     public function classroomByName($student_name)
     {
-		$list =  array(
-			
-				'Christophe',
-				'Frédéric',
-				'Johann',
-				'Mohammed',
-				'Nicolas',
-				'Richard',
-				'Thomas',
-				'Adberrahmane',
-				'Alexandre',
-				'Rudy',
-				'Younes',
-				'Farid',
-				'Melissa'
-				
-		);
+	
+		// on récupère tout les étudiants stockés en base de données
+		$students = $this->getDoctrine()->getRepository('AppBundle:Student')->findAll();
 		
+		// on construit un tableau vide
+		$list = array();
+		
+		// puis on boucle sur l'ensemble des étudiants que l'on a récupéré.
+		foreach( $students as $current_student )
+		{
+			// on ajoute à l'intérieur de la liste, le prénom de chacun des étudiants
+			$list[]=$current_student->getFirstName();
+		}
+		
+		// et notre code refonctionne
 		if ( !in_array($student_name, $list) )
 		{
-			$student_name = 'no_student';
+			// on crée un nouvel objet de type student
+			// en langage symfony, on crée donc une nouvelle entité
+			// ce qui va correspondre à une nouvelle entrée dans 
+			// notre table "students"
+			$student = new Student();
+			
+			// on définit la valeur du prénom
+			$student->setFirstName($student_name);
+			
+			// puis la valeur du nom 
+			$student->setLastName('m2i');
+			
+			
+			/*
+			* ici on récupère un objet ( le manager ) qui nous permet
+			* de piloter Doctrine
+			*/
+			$manager = $this->getDoctrine()->getManager();
+			
+			// On précise à Doctrine que l'on souhaite stocker
+			// au moins, de façon temporaire, l'objet  nouvellement crée
+			// ( sa durée de vie de base, sera celle de la session
+			$manager->persist($student);
+			
+			// Pour chaque objet stocké en session, on peut éventuellement
+			// le rentrer en base de données à l'aide de la méthode 'flush'
+			$manager->flush();
+			
+			$list[]= $student_name;
 		}
 		
 	
