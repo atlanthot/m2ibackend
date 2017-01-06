@@ -1,13 +1,13 @@
-
 // MAP OBJECT
 
-function Map(cols,rows)
+function Map(cols, rows, container)
 {
-	this.cols 		=	cols;
-	this.rows 		=	rows;
-	this.tiles		= 	new Array();
-	this.width		= cols* CASE_WIDTH;
-	this.height		= rows* CASE_HEIGHT;
+	this.cols 		= cols;
+	this.rows 		= rows;
+	this.tiles		= new Array();
+	this.width		= cols * CASE_WIDTH;
+	this.height		= rows * CASE_HEIGHT;
+    this.container  = container;
 
 	//var mapContainer 	= this._getContainer();
 	//mapContainer.width(this.width);
@@ -22,8 +22,7 @@ Map.prototype.tiles = null;
 
 Map.prototype._getContainer = function()
 {
-	var mapContainer 	= $('#map');
-	return mapContainer;
+	return this.container;
 };
 
 Map.prototype.getTileByRowAndCol = function(row, col)
@@ -53,8 +52,9 @@ Map.prototype.generate = function(param_data)
 	var currentTile		= null;
 	var row				= 0;
 	var col				= 0;
-
-	for(row = 0; row < groundMap.length; row++) // ROW
+    var groundMapLength = groundMap.length;
+    
+	for(row = 0; row < groundMapLength; row++) // ROW
 	{
 		for(col = 0; col < groundMap[row].length; col++) // COL
 		{

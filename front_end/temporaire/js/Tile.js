@@ -25,8 +25,8 @@ Tile.prototype.draw = function()
 	var node = this.getHTMLNode();
 
 	node.setAttribute("class", "tile" );
-	node.setAttribute("id", "row-"+this.row+"-col-"+this.col );
-	node.style.backgroundImage 	= 'url("'+ this.img  +'.png")';
+	node.setAttribute("id", "r-" + this.row + "-c-" + this.col );
+	node.style.backgroundImage 	= 'url("'+ this.img +'")';
 	node.style.left 			= this.col * CASE_WIDTH + "px";
 	node.style.top 				= this.row * CASE_HEIGHT + "px";
 	node.style.zIndex 			= 10;

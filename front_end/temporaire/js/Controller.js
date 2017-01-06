@@ -1,5 +1,5 @@
 /* classe controller */
-function Controller(param_movelaps,param_timelaps, param_timeOutId, param_map, param_perso)
+function Controller(param_movelaps, param_timelaps, param_timeOutId, param_map, param_perso)
 {
 	this.moveLaps = param_movelaps;
 	this.timeLaps = param_timelaps;
@@ -14,8 +14,6 @@ Controller.prototype.moveLaps 	= 0;
 Controller.prototype.timeOutId 	= 0;
 Controller.prototype._map 		= null;
 Controller.prototype._perso 	= null;
-
-
 
 
 /* Méthode de Controller */
@@ -117,14 +115,12 @@ Controller.prototype.getCollideCases = function(x_perso,
 
 Controller.prototype.isWalkable = function(param_x,param_y, param_width, param_height) 
 {
-	
 	var	tableau = this.getCollideCases(param_x, param_y, perso.width ,perso.height, CASE_WIDTH, CASE_HEIGHT );
 	var currentCase = null;
 	var xcase = 0;
 	var ycase = 0;
 	var x2case = 0;
 	var y2case = 0;
-
 	
 	for (i = 0; i < tableau.length ; i++)
 	{
@@ -149,22 +145,7 @@ Controller.prototype.isWalkable = function(param_x,param_y, param_width, param_h
 			continue;
 		}
 		
-		return false;
-		
+		return false;		
 	}
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

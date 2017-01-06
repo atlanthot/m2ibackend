@@ -6,7 +6,7 @@ function Actor(obj)
 	this._states		= obj.states;
 	this._animations	= obj.animations;
 	this._anim 			= this._animations[obj.anim];
-	this.currentState 	= this._anim[0];
+	this.currentState 	= this._anim[1];
 }
 
 Actor.prototype.currentState 	= null;
@@ -49,9 +49,10 @@ Actor.prototype.draw			= function()
 	var width 	= 0;
 	var height 	= 0;
 	var node	= this.getHTMLNode();
-	
+    
 	if( time - this._time > this._frameTime )
 	{
+
 		this._frame++;
 		
 		if( this._frame >= this._anim.length )
@@ -78,10 +79,8 @@ Actor.prototype.draw			= function()
 	node.style.position				= "absolute";
 	node.style.top					= this.y + 'px';
 	node.style.left					= this.x + 'px';
-	node.style.backgroundImage 		= "url('"+this.img+"')";
-	node.style.backgroundPosition 	= decalX+"px "+decalY+"px";
-	
-	
+	node.style.backgroundImage 		= "url('" + this.img + "')";
+	node.style.backgroundPosition 	= decalX + "px " + decalY + "px";
 };
 
 Actor.prototype.moveLeft 		= function(param_value)

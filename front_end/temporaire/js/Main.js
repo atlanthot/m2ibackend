@@ -11,6 +11,8 @@ var control = null;
 var farm 	= null;
 var perso 	= null;
 var mapArrow = null;
+var mapContainer = null;
+
 function faireHeriter(parentClass, childClass)
 {
 	var obj = new Object();
@@ -69,7 +71,7 @@ function mouseDown(event)
 
 function mouseOutHandler(event)
 {
-	// switch(event.target.id)
+	// switch(event.target.id) eZam : Why ?
 	// {
 		// case "img_gauche":
 			// control.stop();
@@ -100,8 +102,9 @@ function gameFail()
 function gameReady(data)
 {
 	mapArrow = document.getElementById("arrowContainer");
-	
-	farm 	= new Map(20,15);
+	mapContainer = document.getElementById("map");
+    
+	farm 	= new Map(20, 15, mapContainer);
 	farm.generate(data.map);
 	
 	perso = new Personnage( getCharacterInfoByType("_warrior_", data.characters) );
