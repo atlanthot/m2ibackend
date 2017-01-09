@@ -1,41 +1,105 @@
 // ES5
 "use strict";
 
-function Voiture(param_marque)
+var students = [
+	{
+		"firstname":"Christophe",
+		"lastname":"Rochut",
+		"description":"Superman",
+		"haircolor":"Brun",
+		"avatar":"https://upload.wikimedia.org/wikipedia/en/e/eb/SupermanRoss.png"
+	},
+	{
+		"firstname":"Frédéric",
+		"lastname":"Leclercq",
+		"description":"Bad King",
+		"haircolor":"Sel et poivre",
+		"avatar":"https://upload.wikimedia.org/wikipedia/en/3/3a/Sauron.jpg"
+	}
+];
+
+
+function isValidHairColor(param_color)
 {
-	this.marque = param_marque;
+	switch( param_color )
+	{
+		case "Brun"			:	return true;	break;
+		case "Brune"		:	return true;	break;
+		case "Blonde"		:	return true;	break;
+		case "Blond"		:	return true;	break;
+		case "Roux"			:	return true;	break;
+		case "Rousse"		:	return true;	break;
+		case "Châtain"		:	return true;	break;
+		case "Poivre et sel":	return true;	break;
+		case "Sel et poivre":	return true;	break;
+		
+		
+		default: 
+			return false;
+			break;
+	}
 }
 
-Voiture.prototype.marque = "Golf";
-Voiture.prototype.makeNoise = function()
+function getStudentByName( param_name, param_students )
 {
-	console.log(this);
+	var max = param_students.length;
+	var i 	= 0;
+	
+	for( i = 0; i < max; i++ )
+	{
+		if( param_students[i].firstname == param_name )
+			return param_students[i];
+	}
+	
+	return null;
+}
+
+var myStudent = getStudentByName('Christophe', students);
+
+//console.log(isValidHairColor("violet"));
+
+//console.log( Math.random() );
+//console.log( Math.ceil(10.9) );
+//console.log( Math.floor(10.9) );
+//console.log( Math.round(10.499999999999999) );
+//console.log( Math.round(10.5) );
+
+//
+//var myNumber = "10";
+//console.log( parseInt(myNumber) );
+//console.log( parseFloat(myNumber) );
+//
+// NaN
+//var myNumber = "A10";
+//console.log( parseInt(myNumber) );
+//console.log( parseFloat(myNumber) );
+//
+
+
+var ferrari 		= new Object();
+ferrari.price 		= 100000;
+ferrari.setPrice 	= function(param_price)
+{
+	this.price = param_price;
 };
 
+//console.log(ferrari.color); // retourne undefined
 
-var mabagnole = new Voiture("alfa");/* 	|	var mabagnole = new Object();
-										|
-										|	for( var prop in Voiture.prototype )
-										|	{
-										|		mabagnole[prop] = Voiture.prototype[prop];
-										|	}
-										|
-										|	Voiture.apply(mabagnole);
-									*/
+ferrari.setPrice(100);
+console.log(ferrari.price);
+//
+//window.methodAlias = ferrari.setPrice;
+window.methodAlias = ferrari.setPrice.bind(ferrari);
+window.methodAlias(50);
+//
+console.log(ferrari.price);
 
-mabagnole.makeNoise();
 
-// la méthode bind des objets de type "Function" renvoie une copie de cet objet / fonction
-// dont le contexte d'éxécution ( le this ) sera toujours égal à l'objet envoyé en 1er paramètre
-// de bind.
 
-// cela nous permet de nous affranchir des contraintes liées aux problèmes de 
-// contexte d'éxécution a.k.a problème "de scope".
 
-var toto = mabagnole.makeNoise.bind(mabagnole);
 
-toto();
-								
+
+
 
 
 
