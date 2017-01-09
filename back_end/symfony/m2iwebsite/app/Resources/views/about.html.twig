@@ -11,7 +11,13 @@
 		
 		{% for participant in liste_participants %}
 		
-			<li>{{ participant.firstname }} {{ participant.lastname }}</li>
+			<li>
+				<p>
+					{{ participant.firstname }} {{ participant.lastname }}
+					{{ participant.description }}
+					<img src="{{participant.avatar}}"/>
+				</p>
+			</li>
 			
 		{% endfor %}
 		
@@ -24,6 +30,12 @@
 				{{ selected_student.firstname }} {{ selected_student.lastname }}
 			</p>
 		{% endif %}
+		
+		
+		
+		{{ form_start(cacahuete) }}
+		{{ form_widget(cacahuete) }}
+		{{ form_end(cacahuete) }}
 		
 	</body>
 </html>
