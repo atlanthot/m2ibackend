@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Presentation</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<h1>Ceci est la section présentation</h1>
+		
+		<ul>
+		
+		{% for participant in liste_participants %}
+		
+			<li>{{ participant.firstname }} {{ participant.lastname }}</li>
+			
+		{% endfor %}
+		
+		</ul>
+		
+		
+		{% if selected_student != null %}
+			<p>
+				Etudiant sélectionné:
+				{{ selected_student.firstname }} {{ selected_student.lastname }}
+			</p>
+		{% endif %}
+		
+	</body>
+</html>
