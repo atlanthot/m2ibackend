@@ -1,1 +1,1 @@
-node ./exos/multiple_url.js
+node ./exos/multi_url_fs_dyn.js
