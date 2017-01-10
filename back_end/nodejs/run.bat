@@ -1,1 +1,1 @@
-node ./exos/tp.js
+node ./exos/dispatchers.js
