@@ -1,1 +1,1 @@
-node ./exos/dispatchers.js
+node ./exos/multi_url.js
