@@ -4,6 +4,20 @@ var fs 		= require('fs');
 var app 	= express();
 
 
+function AboutController(req, res)
+{
+	var nom = "";
+	var prenom = "";
+	
+	if( req.params.prenom )
+		prenom = req.params.prenom;
+		
+	if( req.params.nom )
+		nom = req.params.nom;
+		
+	res.setHeader("Content-Type","text/html");
+	res.render('about.ejs', {name: nom, surname: prenom });
+}
 
 function HomeController(req, res)
 {
@@ -81,6 +95,7 @@ app.get('/home', HomeController);
 app.get('/contact', ContactController);
 app.get('/products', ProductController);
 app.get('/products/:reference', ProductController);
+app.get('/about/:nom/:prenom', AboutController);
 
 // puis on configure la route par défaut 
 // dans le cas ou aucune route n'est trouvée

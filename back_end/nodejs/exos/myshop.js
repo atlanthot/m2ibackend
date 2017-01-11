@@ -41,8 +41,22 @@ function CartController( req, res )
 
 function AddProductController( req, res )
 {
-	req.session.cart = req.session.cart || new Array();
+	// req.session == $_SESSION en php
+	// req.body == $_POST en php
+	
+	// si la propriété cart n'existe pas dans notre session
+	if( req.session.cart == undefined )
+	{
+		// alors on crée un nouveau panier vide
+		req.session.cart = new Array();
+	}
+	
+	// ici req.body.reference est équivalent à $_POST['reference'] en php
+	// on ajoute la reference produit, passée en POST au sein du panier
 	req.session.cart.push(req.body.reference);
+	
+	// ici la redirection est égale à header(location: ... )
+	// puis on redirige vers la route qui nous permet de visualiser le panier
 	res.redirect('/cart');
 }
 
@@ -111,27 +125,38 @@ function getAllProducts()
 }
 
 /*config*/
-var session = require('cookie-session');
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
-var express = require('express');
-var app = express();
 
+// module qui nous permet de gérer des sessions
+var session 			= require('cookie-session');
+// ici on va chercher le module qui nous permet d'analyser les requêtes POST
+var bodyParser 			= require('body-parser'); 
+// le module qui va décoder les données de type POST
+var urlencodedParser 	= bodyParser.urlencoded({ extended: false });
+var express 			= require('express');
+var app 				= express();
+
+// on initialise notre session avec une clé secrète
+// qui normalement est différente pour chaque instance du serveur
 app.use(session({secret:'myprivateshop'}));
 
+// répertoires contenant des fichiers on dynamiques
 app.use('/img', express.static('img'));
 app.use('/css', express.static('css'));
 
-//app.use(express.static('img'));
-//app.use(express.static('css'));
+// route de type GET classiques
+app.get('/'						, HomeController							);
+app.get('/contact'				, ContactController							);
+app.get('/products'				, ProductController							);
+app.get('/cart'					, CartController							);
+app.get('/products/:reference'	, ProductController							);
 
-app.get('/', HomeController);
-app.get('/contact', ContactController);
-app.get('/products', ProductController);
-app.get('/cart', CartController);
-app.get('/products/:reference', ProductController);
-app.post('/products/add', urlencodedParser, AddProductController);
-app.post('/products/remove', urlencodedParser, RemoveProductController);
+// on définit nos routes qui gèrent des paramètres de type POST
+// sans oublier de passer aux fonctions de callback, l'objet 
+// qui va nous permettre d'aller chercher lesdits paramètres.
+app.post('/products/add'		, urlencodedParser, AddProductController	);
+app.post('/products/remove'		, urlencodedParser, RemoveProductController	);
+
+//route par défaut
 app.use(ErrorController);
 
 app.listen(3000);
