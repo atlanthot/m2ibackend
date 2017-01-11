@@ -1,2 +1,2 @@
 cd exos
-node myshop.js
+node students.js
