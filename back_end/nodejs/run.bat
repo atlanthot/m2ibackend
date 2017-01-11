@@ -1,1 +1,2 @@
-node ./exos/multi_url_fs_dyn.js
+cd exos
+node express_sample.js
