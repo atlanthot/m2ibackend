@@ -1,2 +1,2 @@
 cd exos
-node students.js
+node socket_example_server.js
