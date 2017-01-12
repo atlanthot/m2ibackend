@@ -3,29 +3,23 @@ function dataFromClientHandler(socket, data)
 {
 	var num_cacahuete = parseInt(data.cacahuete);
 	var num_poireaux = parseInt(data.poireaux);
+	var num_patates = parseInt(data.patates);
 	
-	if( isNaN( num_cacahuete ) )
-	{
-		num_cacahuete = 0;
-	}
-	else
-	{
-		num_cacahuete++;
-	}
-	
-	if( isNaN( num_poireaux ) )
-	{
-		num_poireaux = 0;
-	}
-	else
-	{
-		num_poireaux++;
-	}
+	num_cacahuete++;
+	num_poireaux++;
+	num_patates++;
 	
 	console.log("nombre de cacahuetes = "+num_cacahuete);
 	console.log("nombre de poireaux = "+num_poireaux);
+	console.log("nombre de patates = "+num_patates);
 	
-	socket.emit('data_from_server', {cacahuete: num_cacahuete, poireaux: num_poireaux} );
+	socket.emit('data_from_server', 
+				{
+					cacahuete: num_cacahuete, 
+					poireaux: num_poireaux,
+					patates: num_patates
+				} 
+	);
 }
 
 function connectHandler(socket)
