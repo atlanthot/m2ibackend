@@ -1,7 +1,8 @@
 
-function cacahueteFromClientHandler(socket, data)
+function dataFromClientHandler(socket, data)
 {
-	var num_cacahuete = parseInt(data);
+	var num_cacahuete = parseInt(data.cacahuete);
+	var num_poireaux = parseInt(data.poireaux);
 	
 	if( isNaN( num_cacahuete ) )
 	{
@@ -12,15 +13,25 @@ function cacahueteFromClientHandler(socket, data)
 		num_cacahuete++;
 	}
 	
-	console.log("nombre de cacahuetes = "+num_cacahuete);
+	if( isNaN( num_poireaux ) )
+	{
+		num_poireaux = 0;
+	}
+	else
+	{
+		num_poireaux++;
+	}
 	
-	socket.emit('cacahuete_from_server', num_cacahuete );
+	console.log("nombre de cacahuetes = "+num_cacahuete);
+	console.log("nombre de poireaux = "+num_poireaux);
+	
+	socket.emit('data_from_server', {cacahuete: num_cacahuete, poireaux: num_poireaux} );
 }
 
 function connectHandler(socket)
 {	
 	console.log("un utilisateur veut se connecter par le biais d'une socket");
-	socket.on("cacahuete_from_client",cacahueteFromClientHandler.bind( this,socket) );
+	socket.on("data_from_client",dataFromClientHandler.bind( this,socket) );
 	// socket.on("disconnect", closeHandler.bind(this, socket) );
 	// socket.emit("server_version", SERVER_VERSION );
 };

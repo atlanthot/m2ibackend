@@ -8,9 +8,10 @@
 		
 			var socket = null;
 			
-			function cacahueteFromServerHandler(data)
+			function dataFromServerHandler(data)
 			{
-				var num_cacahuete = parseInt(data);
+				var num_cacahuete = parseInt(data.cacahuete);
+				var num_poireaux = parseInt(data.poireaux);
 				
 				if( isNaN( num_cacahuete ) )
 				{
@@ -21,10 +22,19 @@
 					num_cacahuete++;
 				}
 				
+				if( isNaN( num_poireaux ) )
+				{
+					num_poireaux = 0;
+				}
+				else
+				{
+					num_poireaux++;
+				}
+				
 				setTimeout( 
 						function()
 						{
-							socket.emit('cacahuete_from_client', num_cacahuete);
+							socket.emit('data_from_client',  {cacahuete: num_cacahuete, poireaux: num_poireaux});
 						}, 
 						50
 				);
@@ -34,8 +44,8 @@
 			{
 				socket = io.connect('127.0.0.1:3000');
 				
-				socket.emit('cacahuete_from_client', 0);
-				socket.on('cacahuete_from_server', cacahueteFromServerHandler );
+				socket.emit('data_from_client',  {cacahuete: 0, poireaux: 0});
+				socket.on('data_from_server', dataFromServerHandler );
 			};
 		
 		</script>
