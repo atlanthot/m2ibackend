@@ -1,2 +1,2 @@
 cd exos
-node caramail.js
+node master_example.js

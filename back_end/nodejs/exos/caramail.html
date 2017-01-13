@@ -10,12 +10,21 @@
 			
 			function sendMessage()
 			{
-				var mon_champ = document.getElementById("user_message");
-				var message = mon_champ.value;
+				var mon_message = document.getElementById("user_message");
+				var mon_login = document.getElementById("user_login");
+				var message = mon_message.value;
+				var login = mon_login.value;
 				
-				socket.emit('message_from_client', message);
+				socket.emit(
+							'message_from_client', 
+							{
+								user_login: login, 
+								user_message: message 
+							}
+				);
 				
-				mon_champ.value = "";
+				mon_message.value = "";
+				mon_login.value = "";
 			}
 			
 			function connectSucces(data)
@@ -32,10 +41,19 @@
 				var max = data.length;
 				var html = "";
 				var container = document.getElementById("messages");
+				var cur_msg = "";
 				
 				for( i = 0; i < max; i++ )
 				{
-					html += "<p>"+data[i]+"</p>";
+				
+					cur_msg = data[i].user_message;
+					cur_msg = cur_msg.replace('lml', '<img height="25px" src="./img/rock.jpg"/>');
+					
+					html += "<p>";
+					html += data[i].user_login;
+					html += ": ";
+					html += cur_msg;
+					html += "</p>";
 				}
 				
 				container.innerHTML = html;
@@ -56,6 +74,7 @@
 			
 		</div>
 		<div>
+			<input type="text" value="" id="user_login"/>
 			<input type="text" value="" id="user_message"/>
 			<button id="send_btn">Envoyer</button>
 		</div>

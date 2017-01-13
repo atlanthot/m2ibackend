@@ -1,7 +1,15 @@
 
 function messageClientHandler(data)
 {
-	console.log("le client envoie: ", data);
+	console.log("le client envoie: ", JSON.stringify(data) );
+	
+	if( messages.length >= 10 )
+	{
+		// j'enlève le premier élement du tableau
+		// afin de pouvoir en stocker un nouveau
+		messages.shift();
+	}
+	
 	messages.push(data);
 	io.emit('all_messages', messages);
 }
