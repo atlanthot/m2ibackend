@@ -17,6 +17,7 @@ var tabResponses	= new Array();
 // puis on crée un processus enfant et on récupère un objet
 // qui nous permet de communiquer avec lui
 var slave 			= child_process.fork("./slave_example.js");
+var slave2 			= child_process.fork("./slave2_example.js");
 
 
 // le processus enfant nous a répondu 
@@ -66,6 +67,15 @@ function requestHandler(request, response)
 				}
 		);
 	}
+	else if( page == '/richard_aux_gros_bras' )
+	{
+		tabResponses.push(response);
+		slave2.send(
+			{ 
+				"response_id":tabResponses.length - 1 
+			}
+		);
+	}
 	
 	
 }
@@ -75,6 +85,7 @@ function requestHandler(request, response)
 // slaveHandler sera appelée et recevra en paramètre
 // les données envoyées par le processus enfant
 slave.on('message', slaveHandler);
+slave2.on('message', slaveHandler);
 
 
 // on initialise un serveur http classique nodejs
