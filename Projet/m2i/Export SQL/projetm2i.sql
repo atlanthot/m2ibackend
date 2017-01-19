@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 19 Janvier 2017 à 13:37
+-- Généré le :  Jeu 19 Janvier 2017 à 13:55
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -46,10 +46,10 @@ INSERT INTO `articles` (`id`, `category`, `title`, `content`, `creation_date`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pitcures`
+-- Structure de la table `pictures`
 --
 
-CREATE TABLE `pitcures` (
+CREATE TABLE `pictures` (
   `id` int(11) NOT NULL,
   `img` longtext COLLATE utf8_unicode_ci NOT NULL,
   `id_article` int(11) NOT NULL
@@ -108,9 +108,9 @@ ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `pitcures`
+-- Index pour la table `pictures`
 --
-ALTER TABLE `pitcures`
+ALTER TABLE `pictures`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -138,9 +138,9 @@ ALTER TABLE `users`
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT pour la table `pitcures`
+-- AUTO_INCREMENT pour la table `pictures`
 --
-ALTER TABLE `pitcures`
+ALTER TABLE `pictures`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `testimony`
