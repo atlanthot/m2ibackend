@@ -38,3 +38,4 @@ class WebServiceController extends Controller
 
 
 llllllllllllllllll,,,,,,,,,,,,,,,,,,,,ppppppppppppppppppppppppppppppppppppp
+ocicollassign()
