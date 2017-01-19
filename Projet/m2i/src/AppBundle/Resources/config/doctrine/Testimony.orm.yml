@@ -1,0 +1,22 @@
+AppBundle\Entity\Testimony:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\TestimonyRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        msg:
+            type: text
+        creationDate:
+            type: datetime
+            column: creation_date
+        modificationDate:
+            type: datetime
+            column: modification_date
+        idUser:
+            type: integer
+    lifecycleCallbacks: {  }
