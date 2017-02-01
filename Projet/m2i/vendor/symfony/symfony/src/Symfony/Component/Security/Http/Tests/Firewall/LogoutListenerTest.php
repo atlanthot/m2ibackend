@@ -172,12 +172,12 @@ class LogoutListenerTest extends \PHPUnit_Framework_TestCase
 
     private function getTokenManager()
     {
-        return $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
+        return $this->getMock('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface');
     }
 
     private function getTokenStorage()
     {
-        return $this->getMockBuilder('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')->getMock();
+        return $this->getMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
     }
 
     private function getGetResponseEvent()
@@ -195,7 +195,7 @@ class LogoutListenerTest extends \PHPUnit_Framework_TestCase
 
     private function getHandler()
     {
-        return $this->getMockBuilder('Symfony\Component\Security\Http\Logout\LogoutHandlerInterface')->getMock();
+        return $this->getMock('Symfony\Component\Security\Http\Logout\LogoutHandlerInterface');
     }
 
     private function getHttpUtils()
@@ -225,11 +225,11 @@ class LogoutListenerTest extends \PHPUnit_Framework_TestCase
 
     private function getSuccessHandler()
     {
-        return $this->getMockBuilder('Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface')->getMock();
+        return $this->getMock('Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface');
     }
 
     private function getToken()
     {
-        return $this->getMockBuilder('Symfony\Component\Security\Core\Authentication\Token\TokenInterface')->getMock();
+        return $this->getMock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
     }
 }

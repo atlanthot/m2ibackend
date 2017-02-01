@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\FrameworkBundle\CacheWarmer;
 
-use Doctrine\Common\Annotations\AnnotationException;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
@@ -37,9 +36,9 @@ class SerializerCacheWarmer implements CacheWarmerInterface
     private $fallbackPool;
 
     /**
-     * @param LoaderInterface[]      $loaders      The serializer metadata loaders
-     * @param string                 $phpArrayFile The PHP file where metadata are cached
-     * @param CacheItemPoolInterface $fallbackPool The pool where runtime-discovered metadata are cached
+     * @param LoaderInterface[]      $loaders      The serializer metadata loaders.
+     * @param string                 $phpArrayFile The PHP file where metadata are cached.
+     * @param CacheItemPoolInterface $fallbackPool The pool where runtime-discovered metadata are cached.
      */
     public function __construct(array $loaders, $phpArrayFile, CacheItemPoolInterface $fallbackPool)
     {
@@ -65,21 +64,10 @@ class SerializerCacheWarmer implements CacheWarmerInterface
 
         $metadataFactory = new CacheClassMetadataFactory(new ClassMetadataFactory(new LoaderChain($this->loaders)), $arrayPool);
 
-        spl_autoload_register(array($adapter, 'throwOnRequiredClass'));
-        try {
-            foreach ($this->extractSupportedLoaders($this->loaders) as $loader) {
-                foreach ($loader->getMappedClasses() as $mappedClass) {
-                    try {
-                        $metadataFactory->getMetadataFor($mappedClass);
-                    } catch (\ReflectionException $e) {
-                        // ignore failing reflection
-                    } catch (AnnotationException $e) {
-                        // ignore failing annotations
-                    }
-                }
+        foreach ($this->extractSupportedLoaders($this->loaders) as $loader) {
+            foreach ($loader->getMappedClasses() as $mappedClass) {
+                $metadataFactory->getMetadataFor($mappedClass);
             }
-        } finally {
-            spl_autoload_unregister(array($adapter, 'throwOnRequiredClass'));
         }
 
         $values = $arrayPool->getValues();

@@ -12,6 +12,9 @@ AppBundle\Entity\Articles:
         id_user:
             type: integer
             nullable: false
+        img:
+            type: string
+            nullable: false
         category:
             type: string
             length: '50'

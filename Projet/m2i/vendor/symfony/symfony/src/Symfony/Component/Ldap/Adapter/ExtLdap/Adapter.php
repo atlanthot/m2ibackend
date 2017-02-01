@@ -50,7 +50,7 @@ class Adapter implements AdapterInterface
     public function getEntryManager()
     {
         if (null === $this->entryManager) {
-            $this->entryManager = new EntryManager($this->getConnection());
+            $this->entryManager = new EntryManager($this->connection);
         }
 
         return $this->entryManager;

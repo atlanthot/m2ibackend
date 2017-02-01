@@ -22,7 +22,7 @@ class ApplicationTest extends TestCase
 {
     public function testBundleInterfaceImplementation()
     {
-        $bundle = $this->getMockBuilder('Symfony\Component\HttpKernel\Bundle\BundleInterface')->getMock();
+        $bundle = $this->getMock('Symfony\Component\HttpKernel\Bundle\BundleInterface');
 
         $kernel = $this->getKernel(array($bundle), true);
 
@@ -117,10 +117,10 @@ class ApplicationTest extends TestCase
 
     private function getKernel(array $bundles, $useDispatcher = false)
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
 
         if ($useDispatcher) {
-            $dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')->getMock();
+            $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
             $dispatcher
                 ->expects($this->atLeastOnce())
                 ->method('dispatch')
@@ -145,7 +145,7 @@ class ApplicationTest extends TestCase
             ->will($this->returnValue(array()))
         ;
 
-        $kernel = $this->getMockBuilder('Symfony\Component\HttpKernel\KernelInterface')->getMock();
+        $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
         $kernel
             ->expects($this->any())
             ->method('getBundles')
@@ -162,7 +162,7 @@ class ApplicationTest extends TestCase
 
     private function createBundleMock(array $commands)
     {
-        $bundle = $this->getMockBuilder('Symfony\Component\HttpKernel\Bundle\Bundle')->getMock();
+        $bundle = $this->getMock('Symfony\Component\HttpKernel\Bundle\Bundle');
         $bundle
             ->expects($this->once())
             ->method('registerCommands')

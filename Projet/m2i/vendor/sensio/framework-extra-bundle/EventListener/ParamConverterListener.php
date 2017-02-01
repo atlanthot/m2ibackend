@@ -33,11 +33,6 @@ class ParamConverterListener implements EventSubscriberInterface
     protected $autoConvert;
 
     /**
-     * @var bool
-     */
-    private $isParameterTypeSupported;
-
-    /**
      * Constructor.
      *
      * @param ParamConverterManager $manager     A ParamConverterManager instance
@@ -47,7 +42,6 @@ class ParamConverterListener implements EventSubscriberInterface
     {
         $this->manager = $manager;
         $this->autoConvert = $autoConvert;
-        $this->isParameterTypeSupported = method_exists('ReflectionParameter', 'getType');
     }
 
     /**
@@ -102,7 +96,7 @@ class ParamConverterListener implements EventSubscriberInterface
                 $configurations[$name]->setClass($param->getClass()->getName());
             }
 
-            $configurations[$name]->setIsOptional($param->isOptional() || $this->isParameterTypeSupported && $param->hasType() && $param->getType()->allowsNull());
+            $configurations[$name]->setIsOptional($param->isOptional());
         }
 
         return $configurations;

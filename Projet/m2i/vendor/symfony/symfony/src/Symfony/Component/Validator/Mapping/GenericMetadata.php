@@ -116,7 +116,7 @@ class GenericMetadata implements MetadataInterface
      *
      * @param Constraint $constraint The constraint to add
      *
-     * @return $this
+     * @return GenericMetadata This object
      *
      * @throws ConstraintDefinitionException When trying to add the
      *                                       {@link Traverse} constraint
@@ -157,7 +157,7 @@ class GenericMetadata implements MetadataInterface
      *
      * @param Constraint[] $constraints The constraints to add
      *
-     * @return $this
+     * @return GenericMetadata This object
      */
     public function addConstraints(array $constraints)
     {

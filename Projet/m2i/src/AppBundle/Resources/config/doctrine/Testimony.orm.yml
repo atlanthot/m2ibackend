@@ -9,6 +9,8 @@ AppBundle\Entity\Testimony:
             generator:
                 strategy: AUTO
     fields:
+        context:
+            type: text
         msg:
             type: text
         creationDate:

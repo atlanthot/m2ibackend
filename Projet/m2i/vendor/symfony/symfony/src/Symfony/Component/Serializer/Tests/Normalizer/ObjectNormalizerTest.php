@@ -45,7 +45,7 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->serializer = $this->getMockBuilder(__NAMESPACE__.'\ObjectSerializerNormalizer')->getMock();
+        $this->serializer = $this->getMock(__NAMESPACE__.'\ObjectSerializerNormalizer');
         $this->normalizer = new ObjectNormalizer();
         $this->normalizer->setSerializer($this->serializer);
     }
@@ -437,7 +437,7 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnableToNormalizeObjectAttribute()
     {
-        $serializer = $this->getMockBuilder('Symfony\Component\Serializer\SerializerInterface')->getMock();
+        $serializer = $this->getMock('Symfony\Component\Serializer\SerializerInterface');
         $this->normalizer->setSerializer($serializer);
 
         $obj = new ObjectDummy();
@@ -580,21 +580,11 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
             'inners' => array(array('foo' => 1), array('foo' => 2)),
         ), ObjectOuter::class);
 
-        $this->assertSame('foo', $obj->getInner()->foo);
-        $this->assertSame('bar', $obj->getInner()->bar);
-        $this->assertSame('1988-01-21', $obj->getDate()->format('Y-m-d'));
-        $this->assertSame(1, $obj->getInners()[0]->foo);
-        $this->assertSame(2, $obj->getInners()[1]->foo);
-    }
-
-    public function testAcceptJsonNumber()
-    {
-        $extractor = new PropertyInfoExtractor(array(), array(new PhpDocExtractor(), new ReflectionExtractor()));
-        $normalizer = new ObjectNormalizer(null, null, null, $extractor);
-        $serializer = new Serializer(array(new ArrayDenormalizer(), new DateTimeNormalizer(), $normalizer));
-
-        $this->assertSame(10.0, $serializer->denormalize(array('number' => 10), JsonNumber::class, 'json')->number);
-        $this->assertSame(10.0, $serializer->denormalize(array('number' => 10), JsonNumber::class, 'jsonld')->number);
+        $this->assertEquals('foo', $obj->getInner()->foo);
+        $this->assertEquals('bar', $obj->getInner()->bar);
+        $this->assertEquals('1988-01-21', $obj->getDate()->format('Y-m-d'));
+        $this->assertEquals(1, $obj->getInners()[0]->foo);
+        $this->assertEquals(2, $obj->getInners()[1]->foo);
     }
 
     /**
@@ -901,12 +891,4 @@ class DummyWithConstructorInexistingObject
     public function __construct($id, Unknown $unknown)
     {
     }
-}
-
-class JsonNumber
-{
-    /**
-     * @var float
-     */
-    public $number;
 }

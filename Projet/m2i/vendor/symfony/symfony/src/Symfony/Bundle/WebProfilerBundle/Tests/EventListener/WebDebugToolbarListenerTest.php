@@ -247,7 +247,11 @@ class WebDebugToolbarListenerTest extends \PHPUnit_Framework_TestCase
 
     protected function getRequestMock($isXmlHttpRequest = false, $requestFormat = 'html', $hasSession = true)
     {
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->setMethods(array('getSession', 'isXmlHttpRequest', 'getRequestFormat'))->disableOriginalConstructor()->getMock();
+        $request = $this->getMock(
+            'Symfony\Component\HttpFoundation\Request',
+            array('getSession', 'isXmlHttpRequest', 'getRequestFormat'),
+            array(), '', false
+        );
         $request->expects($this->any())
             ->method('isXmlHttpRequest')
             ->will($this->returnValue($isXmlHttpRequest));
@@ -258,7 +262,7 @@ class WebDebugToolbarListenerTest extends \PHPUnit_Framework_TestCase
         $request->headers = new HeaderBag();
 
         if ($hasSession) {
-            $session = $this->getMockBuilder('Symfony\Component\HttpFoundation\Session\Session')->disableOriginalConstructor()->getMock();
+            $session = $this->getMock('Symfony\Component\HttpFoundation\Session\Session', array(), array(), '', false);
             $request->expects($this->any())
                 ->method('getSession')
                 ->will($this->returnValue($session));
@@ -269,7 +273,7 @@ class WebDebugToolbarListenerTest extends \PHPUnit_Framework_TestCase
 
     protected function getTwigMock($render = 'WDT')
     {
-        $templating = $this->getMockBuilder('Twig_Environment')->disableOriginalConstructor()->getMock();
+        $templating = $this->getMock('Twig_Environment', array(), array(), '', false);
         $templating->expects($this->any())
             ->method('render')
             ->will($this->returnValue($render));
@@ -279,11 +283,11 @@ class WebDebugToolbarListenerTest extends \PHPUnit_Framework_TestCase
 
     protected function getUrlGeneratorMock()
     {
-        return $this->getMockBuilder('Symfony\Component\Routing\Generator\UrlGeneratorInterface')->getMock();
+        return $this->getMock('Symfony\Component\Routing\Generator\UrlGeneratorInterface');
     }
 
     protected function getKernelMock()
     {
-        return $this->getMockBuilder('Symfony\Component\HttpKernel\Kernel')->disableOriginalConstructor()->getMock();
+        return $this->getMock('Symfony\Component\HttpKernel\Kernel', array(), array(), '', false);
     }
 }

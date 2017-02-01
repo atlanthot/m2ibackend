@@ -179,12 +179,12 @@ class ControllerResolverTest extends BaseControllerResolverTest
 
     protected function createMockParser()
     {
-        return $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser')->disableOriginalConstructor()->getMock();
+        return $this->getMock('Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser', array(), array(), '', false);
     }
 
     protected function createMockContainer()
     {
-        return $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        return $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
     }
 }
 

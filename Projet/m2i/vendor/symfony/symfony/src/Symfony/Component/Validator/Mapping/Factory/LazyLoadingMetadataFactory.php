@@ -99,11 +99,8 @@ class LazyLoadingMetadataFactory implements MetadataFactoryInterface
             return $this->loadedClasses[$class];
         }
 
-        if (null !== $this->cache && false !== ($metadata = $this->cache->read($class))) {
-            // Include constraints from the parent class
-            $this->mergeConstraints($metadata);
-
-            return $this->loadedClasses[$class] = $metadata;
+        if (null !== $this->cache && false !== ($this->loadedClasses[$class] = $this->cache->read($class))) {
+            return $this->loadedClasses[$class];
         }
 
         if (!class_exists($class) && !interface_exists($class)) {
@@ -112,22 +109,6 @@ class LazyLoadingMetadataFactory implements MetadataFactoryInterface
 
         $metadata = new ClassMetadata($class);
 
-        if (null !== $this->loader) {
-            $this->loader->loadClassMetadata($metadata);
-        }
-
-        if (null !== $this->cache) {
-            $this->cache->write($metadata);
-        }
-
-        // Include constraints from the parent class
-        $this->mergeConstraints($metadata);
-
-        return $this->loadedClasses[$class] = $metadata;
-    }
-
-    private function mergeConstraints(ClassMetadata $metadata)
-    {
         // Include constraints from the parent class
         if ($parent = $metadata->getReflectionClass()->getParentClass()) {
             $metadata->mergeConstraints($this->getMetadataFor($parent->name));
@@ -158,6 +139,16 @@ class LazyLoadingMetadataFactory implements MetadataFactoryInterface
             }
             $metadata->mergeConstraints($this->getMetadataFor($interface->name));
         }
+
+        if (null !== $this->loader) {
+            $this->loader->loadClassMetadata($metadata);
+        }
+
+        if (null !== $this->cache) {
+            $this->cache->write($metadata);
+        }
+
+        return $this->loadedClasses[$class] = $metadata;
     }
 
     /**

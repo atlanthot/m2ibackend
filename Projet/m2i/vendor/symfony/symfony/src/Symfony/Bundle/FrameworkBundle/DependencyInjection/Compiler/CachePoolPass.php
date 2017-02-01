@@ -36,6 +36,7 @@ class CachePoolPass implements CompilerPassInterface
         }
         $seed .= '.'.$container->getParameter('kernel.name').'.'.$container->getParameter('kernel.environment');
 
+        $aliases = $container->getAliases();
         $attributes = array(
             'provider',
             'namespace',
@@ -56,9 +57,9 @@ class CachePoolPass implements CompilerPassInterface
                 $tags[0]['namespace'] = $this->getNamespace($seed, $id);
             }
             if (isset($tags[0]['clearer'])) {
-                $clearer = $tags[0]['clearer'];
-                while ($container->hasAlias($clearer)) {
-                    $clearer = (string) $container->getAlias($clearer);
+                $clearer = strtolower($tags[0]['clearer']);
+                while (isset($aliases[$clearer])) {
+                    $clearer = (string) $aliases[$clearer];
                 }
             } else {
                 $clearer = null;

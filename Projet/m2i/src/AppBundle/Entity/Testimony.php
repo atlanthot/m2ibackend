@@ -12,6 +12,11 @@ class Testimony
      */
     private $id;
 
+	 /**
+     * @var string
+     */
+    private $context;
+	
     /**
      * @var string
      */
@@ -43,6 +48,32 @@ class Testimony
         return $this->id;
     }
 
+	/**
+     * Set contexte
+     *
+     * @param string $contexte
+     *
+     * @return Testimony
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+
+        return $this;
+    }
+
+    /**
+     * Get context
+     *
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+	
+	
+	
     /**
      * Set msg
      *

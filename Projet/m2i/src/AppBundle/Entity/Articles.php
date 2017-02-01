@@ -32,6 +32,11 @@ class Articles
      */
     private $id_user;
 
+	/**
+     * @var string
+     */
+    private $img;
+	
     /**
      * @var \DateTime
      */
@@ -149,7 +154,31 @@ class Articles
         return $this->id_user;
     }
 
+	 /**
+     * Set img
+     *
+     * @param string $img
+     *
+     * @return Articles
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
     /**
+     * Get img
+     *
+     * @return string
+     */
+    public function getImg()
+    {
+        return $this->img;
+    }
+	
+	/**
      * Set creationDate
      *
      * @param \DateTime $creationDate

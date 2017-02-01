@@ -20,32 +20,26 @@ class MaxDepthTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Symfony\Component\Serializer\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Parameter of annotation "Symfony\Component\Serializer\Annotation\MaxDepth" should be set.
      */
     public function testNotSetMaxDepthParameter()
     {
         new MaxDepth(array());
     }
 
-    public function provideInvalidValues()
+    /**
+     * @expectedException \Symfony\Component\Serializer\Exception\InvalidArgumentException
+     */
+    public function testEmptyMaxDepthParameter()
     {
-        return array(
-            array(''),
-            array('foo'),
-            array('1'),
-            array(0),
-        );
+        new MaxDepth(array('value' => ''));
     }
 
     /**
-     * @dataProvider provideInvalidValues
-     *
      * @expectedException \Symfony\Component\Serializer\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Parameter of annotation "Symfony\Component\Serializer\Annotation\MaxDepth" must be a positive integer.
      */
-    public function testNotAnIntMaxDepthParameter($value)
+    public function testNotAnIntMaxDepthParameter()
     {
-        new MaxDepth(array('value' => $value));
+        new MaxDepth(array('value' => 'foo'));
     }
 
     public function testMaxDepthParameters()

@@ -19,11 +19,11 @@ class FormAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
 {
     public function testStart()
     {
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->disableOriginalConstructor()->disableOriginalClone()->getMock();
+        $request = $this->getMock('Symfony\Component\HttpFoundation\Request', array(), array(), '', false, false);
         $response = new Response();
 
-        $httpKernel = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')->getMock();
-        $httpUtils = $this->getMockBuilder('Symfony\Component\Security\Http\HttpUtils')->getMock();
+        $httpKernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
+        $httpUtils = $this->getMock('Symfony\Component\Security\Http\HttpUtils');
         $httpUtils
             ->expects($this->once())
             ->method('createRedirectResponse')
@@ -38,11 +38,11 @@ class FormAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
 
     public function testStartWithUseForward()
     {
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->disableOriginalConstructor()->disableOriginalClone()->getMock();
-        $subRequest = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->disableOriginalConstructor()->disableOriginalClone()->getMock();
+        $request = $this->getMock('Symfony\Component\HttpFoundation\Request', array(), array(), '', false, false);
+        $subRequest = $this->getMock('Symfony\Component\HttpFoundation\Request', array(), array(), '', false, false);
         $response = new Response('', 200);
 
-        $httpUtils = $this->getMockBuilder('Symfony\Component\Security\Http\HttpUtils')->getMock();
+        $httpUtils = $this->getMock('Symfony\Component\Security\Http\HttpUtils');
         $httpUtils
             ->expects($this->once())
             ->method('createRequest')
@@ -50,7 +50,7 @@ class FormAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($subRequest))
         ;
 
-        $httpKernel = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')->getMock();
+        $httpKernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $httpKernel
             ->expects($this->once())
             ->method('handle')

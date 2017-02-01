@@ -24,13 +24,6 @@ trait PriorityTaggedServiceTrait
     /**
      * Finds all services with the given tag name and order them by their priority.
      *
-     * The order of additions must be respected for services having the same priority,
-     * and knowing that the \SplPriorityQueue class does not respect the FIFO method,
-     * we should not use this class.
-     *
-     * @see https://bugs.php.net/bug.php?id=53710
-     * @see https://bugs.php.net/bug.php?id=60926
-     *
      * @param string           $tagName
      * @param ContainerBuilder $container
      *
@@ -38,20 +31,17 @@ trait PriorityTaggedServiceTrait
      */
     private function findAndSortTaggedServices($tagName, ContainerBuilder $container)
     {
-        $services = array();
+        $services = $container->findTaggedServiceIds($tagName);
 
-        foreach ($container->findTaggedServiceIds($tagName) as $serviceId => $tags) {
+        $queue = new \SplPriorityQueue();
+
+        foreach ($services as $serviceId => $tags) {
             foreach ($tags as $attributes) {
                 $priority = isset($attributes['priority']) ? $attributes['priority'] : 0;
-                $services[$priority][] = new Reference($serviceId);
+                $queue->insert(new Reference($serviceId), $priority);
             }
         }
 
-        if ($services) {
-            krsort($services);
-            $services = call_user_func_array('array_merge', $services);
-        }
-
-        return $services;
+        return iterator_to_array($queue, false);
     }
 }

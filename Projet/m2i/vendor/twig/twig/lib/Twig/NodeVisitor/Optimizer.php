@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2010 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,8 +16,6 @@
  *
  * You can configure which optimizations you want to activate via the
  * optimizer mode.
- *
- * @final
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
@@ -47,6 +45,9 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
         $this->optimizers = $optimizers;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function doEnterNode(Twig_Node $node, Twig_Environment $env)
     {
         if (self::OPTIMIZE_FOR === (self::OPTIMIZE_FOR & $this->optimizers)) {
@@ -70,6 +71,9 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
         return $node;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function doLeaveNode(Twig_Node $node, Twig_Environment $env)
     {
         $expression = $node instanceof Twig_Node_Expression;
@@ -244,6 +248,9 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPriority()
     {
         return 255;

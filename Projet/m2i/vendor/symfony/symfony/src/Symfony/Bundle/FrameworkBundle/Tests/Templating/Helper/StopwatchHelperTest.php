@@ -17,7 +17,7 @@ class StopwatchHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testDevEnvironment()
     {
-        $stopwatch = $this->getMockBuilder('Symfony\Component\Stopwatch\Stopwatch')->getMock();
+        $stopwatch = $this->getMock('Symfony\Component\Stopwatch\Stopwatch');
         $stopwatch->expects($this->once())
             ->method('start')
             ->with('foo');

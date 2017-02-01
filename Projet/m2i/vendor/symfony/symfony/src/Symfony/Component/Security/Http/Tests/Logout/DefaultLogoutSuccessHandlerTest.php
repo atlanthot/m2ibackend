@@ -18,10 +18,10 @@ class DefaultLogoutSuccessHandlerTest extends \PHPUnit_Framework_TestCase
 {
     public function testLogout()
     {
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
+        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
         $response = new Response();
 
-        $httpUtils = $this->getMockBuilder('Symfony\Component\Security\Http\HttpUtils')->getMock();
+        $httpUtils = $this->getMock('Symfony\Component\Security\Http\HttpUtils');
         $httpUtils->expects($this->once())
             ->method('createRedirectResponse')
             ->with($request, '/dashboard')

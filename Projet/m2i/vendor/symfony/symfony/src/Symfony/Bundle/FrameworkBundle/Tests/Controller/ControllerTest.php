@@ -40,12 +40,12 @@ class ControllerTest extends TestCase
         $requestStack = new RequestStack();
         $requestStack->push($request);
 
-        $kernel = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')->getMock();
+        $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $kernel->expects($this->once())->method('handle')->will($this->returnCallback(function (Request $request) {
             return new Response($request->getRequestFormat().'--'.$request->getLocale());
         }));
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('get')->will($this->returnValue($requestStack));
         $container->expects($this->at(1))->method('get')->will($this->returnValue($kernel));
 
@@ -91,7 +91,7 @@ class ControllerTest extends TestCase
      */
     public function testGetUserWithEmptyContainer()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container
             ->expects($this->once())
             ->method('has')
@@ -111,13 +111,13 @@ class ControllerTest extends TestCase
      */
     private function getContainerWithTokenStorage($token = null)
     {
-        $tokenStorage = $this->getMockBuilder('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage')->getMock();
+        $tokenStorage = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage');
         $tokenStorage
             ->expects($this->once())
             ->method('getToken')
             ->will($this->returnValue($token));
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container
             ->expects($this->once())
             ->method('has')
@@ -135,7 +135,7 @@ class ControllerTest extends TestCase
 
     public function testJson()
     {
-        $container = $this->getMockBuilder(ContainerInterface::class)->getMock();
+        $container = $this->getMock(ContainerInterface::class);
         $container
             ->expects($this->once())
             ->method('has')
@@ -152,14 +152,14 @@ class ControllerTest extends TestCase
 
     public function testJsonWithSerializer()
     {
-        $container = $this->getMockBuilder(ContainerInterface::class)->getMock();
+        $container = $this->getMock(ContainerInterface::class);
         $container
             ->expects($this->once())
             ->method('has')
             ->with('serializer')
             ->will($this->returnValue(true));
 
-        $serializer = $this->getMockBuilder(SerializerInterface::class)->getMock();
+        $serializer = $this->getMock(SerializerInterface::class);
         $serializer
             ->expects($this->once())
             ->method('serialize')
@@ -182,14 +182,14 @@ class ControllerTest extends TestCase
 
     public function testJsonWithSerializerContextOverride()
     {
-        $container = $this->getMockBuilder(ContainerInterface::class)->getMock();
+        $container = $this->getMock(ContainerInterface::class);
         $container
             ->expects($this->once())
             ->method('has')
             ->with('serializer')
             ->will($this->returnValue(true));
 
-        $serializer = $this->getMockBuilder(SerializerInterface::class)->getMock();
+        $serializer = $this->getMock(SerializerInterface::class);
         $serializer
             ->expects($this->once())
             ->method('serialize')
@@ -215,8 +215,8 @@ class ControllerTest extends TestCase
     public function testFile()
     {
         /* @var ContainerInterface $container */
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
-        $kernel = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $container->set('kernel', $kernel);
 
         $controller = new TestController();
@@ -235,7 +235,7 @@ class ControllerTest extends TestCase
 
     public function testFileAsInline()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $controller = new TestController();
         $controller->setContainer($container);
 
@@ -253,7 +253,7 @@ class ControllerTest extends TestCase
 
     public function testFileWithOwnFileName()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $controller = new TestController();
         $controller->setContainer($container);
 
@@ -272,7 +272,7 @@ class ControllerTest extends TestCase
 
     public function testFileWithOwnFileNameAsInline()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $controller = new TestController();
         $controller->setContainer($container);
 
@@ -334,10 +334,10 @@ class ControllerTest extends TestCase
 
     public function testIsGranted()
     {
-        $authorizationChecker = $this->getMockBuilder('Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface')->getMock();
+        $authorizationChecker = $this->getMock('Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface');
         $authorizationChecker->expects($this->once())->method('isGranted')->willReturn(true);
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(1))->method('get')->will($this->returnValue($authorizationChecker));
 
@@ -352,10 +352,10 @@ class ControllerTest extends TestCase
      */
     public function testdenyAccessUnlessGranted()
     {
-        $authorizationChecker = $this->getMockBuilder('Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface')->getMock();
+        $authorizationChecker = $this->getMock('Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface');
         $authorizationChecker->expects($this->once())->method('isGranted')->willReturn(false);
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(1))->method('get')->will($this->returnValue($authorizationChecker));
 
@@ -370,7 +370,7 @@ class ControllerTest extends TestCase
         $twig = $this->getMockBuilder('\Twig_Environment')->disableOriginalConstructor()->getMock();
         $twig->expects($this->once())->method('render')->willReturn('bar');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(false));
         $container->expects($this->at(1))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(2))->method('get')->will($this->returnValue($twig));
@@ -386,7 +386,7 @@ class ControllerTest extends TestCase
         $twig = $this->getMockBuilder('\Twig_Environment')->disableOriginalConstructor()->getMock();
         $twig->expects($this->once())->method('render')->willReturn('bar');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(false));
         $container->expects($this->at(1))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(2))->method('get')->will($this->returnValue($twig));
@@ -401,7 +401,7 @@ class ControllerTest extends TestCase
     {
         $twig = $this->getMockBuilder('\Twig_Environment')->disableOriginalConstructor()->getMock();
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(false));
         $container->expects($this->at(1))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(2))->method('get')->will($this->returnValue($twig));
@@ -414,10 +414,10 @@ class ControllerTest extends TestCase
 
     public function testRedirectToRoute()
     {
-        $router = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
+        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
         $router->expects($this->once())->method('generate')->willReturn('/foo');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('get')->will($this->returnValue($router));
 
         $controller = new TestController();
@@ -432,10 +432,10 @@ class ControllerTest extends TestCase
     public function testAddFlash()
     {
         $flashBag = new FlashBag();
-        $session = $this->getMockBuilder('Symfony\Component\HttpFoundation\Session\Session')->getMock();
+        $session = $this->getMock('Symfony\Component\HttpFoundation\Session\Session');
         $session->expects($this->once())->method('getFlashBag')->willReturn($flashBag);
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(1))->method('get')->will($this->returnValue($session));
 
@@ -455,10 +455,10 @@ class ControllerTest extends TestCase
 
     public function testIsCsrfTokenValid()
     {
-        $tokenManager = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
+        $tokenManager = $this->getMock('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface');
         $tokenManager->expects($this->once())->method('isTokenValid')->willReturn(true);
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(1))->method('get')->will($this->returnValue($tokenManager));
 
@@ -470,10 +470,10 @@ class ControllerTest extends TestCase
 
     public function testGenerateUrl()
     {
-        $router = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
+        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
         $router->expects($this->once())->method('generate')->willReturn('/foo');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('get')->will($this->returnValue($router));
 
         $controller = new TestController();
@@ -494,10 +494,10 @@ class ControllerTest extends TestCase
 
     public function testRenderViewTemplating()
     {
-        $templating = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')->getMock();
+        $templating = $this->getMock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
         $templating->expects($this->once())->method('render')->willReturn('bar');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->willReturn(true);
         $container->expects($this->at(1))->method('get')->will($this->returnValue($templating));
 
@@ -509,10 +509,10 @@ class ControllerTest extends TestCase
 
     public function testRenderTemplating()
     {
-        $templating = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')->getMock();
+        $templating = $this->getMock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
         $templating->expects($this->once())->method('renderResponse')->willReturn(new Response('bar'));
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->willReturn(true);
         $container->expects($this->at(1))->method('get')->will($this->returnValue($templating));
 
@@ -524,9 +524,9 @@ class ControllerTest extends TestCase
 
     public function testStreamTemplating()
     {
-        $templating = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
+        $templating = $this->getMock('Symfony\Component\Routing\RouterInterface');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->willReturn(true);
         $container->expects($this->at(1))->method('get')->will($this->returnValue($templating));
 
@@ -545,12 +545,12 @@ class ControllerTest extends TestCase
 
     public function testCreateForm()
     {
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
+        $form = $this->getMock('Symfony\Component\Form\FormInterface');
 
-        $formFactory = $this->getMockBuilder('Symfony\Component\Form\FormFactoryInterface')->getMock();
+        $formFactory = $this->getMock('Symfony\Component\Form\FormFactoryInterface');
         $formFactory->expects($this->once())->method('create')->willReturn($form);
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('get')->will($this->returnValue($formFactory));
 
         $controller = new TestController();
@@ -561,12 +561,12 @@ class ControllerTest extends TestCase
 
     public function testCreateFormBuilder()
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilderInterface')->getMock();
+        $formBuilder = $this->getMock('Symfony\Component\Form\FormBuilderInterface');
 
-        $formFactory = $this->getMockBuilder('Symfony\Component\Form\FormFactoryInterface')->getMock();
+        $formFactory = $this->getMock('Symfony\Component\Form\FormFactoryInterface');
         $formFactory->expects($this->once())->method('createBuilder')->willReturn($formBuilder);
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('get')->will($this->returnValue($formFactory));
 
         $controller = new TestController();
@@ -577,9 +577,9 @@ class ControllerTest extends TestCase
 
     public function testGetDoctrine()
     {
-        $doctrine = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $doctrine = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->at(0))->method('has')->will($this->returnValue(true));
         $container->expects($this->at(1))->method('get')->will($this->returnValue($doctrine));
 

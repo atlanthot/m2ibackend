@@ -403,7 +403,7 @@ class SecurityExtension extends Extension
         $config->replaceArgument(8, isset($firewall['access_denied_handler']) ? $firewall['access_denied_handler'] : null);
         $config->replaceArgument(9, isset($firewall['access_denied_url']) ? $firewall['access_denied_url'] : null);
 
-        $container->setAlias('security.user_checker.'.$id, new Alias($firewall['user_checker'], false));
+        $container->setAlias(new Alias('security.user_checker.'.$id, false), $firewall['user_checker']);
 
         foreach ($this->factories as $position) {
             foreach ($position as $factory) {

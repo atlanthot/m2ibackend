@@ -75,7 +75,10 @@ class ProfilerPassTest extends \PHPUnit_Framework_TestCase
 
     private function createContainerMock($services)
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('hasDefinition', 'getDefinition', 'findTaggedServiceIds', 'setParameter'))->getMock();
+        $container = $this->getMock(
+            'Symfony\Component\DependencyInjection\ContainerBuilder',
+            array('hasDefinition', 'getDefinition', 'findTaggedServiceIds', 'setParameter')
+        );
         $container->expects($this->any())
             ->method('hasDefinition')
             ->with($this->equalTo('profiler'))

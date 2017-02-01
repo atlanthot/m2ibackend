@@ -23,7 +23,7 @@ class SerializerPassTest extends \PHPUnit_Framework_TestCase
 {
     public function testThrowExceptionWhenNoNormalizers()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('hasDefinition', 'findTaggedServiceIds'))->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', array('hasDefinition', 'findTaggedServiceIds'));
 
         $container->expects($this->once())
             ->method('hasDefinition')
@@ -43,8 +43,11 @@ class SerializerPassTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionWhenNoEncoders()
     {
-        $definition = $this->getMockBuilder('Symfony\Component\DependencyInjection\Definition')->getMock();
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('hasDefinition', 'findTaggedServiceIds', 'getDefinition'))->getMock();
+        $definition = $this->getMock('Symfony\Component\DependencyInjection\Definition');
+        $container = $this->getMock(
+            'Symfony\Component\DependencyInjection\ContainerBuilder',
+            array('hasDefinition', 'findTaggedServiceIds', 'getDefinition')
+        );
 
         $container->expects($this->once())
             ->method('hasDefinition')
@@ -82,7 +85,7 @@ class SerializerPassTest extends \PHPUnit_Framework_TestCase
            new Reference('n3'),
        );
 
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('findTaggedServiceIds'))->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', array('findTaggedServiceIds'));
 
         $container->expects($this->any())
             ->method('findTaggedServiceIds')

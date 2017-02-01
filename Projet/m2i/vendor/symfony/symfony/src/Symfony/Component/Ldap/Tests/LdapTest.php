@@ -26,13 +26,13 @@ class LdapTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->adapter = $this->getMockBuilder(AdapterInterface::class)->getMock();
+        $this->adapter = $this->getMock(AdapterInterface::class);
         $this->ldap = new Ldap($this->adapter);
     }
 
     public function testLdapBind()
     {
-        $connection = $this->getMockBuilder(ConnectionInterface::class)->getMock();
+        $connection = $this->getMock(ConnectionInterface::class);
         $connection
             ->expects($this->once())
             ->method('bind')

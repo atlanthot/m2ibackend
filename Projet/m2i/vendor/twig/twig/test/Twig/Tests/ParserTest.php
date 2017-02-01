@@ -155,7 +155,8 @@ EOF
     {
         $parser = new TestParser(new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock()));
         $parser->setParent(new Twig_Node());
-        $parser->stream = new Twig_TokenStream(array());
+        $parser->stream = $this->getMockBuilder('Twig_TokenStream')->disableOriginalConstructor()->getMock();
+        $parser->stream->expects($this->any())->method('getSourceContext')->will($this->returnValue(new Twig_Source('', '')));
 
         return $parser;
     }

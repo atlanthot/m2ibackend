@@ -150,12 +150,12 @@ class EntityUserProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadUserByUserNameShouldLoadUserWhenProperInterfaceProvided()
     {
-        $repository = $this->getMockBuilder('\Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface')->getMock();
+        $repository = $this->getMock('\Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface');
         $repository->expects($this->once())
             ->method('loadUserByUsername')
             ->with('name')
             ->willReturn(
-                $this->getMockBuilder('\Symfony\Component\Security\Core\User\UserInterface')->getMock()
+                $this->getMock('\Symfony\Component\Security\Core\User\UserInterface')
             );
 
         $provider = new EntityUserProvider(
@@ -171,7 +171,7 @@ class EntityUserProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadUserByUserNameShouldDeclineInvalidInterface()
     {
-        $repository = $this->getMockBuilder('\Symfony\Component\Security\Core\User\AdvancedUserInterface')->getMock();
+        $repository = $this->getMock('\Symfony\Component\Security\Core\User\AdvancedUserInterface');
 
         $provider = new EntityUserProvider(
             $this->getManager($this->getObjectManager($repository)),
@@ -183,7 +183,7 @@ class EntityUserProviderTest extends \PHPUnit_Framework_TestCase
 
     private function getManager($em, $name = null)
     {
-        $manager = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $manager = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $manager->expects($this->any())
             ->method('getManager')
             ->with($this->equalTo($name))

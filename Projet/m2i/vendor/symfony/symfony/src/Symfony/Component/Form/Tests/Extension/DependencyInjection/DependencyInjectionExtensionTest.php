@@ -18,17 +18,17 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetTypeExtensions()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
 
-        $typeExtension1 = $this->getMockBuilder('Symfony\Component\Form\FormTypeExtensionInterface')->getMock();
+        $typeExtension1 = $this->getMock('Symfony\Component\Form\FormTypeExtensionInterface');
         $typeExtension1->expects($this->any())
             ->method('getExtendedType')
             ->willReturn('test');
-        $typeExtension2 = $this->getMockBuilder('Symfony\Component\Form\FormTypeExtensionInterface')->getMock();
+        $typeExtension2 = $this->getMock('Symfony\Component\Form\FormTypeExtensionInterface');
         $typeExtension2->expects($this->any())
             ->method('getExtendedType')
             ->willReturn('test');
-        $typeExtension3 = $this->getMockBuilder('Symfony\Component\Form\FormTypeExtensionInterface')->getMock();
+        $typeExtension3 = $this->getMock('Symfony\Component\Form\FormTypeExtensionInterface');
         $typeExtension3->expects($this->any())
             ->method('getExtendedType')
             ->willReturn('other');
@@ -61,9 +61,9 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testThrowExceptionForInvalidExtendedType()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
 
-        $typeExtension = $this->getMockBuilder('Symfony\Component\Form\FormTypeExtensionInterface')->getMock();
+        $typeExtension = $this->getMock('Symfony\Component\Form\FormTypeExtensionInterface');
         $typeExtension->expects($this->any())
             ->method('getExtendedType')
             ->willReturn('unmatched');

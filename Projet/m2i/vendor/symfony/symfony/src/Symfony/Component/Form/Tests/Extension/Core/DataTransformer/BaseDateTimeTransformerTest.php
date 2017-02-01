@@ -19,7 +19,11 @@ class BaseDateTimeTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructFailsIfInputTimezoneIsInvalid()
     {
-        $this->getMockBuilder('Symfony\Component\Form\Extension\Core\DataTransformer\BaseDateTimeTransformer')->setConstructorArgs(array('this_timezone_does_not_exist'))->getMock();
+        $this->getMock(
+            'Symfony\Component\Form\Extension\Core\DataTransformer\BaseDateTimeTransformer',
+            array(),
+            array('this_timezone_does_not_exist')
+        );
     }
 
     /**
@@ -28,6 +32,10 @@ class BaseDateTimeTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructFailsIfOutputTimezoneIsInvalid()
     {
-        $this->getMockBuilder('Symfony\Component\Form\Extension\Core\DataTransformer\BaseDateTimeTransformer')->setConstructorArgs(array(null, 'that_timezone_does_not_exist'))->getMock();
+        $this->getMock(
+            'Symfony\Component\Form\Extension\Core\DataTransformer\BaseDateTimeTransformer',
+            array(),
+            array(null, 'that_timezone_does_not_exist')
+        );
     }
 }

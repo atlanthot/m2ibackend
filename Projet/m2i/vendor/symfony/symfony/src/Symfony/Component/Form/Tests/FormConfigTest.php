@@ -71,7 +71,7 @@ class FormConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function testNameAcceptsOnlyNamesValidAsIdsInHtml4($name, $accepted)
     {
-        $dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')->getMock();
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
 
         try {
             new FormConfigBuilder($name, null, $dispatcher);
@@ -141,7 +141,7 @@ class FormConfigTest extends \PHPUnit_Framework_TestCase
 
     private function getConfigBuilder($name = 'name')
     {
-        $dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')->getMock();
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
 
         return new FormConfigBuilder($name, null, $dispatcher);
     }

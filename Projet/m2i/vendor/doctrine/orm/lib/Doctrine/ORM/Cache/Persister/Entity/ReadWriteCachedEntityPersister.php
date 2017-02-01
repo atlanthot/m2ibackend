@@ -30,7 +30,6 @@ use Doctrine\ORM\Cache\EntityCacheKey;
  * Specific read-write entity persister
  *
  * @author Fabio B. Silva <fabio.bat.silva@gmail.com>
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @since 2.5
  */
 class ReadWriteCachedEntityPersister extends AbstractEntityPersister
@@ -101,24 +100,21 @@ class ReadWriteCachedEntityPersister extends AbstractEntityPersister
      */
     public function delete($entity)
     {
-        $key     = new EntityCacheKey($this->class->rootEntityName, $this->uow->getEntityIdentifier($entity));
-        $lock    = $this->region->lock($key);
-        $deleted = $this->persister->delete($entity);
+        $key   = new EntityCacheKey($this->class->rootEntityName, $this->uow->getEntityIdentifier($entity));
+        $lock  = $this->region->lock($key);
 
-        if ($deleted) {
+        if ($this->persister->delete($entity)) {
             $this->region->evict($key);
         }
 
         if ($lock === null) {
-            return $deleted;
+            return;
         }
 
         $this->queuedCache['delete'][] = array(
             'lock'   => $lock,
             'key'    => $key
         );
-
-        return $deleted;
     }
 
     /**

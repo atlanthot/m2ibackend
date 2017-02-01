@@ -37,7 +37,10 @@ abstract class AbstractRequestHandlerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->serverParams = $this->getMockBuilder('Symfony\Component\Form\Util\ServerParams')->setMethods(array('getNormalizedIniPostMaxSize', 'getContentLength'))->getMock();
+        $this->serverParams = $this->getMock(
+            'Symfony\Component\Form\Util\ServerParams',
+            array('getNormalizedIniPostMaxSize', 'getContentLength')
+        );
         $this->requestHandler = $this->getRequestHandler();
         $this->factory = Forms::createFormFactoryBuilder()->getFormFactory();
         $this->request = null;
@@ -360,7 +363,7 @@ abstract class AbstractRequestHandlerTest extends \PHPUnit_Framework_TestCase
 
     protected function getMockForm($name, $method = null, $compound = true)
     {
-        $config = $this->getMockBuilder('Symfony\Component\Form\FormConfigInterface')->getMock();
+        $config = $this->getMock('Symfony\Component\Form\FormConfigInterface');
         $config->expects($this->any())
             ->method('getMethod')
             ->will($this->returnValue($method));
@@ -368,7 +371,7 @@ abstract class AbstractRequestHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('getCompound')
             ->will($this->returnValue($compound));
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Test\FormInterface')->getMock();
+        $form = $this->getMock('Symfony\Component\Form\Test\FormInterface');
         $form->expects($this->any())
             ->method('getName')
             ->will($this->returnValue($name));

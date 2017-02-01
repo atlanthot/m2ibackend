@@ -596,7 +596,7 @@ An extension is a class that implements the following interface::
         /**
          * Returns a list of operators to add to the existing list.
          *
-         * @return array<array> First array of unary operators, second array of binary operators
+         * @return array An array of operators
          */
         function getOperators();
 

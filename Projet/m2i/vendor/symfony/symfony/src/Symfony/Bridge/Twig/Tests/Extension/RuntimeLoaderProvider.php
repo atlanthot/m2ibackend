@@ -17,7 +17,7 @@ trait RuntimeLoaderProvider
 {
     protected function registerTwigRuntimeLoader(\Twig_Environment $environment, TwigRenderer $renderer)
     {
-        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
+        $loader = $this->getMock('Twig_RuntimeLoaderInterface');
         $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
             array('Symfony\Bridge\Twig\Form\TwigRenderer', $renderer),
         )));

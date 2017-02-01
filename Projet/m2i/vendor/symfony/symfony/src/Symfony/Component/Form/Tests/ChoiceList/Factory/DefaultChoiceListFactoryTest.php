@@ -193,7 +193,7 @@ class DefaultChoiceListFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateFromLoader()
     {
-        $loader = $this->getMockBuilder('Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface')->getMock();
+        $loader = $this->getMock('Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface');
 
         $list = $this->factory->createListFromLoader($loader);
 
@@ -202,7 +202,7 @@ class DefaultChoiceListFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateFromLoaderWithValues()
     {
-        $loader = $this->getMockBuilder('Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface')->getMock();
+        $loader = $this->getMock('Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface');
 
         $value = function () {};
         $list = $this->factory->createListFromLoader($loader, $value);

@@ -92,7 +92,6 @@ class PhpFilesAdapter extends AbstractAdapter
     {
         $ok = true;
         $data = array($lifetime ? time() + $lifetime : PHP_INT_MAX, '');
-        $allowCompile = 'cli' !== PHP_SAPI || ini_get('opcache.enable_cli');
 
         foreach ($values as $key => $value) {
             if (null === $value || is_object($value)) {
@@ -117,13 +116,9 @@ class PhpFilesAdapter extends AbstractAdapter
             $file = $this->getFile($key, true);
             $ok = $this->write($file, '<?php return '.var_export($data, true).';') && $ok;
 
-            if ($allowCompile) {
+            if ('cli' !== PHP_SAPI || ini_get('opcache.enable_cli')) {
                 @opcache_compile_file($file);
             }
-        }
-
-        if (!$ok && !is_writable($this->directory)) {
-            throw new CacheException(sprintf('Cache directory is not writable (%s)', $this->directory));
         }
 
         return $ok;

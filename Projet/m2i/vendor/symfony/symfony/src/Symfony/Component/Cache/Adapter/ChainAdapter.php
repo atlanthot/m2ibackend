@@ -27,7 +27,6 @@ use Symfony\Component\Cache\Exception\InvalidArgumentException;
 class ChainAdapter implements AdapterInterface
 {
     private $adapters = array();
-    private $adapterCount;
     private $saveUp;
 
     /**
@@ -51,7 +50,6 @@ class ChainAdapter implements AdapterInterface
                 $this->adapters[] = new ProxyAdapter($adapter);
             }
         }
-        $this->adapterCount = count($this->adapters);
 
         $this->saveUp = \Closure::bind(
             function ($adapter, $item) use ($maxLifetime) {
@@ -148,10 +146,9 @@ class ChainAdapter implements AdapterInterface
     public function clear()
     {
         $cleared = true;
-        $i = $this->adapterCount;
 
-        while ($i--) {
-            $cleared = $this->adapters[$i]->clear() && $cleared;
+        foreach ($this->adapters as $adapter) {
+            $cleared = $adapter->clear() && $cleared;
         }
 
         return $cleared;
@@ -163,10 +160,9 @@ class ChainAdapter implements AdapterInterface
     public function deleteItem($key)
     {
         $deleted = true;
-        $i = $this->adapterCount;
 
-        while ($i--) {
-            $deleted = $this->adapters[$i]->deleteItem($key) && $deleted;
+        foreach ($this->adapters as $adapter) {
+            $deleted = $adapter->deleteItem($key) && $deleted;
         }
 
         return $deleted;
@@ -178,10 +174,9 @@ class ChainAdapter implements AdapterInterface
     public function deleteItems(array $keys)
     {
         $deleted = true;
-        $i = $this->adapterCount;
 
-        while ($i--) {
-            $deleted = $this->adapters[$i]->deleteItems($keys) && $deleted;
+        foreach ($this->adapters as $adapter) {
+            $deleted = $adapter->deleteItems($keys) && $deleted;
         }
 
         return $deleted;
@@ -193,10 +188,9 @@ class ChainAdapter implements AdapterInterface
     public function save(CacheItemInterface $item)
     {
         $saved = true;
-        $i = $this->adapterCount;
 
-        while ($i--) {
-            $saved = $this->adapters[$i]->save($item) && $saved;
+        foreach ($this->adapters as $adapter) {
+            $saved = $adapter->save($item) && $saved;
         }
 
         return $saved;
@@ -208,10 +202,9 @@ class ChainAdapter implements AdapterInterface
     public function saveDeferred(CacheItemInterface $item)
     {
         $saved = true;
-        $i = $this->adapterCount;
 
-        while ($i--) {
-            $saved = $this->adapters[$i]->saveDeferred($item) && $saved;
+        foreach ($this->adapters as $adapter) {
+            $saved = $adapter->saveDeferred($item) && $saved;
         }
 
         return $saved;
@@ -223,10 +216,9 @@ class ChainAdapter implements AdapterInterface
     public function commit()
     {
         $committed = true;
-        $i = $this->adapterCount;
 
-        while ($i--) {
-            $committed = $this->adapters[$i]->commit() && $committed;
+        foreach ($this->adapters as $adapter) {
+            $committed = $adapter->commit() && $committed;
         }
 
         return $committed;

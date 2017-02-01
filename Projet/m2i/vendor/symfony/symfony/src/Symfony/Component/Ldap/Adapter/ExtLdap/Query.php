@@ -13,15 +13,13 @@ namespace Symfony\Component\Ldap\Adapter\ExtLdap;
 
 use Symfony\Component\Ldap\Adapter\AbstractQuery;
 use Symfony\Component\Ldap\Exception\LdapException;
-use Symfony\Component\Ldap\Exception\NotBoundException;
 
 /**
  * @author Charles Sarrazin <charles@sarraz.in>
- * @author Bob van de Vijver <bobvandevijver@hotmail.com>
  */
 class Query extends AbstractQuery
 {
-    /** @var Connection */
+    /** @var  Connection */
     protected $connection;
 
     /** @var resource */
@@ -55,9 +53,9 @@ class Query extends AbstractQuery
     public function execute()
     {
         if (null === $this->search) {
-            // If the connection is not bound, throw an exception. Users should use an explicit bind call first.
+            // If the connection is not bound, then we try an anonymous bind.
             if (!$this->connection->isBound()) {
-                throw new NotBoundException('Query execution is not possible without binding the connection first.');
+                $this->connection->bind();
             }
 
             $con = $this->connection->getResource();

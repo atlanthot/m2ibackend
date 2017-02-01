@@ -228,7 +228,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     private function getServiceContainer(RouteCollection $routes)
     {
-        $loader = $this->getMockBuilder('Symfony\Component\Config\Loader\LoaderInterface')->getMock();
+        $loader = $this->getMock('Symfony\Component\Config\Loader\LoaderInterface');
 
         $loader
             ->expects($this->any())
@@ -236,7 +236,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($routes))
         ;
 
-        $sc = $this->getMockBuilder('Symfony\\Component\\DependencyInjection\\Container')->setMethods(array('get'))->getMock();
+        $sc = $this->getMock('Symfony\\Component\\DependencyInjection\\Container', array('get'));
 
         $sc
             ->expects($this->once())
