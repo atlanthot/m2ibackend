@@ -15,7 +15,7 @@
 			<label style="color:gray">( {{ current_testimony['creationDate']|date("d/m/Y h:m") }} )</label>
 			<br/>
 			<div>
-				{{ current_testimony['msg'] }}
+				{{ current_testimony['msg'] | raw }}
 			</div>
 			<br/>
 		</li> 
