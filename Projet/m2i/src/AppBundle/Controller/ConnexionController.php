@@ -49,7 +49,7 @@ class ConnexionController extends Controller
 		$builder->add('password', PasswordType::class);
 		$builder->add('login_btn', SubmitType::class, array('label'=>'Connexion'));
 		
-		$builder->setAction($this->generateUrl('m2iprojet_admin_route'));
+		$builder->setAction($this->generateUrl('m2iprojet_connexion_route'));
 		
 		$form = $builder->getForm();
 		
@@ -83,14 +83,15 @@ class ConnexionController extends Controller
 		
 		if($user[0]['total'] != '0'){$connect = true;}
 		
-			
+
+		
 		if($connect)
 		{
 					
 			$session->set('login', $login);
 			$session->set('password', $password);
 			
-			/* Récupération de id_user */
+			// Récupération de id_user 
 		
 			$manager = $this->getDoctrine()->getManager();
 			$query = $manager->createQuery(
@@ -106,34 +107,14 @@ class ConnexionController extends Controller
 			$session->set('id_user', $id_user);
 			$session->set('connect', true);
 			
+			return $this->redirectToRoute('m2iprojet_admin_route');
 			
-			/* $msg = new Testimony();
-			$builder = $this->createFormBuilder($msg);
-			
-			$builder->add('msg_btn', SubmitType::class, array('label'=>'participer'));
-			$builder->setAction($this->generateUrl('m2iprojet_forum_route'));
-			$form_msg = $builder->getForm(); */
-			
-			
-			/* 
-			$manager = $this->getDoctrine()->getManager();
-			$query = $manager->createQuery(
-			"SELECT t.msg,t.creationDate,t.modificationDate,u.firstname 
-			FROM AppBundle:Users u,AppBundle:Testimony t
-			WHERE t.idUser = u.id and t.context = 'f'"
-			);	
-						
-			$messages = $query->getResult();
-			
-			return $this->render('connexion.html.twig',array(
-						'login'=>$login,
-						'messages_list'=>$messages,
-						'form'=>$form_msg->createView()
-						)); */
-			return $this->render('admin.html.twig',array(
+			/*
+					return $this->render('admin.html.twig',array(
 						'login'=>$login,
 						'menu'=>$this->_getMenu()
 						));
+			*/
 		}
 		else
 		{
