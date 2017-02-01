@@ -4,25 +4,31 @@
 	<meta charset="utf-8">
 	<title>forum</title>
 	<link href="{{ asset('./css/main.css') }}" type="text/css" rel="stylesheet" />
+	<link href="{{ asset('./css/forum.css') }}" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
-	<div align="right"><a href="{{ path('m2iprojet_admin_route')}}" title="retour">
+	<div align="right"><a href="{{ path('m2iprojet_admin_route')}}" title="retour" style="background-color: #e5e5e5;">
 	<img src="{{ asset('./images/retour.jpg') }}" width="40px" height="40px" style="border-radius:20px;border: black solid 1px"></a></div> 
+	{% set i = 0 %}
 	{% for current_testimony in testimonys_list %}
-		<li>
+		{% if i % 2 == 0 %}
+		<li style="background-color:#EFF0FF">
+		{% else %}
+		<li style="background-color:#FFEDD0">
+		{% endif %}
 			<label style="color:gray"><b>{{ current_testimony['firstname'] }} {{ current_testimony['lastname'] }}</b></label>
-			<label style="color:gray">( {{ current_testimony['creationDate']|date("d/m/Y h:m") }} )</label>
-			<br/>
-			<div>
-				{{ current_testimony['msg'] | raw }}
-			</div>
-			<br/>
+			<p>
+				 <a href="#">{{ current_testimony['msg'] | raw }}
+					  <span>( {{ current_testimony['creationDate']|date("d/m/Y h:m") }} )</span>
+				 </a>
+			</p>
+
 		</li> 
-		<br/>
+		{% set i = i + 1 %}
 	{% endfor %}
 
-
+	<br/>
 
 
 	{{ form_start(form) }}
